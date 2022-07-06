@@ -212,7 +212,7 @@ class BaseClient:
             method: str,
             values: Tuple[Any, ...],
             definitions: Tuple[Tuple[str, str], ...],
-            responses: Dict[int, Type],
+            responses: Dict[int, str],
     ):
         """Match values and definitions, build request parameters, and send request.
 
@@ -235,7 +235,8 @@ class BaseClient:
         url = url.format(**path)
         response = self.request(url, method=method, params=query, data=body)
         data = response.json()
-        klass = responses.get(response.status_code)
+        klass_name = responses.get(response.status_code)
+        klass = getattr(self.__class__.__module__, klass_name)
         # noinspection PyUnresolvedReferences
         obj = klass.from_json(data)
         return obj

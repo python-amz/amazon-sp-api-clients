@@ -115,7 +115,7 @@ class ParsedResponse(Response):
     def type_hint(self):
         schema = self.content.get(self.media_type).media_type_schema
         assert isinstance(schema, Reference), type(schema)
-        return self.generator.get_type_hint_of_schema(schema).strip('"').strip("'")
+        return self.generator.get_type_hint_of_schema(schema)
 
 
 class ParsedOperation(Operation):

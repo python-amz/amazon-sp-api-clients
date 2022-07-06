@@ -2025,7 +2025,7 @@ class OrdersV0Client(BaseClient):
     def get_order(
         self,
         order_id: str,
-    ) -> Union[GetOrderResponse]:
+    ) -> Union["GetOrderResponse"]:
         """
         Returns the order indicated by the specified order ID.
         **Usage Plans:**
@@ -2054,19 +2054,19 @@ class OrdersV0Client(BaseClient):
     _get_order_params = (("orderId", "path"),)  # name, param in
 
     _get_order_responses = {
-        200: GetOrderResponse,
-        400: GetOrderResponse,
-        403: GetOrderResponse,
-        404: GetOrderResponse,
-        429: GetOrderResponse,
-        500: GetOrderResponse,
-        503: GetOrderResponse,
+        200: "GetOrderResponse",
+        400: "GetOrderResponse",
+        403: "GetOrderResponse",
+        404: "GetOrderResponse",
+        429: "GetOrderResponse",
+        500: "GetOrderResponse",
+        503: "GetOrderResponse",
     }
 
     def get_order_address(
         self,
         order_id: str,
-    ) -> Union[GetOrderAddressResponse]:
+    ) -> Union["GetOrderAddressResponse"]:
         """
         Returns the shipping address for the specified order.
         **Usage Plans:**
@@ -2095,19 +2095,19 @@ class OrdersV0Client(BaseClient):
     _get_order_address_params = (("orderId", "path"),)  # name, param in
 
     _get_order_address_responses = {
-        200: GetOrderAddressResponse,
-        400: GetOrderAddressResponse,
-        403: GetOrderAddressResponse,
-        404: GetOrderAddressResponse,
-        429: GetOrderAddressResponse,
-        500: GetOrderAddressResponse,
-        503: GetOrderAddressResponse,
+        200: "GetOrderAddressResponse",
+        400: "GetOrderAddressResponse",
+        403: "GetOrderAddressResponse",
+        404: "GetOrderAddressResponse",
+        429: "GetOrderAddressResponse",
+        500: "GetOrderAddressResponse",
+        503: "GetOrderAddressResponse",
     }
 
     def get_order_buyer_info(
         self,
         order_id: str,
-    ) -> Union[GetOrderBuyerInfoResponse]:
+    ) -> Union["GetOrderBuyerInfoResponse"]:
         """
         Returns buyer information for the specified order.
         **Usage Plans:**
@@ -2136,20 +2136,20 @@ class OrdersV0Client(BaseClient):
     _get_order_buyer_info_params = (("orderId", "path"),)  # name, param in
 
     _get_order_buyer_info_responses = {
-        200: GetOrderBuyerInfoResponse,
-        400: GetOrderBuyerInfoResponse,
-        403: GetOrderBuyerInfoResponse,
-        404: GetOrderBuyerInfoResponse,
-        429: GetOrderBuyerInfoResponse,
-        500: GetOrderBuyerInfoResponse,
-        503: GetOrderBuyerInfoResponse,
+        200: "GetOrderBuyerInfoResponse",
+        400: "GetOrderBuyerInfoResponse",
+        403: "GetOrderBuyerInfoResponse",
+        404: "GetOrderBuyerInfoResponse",
+        429: "GetOrderBuyerInfoResponse",
+        500: "GetOrderBuyerInfoResponse",
+        503: "GetOrderBuyerInfoResponse",
     }
 
     def get_order_items(
         self,
         order_id: str,
         next_token: str = None,
-    ) -> Union[GetOrderItemsResponse]:
+    ) -> Union["GetOrderItemsResponse"]:
         """
         Returns detailed order item information for the order indicated by the specified order ID. If NextToken is
         provided, it's used to retrieve the next page of order items.
@@ -2192,20 +2192,20 @@ class OrdersV0Client(BaseClient):
     )
 
     _get_order_items_responses = {
-        200: GetOrderItemsResponse,
-        400: GetOrderItemsResponse,
-        403: GetOrderItemsResponse,
-        404: GetOrderItemsResponse,
-        429: GetOrderItemsResponse,
-        500: GetOrderItemsResponse,
-        503: GetOrderItemsResponse,
+        200: "GetOrderItemsResponse",
+        400: "GetOrderItemsResponse",
+        403: "GetOrderItemsResponse",
+        404: "GetOrderItemsResponse",
+        429: "GetOrderItemsResponse",
+        500: "GetOrderItemsResponse",
+        503: "GetOrderItemsResponse",
     }
 
     def get_order_items_buyer_info(
         self,
         order_id: str,
         next_token: str = None,
-    ) -> Union[GetOrderItemsBuyerInfoResponse]:
+    ) -> Union["GetOrderItemsBuyerInfoResponse"]:
         """
         Returns buyer information for the order items in the specified order.
         **Usage Plans:**
@@ -2241,19 +2241,19 @@ class OrdersV0Client(BaseClient):
     )
 
     _get_order_items_buyer_info_responses = {
-        200: GetOrderItemsBuyerInfoResponse,
-        400: GetOrderItemsBuyerInfoResponse,
-        403: GetOrderItemsBuyerInfoResponse,
-        404: GetOrderItemsBuyerInfoResponse,
-        429: GetOrderItemsBuyerInfoResponse,
-        500: GetOrderItemsBuyerInfoResponse,
-        503: GetOrderItemsBuyerInfoResponse,
+        200: "GetOrderItemsBuyerInfoResponse",
+        400: "GetOrderItemsBuyerInfoResponse",
+        403: "GetOrderItemsBuyerInfoResponse",
+        404: "GetOrderItemsBuyerInfoResponse",
+        429: "GetOrderItemsBuyerInfoResponse",
+        500: "GetOrderItemsBuyerInfoResponse",
+        503: "GetOrderItemsBuyerInfoResponse",
     }
 
     def get_order_regulated_info(
         self,
         order_id: str,
-    ) -> Union[GetOrderRegulatedInfoResponse]:
+    ) -> Union["GetOrderRegulatedInfoResponse"]:
         """
         Returns regulated information for the order indicated by the specified order ID.
         **Usage Plans:**
@@ -2282,13 +2282,13 @@ class OrdersV0Client(BaseClient):
     _get_order_regulated_info_params = (("orderId", "path"),)  # name, param in
 
     _get_order_regulated_info_responses = {
-        200: GetOrderRegulatedInfoResponse,
-        400: GetOrderRegulatedInfoResponse,
-        403: GetOrderRegulatedInfoResponse,
-        404: GetOrderRegulatedInfoResponse,
-        429: GetOrderRegulatedInfoResponse,
-        500: GetOrderRegulatedInfoResponse,
-        503: GetOrderRegulatedInfoResponse,
+        200: "GetOrderRegulatedInfoResponse",
+        400: "GetOrderRegulatedInfoResponse",
+        403: "GetOrderRegulatedInfoResponse",
+        404: "GetOrderRegulatedInfoResponse",
+        429: "GetOrderRegulatedInfoResponse",
+        500: "GetOrderRegulatedInfoResponse",
+        503: "GetOrderRegulatedInfoResponse",
     }
 
     def get_orders(
@@ -2310,7 +2310,7 @@ class OrdersV0Client(BaseClient):
         actual_fulfillment_supply_source_id: str = None,
         is_ispu: bool = None,
         store_chain_store_id: str = None,
-    ) -> Union[GetOrdersResponse]:
+    ) -> Union["GetOrdersResponse"]:
         """
         Returns orders created or updated during the time frame indicated by the specified parameters. You can also
         apply a range of filtering criteria to narrow the list of orders returned. If NextToken is present, that will be
@@ -2430,13 +2430,13 @@ class OrdersV0Client(BaseClient):
     )
 
     _get_orders_responses = {
-        200: GetOrdersResponse,
-        400: GetOrdersResponse,
-        403: GetOrdersResponse,
-        404: GetOrdersResponse,
-        429: GetOrdersResponse,
-        500: GetOrdersResponse,
-        503: GetOrdersResponse,
+        200: "GetOrdersResponse",
+        400: "GetOrdersResponse",
+        403: "GetOrdersResponse",
+        404: "GetOrdersResponse",
+        429: "GetOrdersResponse",
+        500: "GetOrdersResponse",
+        503: "GetOrdersResponse",
     }
 
     def update_shipment_status(
@@ -2445,7 +2445,7 @@ class OrdersV0Client(BaseClient):
         marketplace_id: str,
         shipment_status: Union[Literal["ReadyForPickup"], Literal["PickedUp"], Literal["RefusedPickup"]],
         order_items: List["OrderItemsItem"] = None,
-    ) -> Union[UpdateShipmentStatusErrorResponse]:
+    ) -> Union["UpdateShipmentStatusErrorResponse"]:
         """
         Update the shipment status.
 
@@ -2480,21 +2480,21 @@ class OrdersV0Client(BaseClient):
     )
 
     _update_shipment_status_responses = {
-        400: UpdateShipmentStatusErrorResponse,
-        403: UpdateShipmentStatusErrorResponse,
-        404: UpdateShipmentStatusErrorResponse,
-        413: UpdateShipmentStatusErrorResponse,
-        415: UpdateShipmentStatusErrorResponse,
-        429: UpdateShipmentStatusErrorResponse,
-        500: UpdateShipmentStatusErrorResponse,
-        503: UpdateShipmentStatusErrorResponse,
+        400: "UpdateShipmentStatusErrorResponse",
+        403: "UpdateShipmentStatusErrorResponse",
+        404: "UpdateShipmentStatusErrorResponse",
+        413: "UpdateShipmentStatusErrorResponse",
+        415: "UpdateShipmentStatusErrorResponse",
+        429: "UpdateShipmentStatusErrorResponse",
+        500: "UpdateShipmentStatusErrorResponse",
+        503: "UpdateShipmentStatusErrorResponse",
     }
 
     def update_verification_status(
         self,
         order_id: str,
         regulated_order_verification_status: Dict[str, Any],
-    ) -> Union[UpdateVerificationStatusErrorResponse]:
+    ) -> Union["UpdateVerificationStatusErrorResponse"]:
         """
         Updates (approves or rejects) the verification status of an order containing regulated products.
         **Usage Plans:**
@@ -2530,12 +2530,12 @@ class OrdersV0Client(BaseClient):
     )
 
     _update_verification_status_responses = {
-        400: UpdateVerificationStatusErrorResponse,
-        403: UpdateVerificationStatusErrorResponse,
-        404: UpdateVerificationStatusErrorResponse,
-        413: UpdateVerificationStatusErrorResponse,
-        415: UpdateVerificationStatusErrorResponse,
-        429: UpdateVerificationStatusErrorResponse,
-        500: UpdateVerificationStatusErrorResponse,
-        503: UpdateVerificationStatusErrorResponse,
+        400: "UpdateVerificationStatusErrorResponse",
+        403: "UpdateVerificationStatusErrorResponse",
+        404: "UpdateVerificationStatusErrorResponse",
+        413: "UpdateVerificationStatusErrorResponse",
+        415: "UpdateVerificationStatusErrorResponse",
+        429: "UpdateVerificationStatusErrorResponse",
+        500: "UpdateVerificationStatusErrorResponse",
+        503: "UpdateVerificationStatusErrorResponse",
     }
