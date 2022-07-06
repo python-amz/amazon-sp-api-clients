@@ -1918,7 +1918,7 @@ class UpdateShipmentStatusRequest(BaseObject):
     Request to update the status of shipment of an order.
     """
 
-    marketplace_id: "MarketplaceId" = attrs.field(
+    marketplace_id: str = attrs.field(
         default=None,
     )
     """
@@ -1932,7 +1932,7 @@ class UpdateShipmentStatusRequest(BaseObject):
     the list of order items and quantities when the seller wants to partially update the shipment status of the order
     """
 
-    shipment_status: "ShipmentStatus" = attrs.field(
+    shipment_status: Union[Literal["ReadyForPickup"], Literal["PickedUp"], Literal["RefusedPickup"]] = attrs.field(
         default=None,
     )
     """

@@ -33,11 +33,11 @@ class {{ schema.name }}(BaseObject):
                 {{ p.default }}
             {% endif %},
         )
-    {% if p.parsed_description or p.fields %}"""{% if p.parsed_description %}
-    {{ p.parsed_description }}{% endif %}{% if p.fields %}
+    {% if p.parsed_description or p.extra_fields %}"""{% if p.parsed_description %}
+    {{ p.parsed_description }}{% endif %}{% if p.extra_fields %}
 
     Extra fields:
-    {{ p.fields }}{% endif %}
+    {{ p.extra_fields }}{% endif %}
     """
         {% endif %}
     {% endfor %}
