@@ -12,8 +12,7 @@ import django.template
 from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
-from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody, Schema, Components, \
-    Response
+from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody, Schema, Response
 
 settings.configure(TEMPLATES=[{
     'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -244,12 +243,12 @@ class Generator:
             return ref
         match = re.match(r'^#/components/(.*?)/(.*?)$', ref.ref)
         category, name = match.group(1, 2)
-        result = getattr(self.components, category).get(name)
+        result = getattr(self.openapi_data.components, category).get(name)
         assert result is not None, f'{category}/{name}'
         return result
 
     @cached_property
-    def data(self) -> OpenAPI:
+    def openapi_data(self) -> OpenAPI:
         with open(self.path) as f:
             data = json.load(f)
         data = OpenAPI.parse_obj(data)
@@ -259,10 +258,6 @@ class Generator:
         assert len(data.servers) == 1
 
         return data
-
-    @cached_property
-    def components(self) -> Components:
-        return self.data.components
 
     def _find_new_schema(self, name: str, schema: Schema | Reference | Parameter) -> list[tuple[str, Schema]]:
         """Find inline schemas, which are not able to convert in python.
@@ -343,14 +338,14 @@ class Generator:
 
     @cached_property
     def schemas(self) -> list[ParsedSchema]:
-        src = self.components.schemas
+        src = self.openapi_data.components.schemas
         src = {k: v for k, v in src.items() if isinstance(v, Schema)}
         schemas = list(src.items())
         schemas = list(chain.from_iterable(self._find_new_schema(k, v) for k, v in schemas))
         schema_names = [k for k, v in schemas]
         assert set(src).issubset(set(schema_names)), 'existing schemas should not be deleted'
         assert len(schema_names) == len(set(schema_names)), f'schema names should not conflict: {schema_names}'
-        self.components.schemas = dict(schemas)
+        self.openapi_data.components.schemas = dict(schemas)
 
         values = [v.dict() | {'name': k, 'generator': self} for k, v in schemas]
         dst: list[ParsedSchema] = [ParsedSchema.parse_obj(v) for v in values]
@@ -413,7 +408,7 @@ class Generator:
     def operations(self) -> list['ParsedOperation']:
         operations = (ParsedOperation.parse_obj(
             {'path': path, 'method': method, 'generator': self} | getattr(item, method).dict())
-            for path, item in self.data.paths.items() for method in item.__fields_set__)
+            for path, item in self.openapi_data.paths.items() for method in item.__fields_set__)
         operations = (sorted(operations, key=lambda k: k.operationId))
         return list(operations)
 

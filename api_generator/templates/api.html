@@ -1,11 +1,11 @@
 """
-{{ data.data.info.title }}
+{{ data.openapi_data.info.title }}
 =============================================================================================
 
-{{ data.data.info.description }}
-API Version: {{ data.data.info.version }}
-Contact Amazon: {{ data.data.info.contact.name }} {% if data.data.info.contact.email %}<{{ data.data.info.contact.email }}> {% endif %}{{ data.data.info.contact.url }}
-License for the OpenAPI file: {{ data.data.info.license.name }} {{ data.data.info.license.url }}
+{{ data.openapi_data.info.description }}
+API Version: {{ data.openapi_data.info.version }}
+Contact Amazon: {{ data.openapi_data.info.contact.name }} {% if data.openapi_data.info.contact.email %}<{{ data.openapi_data.info.contact.email }}> {% endif %}{{ data.openapi_data.info.contact.url }}
+License for the OpenAPI file: {{ data.openapi_data.info.license.name }} {{ data.openapi_data.info.license.url }}
 """
 import attrs
 from ..utils.base_client import BaseClient
