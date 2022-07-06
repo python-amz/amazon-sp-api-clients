@@ -358,12 +358,6 @@ class Generator:
         dst = [v for v in dst if v.type != 'array']  # do not render array type as standalone class
         return dst
 
-    @cached_property
-    def references(self) -> dict[str, Reference]:
-        src = self.components.schemas
-        dst = {k: v for k, v in src.items() if isinstance(v, Reference)}
-        return dst
-
     def get_type_hint_of_schema(self, schema: Schema):
         # recursively get inline type hint of a schema
 
@@ -424,7 +418,7 @@ class Generator:
         return list(operations)
 
     @cached_property
-    def content(self):
+    def rendered_content(self):
         content = render(RequestFactory(), 'api.html', {'data': self}).content.decode('utf-8')
         return self.format_python_file(content)
 
@@ -450,19 +444,19 @@ class Generator:
         return ''.join(word.capitalize() for word in self.package_name.split('_'))
 
     @cached_property
-    def directory(self):
+    def output_directory(self):
         return Path(__file__).parent.parent / 'amazon_sp_api_clients_2' / 'api'
 
     def generate(self):
-        self.directory.mkdir(parents=True, exist_ok=True)
+        self.output_directory.mkdir(parents=True, exist_ok=True)
 
         init_content = ''
-        with open(self.directory / '__init__.py', 'w+', encoding='utf-8') as f:
+        with open(self.output_directory / '__init__.py', 'w+', encoding='utf-8') as f:
             existing_content = f.read()
             init_content != existing_content and f.write(init_content)
-        with open(self.directory / f'{self.package_name}.py', 'w+', encoding='utf-8') as f:
+        with open(self.output_directory / f'{self.package_name}.py', 'w+', encoding='utf-8') as f:
             existing_content = f.read()
-            self.content != existing_content and f.write(self.content)
+            self.rendered_content != existing_content and f.write(self.rendered_content)
 
     @classmethod
     def worker(cls, path: Path):
