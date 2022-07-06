@@ -66,10 +66,10 @@ class {{ data.class_name }}Client(BaseClient):
         {% endfor %}
     ) -> {{ operation.result_type }}:
         """
-{{ operation.description }}
+{{ operation.parsed_description }}
 
 Args:
-    {% for param in operation.parsed_parameters %}{{ param.variable_name }}: {% if param.parsed_description %}{{ param.parsed_description }}{% else %}no description.{% endif %}
+    {% for param in operation.parsed_parameters %}{{ param.parsed_description }}
     {% endfor %}
 """
         url = "{{ operation.path }}"

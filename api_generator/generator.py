@@ -2,6 +2,7 @@ import html
 import json
 import multiprocessing
 import re
+import textwrap
 from functools import cached_property
 from itertools import chain
 from pathlib import Path
@@ -46,13 +47,13 @@ class ParsedSchema(Schema):
 
     @property
     def parsed_description(self):
-        obj = self
-        result = obj.description if obj.description else ''
-        result = obj.items.description if not result and obj.items and obj.items.description else result
+        result = self.description if self.description else ''
+        result = self.items.description if not result and self.items and self.items.description else result
         result = result.splitlines()
         result = [line.strip() for line in result]
+        result = list(chain.from_iterable(textwrap.wrap(i, 116) for i in result))
         result = [line for line in result if line]
-        return '\n        '.join(result)
+        return '\n    '.join(result)
 
     @property
     def is_list(self):
@@ -104,9 +105,9 @@ class ParsedParameter(Parameter):
 
     @property
     def parsed_description(self):
-        result = '' if self.description is None else self.description
-        result = result.splitlines()
+        result = f'{self.variable_name}: {self.description if self.description else "no description"}'.splitlines()
         result = [line.strip() for line in result]
+        result = chain.from_iterable(textwrap.wrap(i, 104) for i in result)
         result = [line for line in result if line]
         return '\n        '.join(result)
 
@@ -201,6 +202,15 @@ class ParsedOperation(Operation):
         result_types = list(sorted(result_types))
         result_types = ', '.join(result_types)
         return f'Union[{result_types}]'
+
+    @property
+    def parsed_description(self):
+        result = self.description.splitlines()
+        result = [line.strip() for line in result]
+        result = list(chain.from_iterable(textwrap.wrap(i, 112) for i in result))
+        result = [line.strip() for line in result]
+        result = [line for line in result if line]
+        return '\n'.join(result)
 
 
 class Generator:
