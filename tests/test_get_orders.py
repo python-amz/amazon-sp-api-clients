@@ -28,8 +28,8 @@ def test_get_orders():
         path = Path(__file__).parent / 'orders.json'
         with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        orders = cattrs.structure(data, GetOrdersResponse)
-        # orders = GetOrdersResponse.from_json(data)
+        # orders = cattrs.structure(data, GetOrdersResponse)
+        orders = GetOrdersResponse.from_json(data)
     else:
         orders = clients.orders_v0.get_orders(
             marketplace_ids=[marketplace.market_place],

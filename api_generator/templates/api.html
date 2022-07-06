@@ -45,13 +45,7 @@ class {{ schema.name }}(BaseObject):
     pass
     {% endif %}
 
-    _attrs_config = {
-        'name-convert': {
-            {% for property in schema.all_properties %}
-                "{{ property.name }}": "{{ property.variable_name }}",
-            {% endfor %}
-        }
-    }
+    _attrs_config = {{ schema.attrs_config }}
 {% endfor %}
 
 

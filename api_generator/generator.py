@@ -102,6 +102,12 @@ class ParsedSchema(SchemaBase):
         result.sort(key=lambda i: i.name)
         return result
 
+    @property
+    def attrs_config(self):
+        return json.dumps({
+            'name-convert': {p.name: p.variable_name for p in self.all_properties},
+        })
+
 
 class ParsedParameter(Parameter):
     generator: Any

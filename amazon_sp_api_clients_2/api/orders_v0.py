@@ -179,11 +179,7 @@ class BuyerCustomizedInfoDetail(BaseObject):
     The location of a zip file containing Amazon Custom data.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "CustomizedURL": "customized_url",
-        }
-    }
+    _attrs_config = {"name-convert": {"CustomizedURL": "customized_url"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -373,13 +369,7 @@ class Error(BaseObject):
     A message that describes the error condition in a human-readable form.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "code": "code",
-            "details": "details",
-            "message": "message",
-        }
-    }
+    _attrs_config = {"name-convert": {"code": "code", "details": "details", "message": "message"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -395,11 +385,7 @@ class FulfillmentInstruction(BaseObject):
     Denotes the recommended sourceId where the order should be fulfilled from.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "FulfillmentSupplySourceId": "fulfillment_supply_source_id",
-        }
-    }
+    _attrs_config = {"name-convert": {"FulfillmentSupplySourceId": "fulfillment_supply_source_id"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -422,12 +408,7 @@ class GetOrderAddressResponse(BaseObject):
     The shipping address for the order.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "errors": "errors",
-            "payload": "payload",
-        }
-    }
+    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -450,12 +431,7 @@ class GetOrderBuyerInfoResponse(BaseObject):
     Buyer information for an order.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "errors": "errors",
-            "payload": "payload",
-        }
-    }
+    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -478,12 +454,7 @@ class GetOrderItemsBuyerInfoResponse(BaseObject):
     A single order item's buyer information list with the order ID.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "errors": "errors",
-            "payload": "payload",
-        }
-    }
+    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -506,12 +477,7 @@ class GetOrderItemsResponse(BaseObject):
     The order items list along with the order ID.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "errors": "errors",
-            "payload": "payload",
-        }
-    }
+    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -534,12 +500,7 @@ class GetOrderRegulatedInfoResponse(BaseObject):
     The order's regulated information along with its verification status.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "errors": "errors",
-            "payload": "payload",
-        }
-    }
+    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -562,12 +523,7 @@ class GetOrderResponse(BaseObject):
     Order information.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "errors": "errors",
-            "payload": "payload",
-        }
-    }
+    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -590,12 +546,7 @@ class GetOrdersResponse(BaseObject):
     A list of orders along with additional information to make subsequent API calls.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "errors": "errors",
-            "payload": "payload",
-        }
-    }
+    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -674,11 +625,7 @@ class MarketplaceTaxInfo(BaseObject):
     A list of tax classifications that apply to the order.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "TaxClassifications": "tax_classifications",
-        }
-    }
+    _attrs_config = {"name-convert": {"TaxClassifications": "tax_classifications"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -701,12 +648,7 @@ class Money(BaseObject):
     The three-digit currency code. In ISO 4217 format.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "Amount": "amount",
-            "CurrencyCode": "currency_code",
-        }
-    }
+    _attrs_config = {"name-convert": {"Amount": "amount", "CurrencyCode": "currency_code"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1123,12 +1065,7 @@ class OrderAddress(BaseObject):
     The shipping address for the order.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "AmazonOrderId": "amazon_order_id",
-            "ShippingAddress": "shipping_address",
-        }
-    }
+    _attrs_config = {"name-convert": {"AmazonOrderId": "amazon_order_id", "ShippingAddress": "shipping_address"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1567,11 +1504,7 @@ class OrderItemsBuyerInfoList(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "AmazonOrderId": "amazon_order_id",
-            "NextToken": "next_token",
-            "OrderItems": "order_items",
-        }
+        "name-convert": {"AmazonOrderId": "amazon_order_id", "NextToken": "next_token", "OrderItems": "order_items"}
     }
 
 
@@ -1592,12 +1525,7 @@ class OrderItemsItem(BaseObject):
     the quantity of items that needs an update of the shipment status
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "orderItemId": "order_item_id",
-            "quantity": "quantity",
-        }
-    }
+    _attrs_config = {"name-convert": {"orderItemId": "order_item_id", "quantity": "quantity"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1628,11 +1556,7 @@ class OrderItemsList(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "AmazonOrderId": "amazon_order_id",
-            "NextToken": "next_token",
-            "OrderItems": "order_items",
-        }
+        "name-convert": {"AmazonOrderId": "amazon_order_id", "NextToken": "next_token", "OrderItems": "order_items"}
     }
 
 
@@ -1748,12 +1672,7 @@ class PaymentExecutionDetailItem(BaseObject):
         * PointsAccount - Amazon Points.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "Payment": "payment",
-            "PaymentMethod": "payment_method",
-        }
-    }
+    _attrs_config = {"name-convert": {"Payment": "payment", "PaymentMethod": "payment_method"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1776,12 +1695,7 @@ class PointsGrantedDetail(BaseObject):
     The number of Amazon Points granted with the purchase of an item.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "PointsMonetaryValue": "points_monetary_value",
-            "PointsNumber": "points_number",
-        }
-    }
+    _attrs_config = {"name-convert": {"PointsMonetaryValue": "points_monetary_value", "PointsNumber": "points_number"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1797,11 +1711,7 @@ class ProductInfoDetail(BaseObject):
     The total number of items that are included in the ASIN.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "NumberOfItems": "number_of_items",
-        }
-    }
+    _attrs_config = {"name-convert": {"NumberOfItems": "number_of_items"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1817,11 +1727,7 @@ class RegulatedInformation(BaseObject):
     A list of regulated information fields as collected from the regulatory form.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "Fields": "fields",
-        }
-    }
+    _attrs_config = {"name-convert": {"Fields": "fields"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1989,12 +1895,7 @@ class TaxClassification(BaseObject):
     The buyer's tax identifier.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "Name": "name",
-            "Value": "value",
-        }
-    }
+    _attrs_config = {"name-convert": {"Name": "name", "Value": "value"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -2017,12 +1918,7 @@ class TaxCollection(BaseObject):
     The party responsible for withholding the taxes and remitting them to the taxing authority.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "Model": "model",
-            "ResponsibleParty": "responsible_party",
-        }
-    }
+    _attrs_config = {"name-convert": {"Model": "model", "ResponsibleParty": "responsible_party"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -2038,11 +1934,7 @@ class UpdateShipmentStatusErrorResponse(BaseObject):
     A list of error responses returned when a request is unsuccessful.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "errors": "errors",
-        }
-    }
+    _attrs_config = {"name-convert": {"errors": "errors"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -2094,11 +1986,7 @@ class UpdateVerificationStatusErrorResponse(BaseObject):
     A list of error responses returned when a request is unsuccessful.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "errors": "errors",
-        }
-    }
+    _attrs_config = {"name-convert": {"errors": "errors"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -2114,11 +2002,7 @@ class UpdateVerificationStatusRequest(BaseObject):
     The updated values of the VerificationStatus field.
     """
 
-    _attrs_config = {
-        "name-convert": {
-            "regulatedOrderVerificationStatus": "regulated_order_verification_status",
-        }
-    }
+    _attrs_config = {"name-convert": {"regulatedOrderVerificationStatus": "regulated_order_verification_status"}}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
