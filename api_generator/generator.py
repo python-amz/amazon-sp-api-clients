@@ -36,14 +36,12 @@ class SchemaBase(Schema):
         fields = {k: v for k, v in fields.items() if v is not None}
         return fields
 
-    @property
-    def schema_obj(self) -> Schema:
-        self.generator.resolve_ref(self)
-        return self
+    def resolve(self) -> 'SchemaBase':
+        return self.generator.resolve_ref(self)
 
     @property
     def type_hint(self):
-        return self.generator.get_type_hint_of_schema(self.schema_obj)
+        return self.generator.get_type_hint_of_schema(self)
 
     @property
     def variable_name(self):
@@ -104,9 +102,21 @@ class ParsedSchema(SchemaBase):
 
     @property
     def attrs_config(self):
-        return json.dumps({
-            'name-convert': {p.name: p.variable_name for p in self.all_properties},
-        })
+        data = {}
+        for p in self.all_properties:
+            # resolved = p.resolve()
+            # print(resolved.name)
+            # if p.type in ('array', 'object'):
+            #     print(p.type)
+            # if item_type is not None:
+            #     item_type = self.generator.resolve_ref(item_type)
+            value = (
+                p.variable_name,
+                p.resolve().type,
+            )
+            data.setdefault(p.name, value)
+        # pprint(data)
+        return json.dumps(data)
 
 
 class ParsedParameter(Parameter):

@@ -112,21 +112,19 @@ class Address(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "AddressLine1": "address_line1",
-            "AddressLine2": "address_line2",
-            "AddressLine3": "address_line3",
-            "AddressType": "address_type",
-            "City": "city",
-            "CountryCode": "country_code",
-            "County": "county",
-            "District": "district",
-            "Municipality": "municipality",
-            "Name": "name",
-            "Phone": "phone",
-            "PostalCode": "postal_code",
-            "StateOrRegion": "state_or_region",
-        }
+        "AddressLine1": ["address_line1", "string"],
+        "AddressLine2": ["address_line2", "string"],
+        "AddressLine3": ["address_line3", "string"],
+        "AddressType": ["address_type", "string"],
+        "City": ["city", "string"],
+        "CountryCode": ["country_code", "string"],
+        "County": ["county", "string"],
+        "District": ["district", "string"],
+        "Municipality": ["municipality", "string"],
+        "Name": ["name", "string"],
+        "Phone": ["phone", "string"],
+        "PostalCode": ["postal_code", "string"],
+        "StateOrRegion": ["state_or_region", "string"],
     }
 
 
@@ -158,11 +156,9 @@ class AutomatedShippingSettings(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "AutomatedCarrier": "automated_carrier",
-            "AutomatedShipMethod": "automated_ship_method",
-            "HasAutomatedShippingSettings": "has_automated_shipping_settings",
-        }
+        "AutomatedCarrier": ["automated_carrier", "string"],
+        "AutomatedShipMethod": ["automated_ship_method", "string"],
+        "HasAutomatedShippingSettings": ["has_automated_shipping_settings", "boolean"],
     }
 
 
@@ -179,7 +175,7 @@ class BuyerCustomizedInfoDetail(BaseObject):
     The location of a zip file containing Amazon Custom data.
     """
 
-    _attrs_config = {"name-convert": {"CustomizedURL": "customized_url"}}
+    _attrs_config = {"CustomizedURL": ["customized_url", "string"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -224,13 +220,11 @@ class BuyerInfo(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "BuyerCounty": "buyer_county",
-            "BuyerEmail": "buyer_email",
-            "BuyerName": "buyer_name",
-            "BuyerTaxInfo": "buyer_tax_info",
-            "PurchaseOrderNumber": "purchase_order_number",
-        }
+        "BuyerCounty": ["buyer_county", "string"],
+        "BuyerEmail": ["buyer_email", "string"],
+        "BuyerName": ["buyer_name", "string"],
+        "BuyerTaxInfo": ["buyer_tax_info", "object"],
+        "PurchaseOrderNumber": ["purchase_order_number", "string"],
     }
 
 
@@ -255,10 +249,8 @@ class BuyerRequestedCancel(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "BuyerCancelReason": "buyer_cancel_reason",
-            "IsBuyerRequestedCancel": "is_buyer_requested_cancel",
-        }
+        "BuyerCancelReason": ["buyer_cancel_reason", "string"],
+        "IsBuyerRequestedCancel": ["is_buyer_requested_cancel", "boolean"],
     }
 
 
@@ -290,11 +282,9 @@ class BuyerTaxInfo(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "CompanyLegalName": "company_legal_name",
-            "TaxClassifications": "tax_classifications",
-            "TaxingRegion": "taxing_region",
-        }
+        "CompanyLegalName": ["company_legal_name", "string"],
+        "TaxClassifications": ["tax_classifications", "array"],
+        "TaxingRegion": ["taxing_region", "string"],
     }
 
 
@@ -333,12 +323,10 @@ class BuyerTaxInformation(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "BuyerBusinessAddress": "buyer_business_address",
-            "BuyerLegalCompanyName": "buyer_legal_company_name",
-            "BuyerTaxOffice": "buyer_tax_office",
-            "BuyerTaxRegistrationId": "buyer_tax_registration_id",
-        }
+        "BuyerBusinessAddress": ["buyer_business_address", "string"],
+        "BuyerLegalCompanyName": ["buyer_legal_company_name", "string"],
+        "BuyerTaxOffice": ["buyer_tax_office", "string"],
+        "BuyerTaxRegistrationId": ["buyer_tax_registration_id", "string"],
     }
 
 
@@ -369,7 +357,7 @@ class Error(BaseObject):
     A message that describes the error condition in a human-readable form.
     """
 
-    _attrs_config = {"name-convert": {"code": "code", "details": "details", "message": "message"}}
+    _attrs_config = {"code": ["code", "string"], "details": ["details", "string"], "message": ["message", "string"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -385,7 +373,7 @@ class FulfillmentInstruction(BaseObject):
     Denotes the recommended sourceId where the order should be fulfilled from.
     """
 
-    _attrs_config = {"name-convert": {"FulfillmentSupplySourceId": "fulfillment_supply_source_id"}}
+    _attrs_config = {"FulfillmentSupplySourceId": ["fulfillment_supply_source_id", "string"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -408,7 +396,7 @@ class GetOrderAddressResponse(BaseObject):
     The shipping address for the order.
     """
 
-    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
+    _attrs_config = {"errors": ["errors", "array"], "payload": ["payload", "object"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -431,7 +419,7 @@ class GetOrderBuyerInfoResponse(BaseObject):
     Buyer information for an order.
     """
 
-    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
+    _attrs_config = {"errors": ["errors", "array"], "payload": ["payload", "object"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -454,7 +442,7 @@ class GetOrderItemsBuyerInfoResponse(BaseObject):
     A single order item's buyer information list with the order ID.
     """
 
-    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
+    _attrs_config = {"errors": ["errors", "array"], "payload": ["payload", "object"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -477,7 +465,7 @@ class GetOrderItemsResponse(BaseObject):
     The order items list along with the order ID.
     """
 
-    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
+    _attrs_config = {"errors": ["errors", "array"], "payload": ["payload", "object"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -500,7 +488,7 @@ class GetOrderRegulatedInfoResponse(BaseObject):
     The order's regulated information along with its verification status.
     """
 
-    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
+    _attrs_config = {"errors": ["errors", "array"], "payload": ["payload", "object"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -523,7 +511,7 @@ class GetOrderResponse(BaseObject):
     Order information.
     """
 
-    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
+    _attrs_config = {"errors": ["errors", "array"], "payload": ["payload", "object"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -546,7 +534,7 @@ class GetOrdersResponse(BaseObject):
     A list of orders along with additional information to make subsequent API calls.
     """
 
-    _attrs_config = {"name-convert": {"errors": "errors", "payload": "payload"}}
+    _attrs_config = {"errors": ["errors", "array"], "payload": ["payload", "object"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -591,13 +579,11 @@ class ItemBuyerInfo(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "BuyerCustomizedInfo": "buyer_customized_info",
-            "GiftMessageText": "gift_message_text",
-            "GiftWrapLevel": "gift_wrap_level",
-            "GiftWrapPrice": "gift_wrap_price",
-            "GiftWrapTax": "gift_wrap_tax",
-        }
+        "BuyerCustomizedInfo": ["buyer_customized_info", "object"],
+        "GiftMessageText": ["gift_message_text", "string"],
+        "GiftWrapLevel": ["gift_wrap_level", "string"],
+        "GiftWrapPrice": ["gift_wrap_price", "object"],
+        "GiftWrapTax": ["gift_wrap_tax", "object"],
     }
 
 
@@ -609,7 +595,7 @@ class MarketplaceId(BaseObject):
 
     pass
 
-    _attrs_config = {"name-convert": {}}
+    _attrs_config = {}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -625,7 +611,7 @@ class MarketplaceTaxInfo(BaseObject):
     A list of tax classifications that apply to the order.
     """
 
-    _attrs_config = {"name-convert": {"TaxClassifications": "tax_classifications"}}
+    _attrs_config = {"TaxClassifications": ["tax_classifications", "array"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -648,7 +634,7 @@ class Money(BaseObject):
     The three-digit currency code. In ISO 4217 format.
     """
 
-    _attrs_config = {"name-convert": {"Amount": "amount", "CurrencyCode": "currency_code"}}
+    _attrs_config = {"Amount": ["amount", "string"], "CurrencyCode": ["currency_code", "string"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -995,53 +981,51 @@ class Order(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "AmazonOrderId": "amazon_order_id",
-            "AutomatedShippingSettings": "automated_shipping_settings",
-            "BuyerInfo": "buyer_info",
-            "BuyerInvoicePreference": "buyer_invoice_preference",
-            "BuyerTaxInformation": "buyer_tax_information",
-            "CbaDisplayableShippingLabel": "cba_displayable_shipping_label",
-            "DefaultShipFromLocationAddress": "default_ship_from_location_address",
-            "EarliestDeliveryDate": "earliest_delivery_date",
-            "EarliestShipDate": "earliest_ship_date",
-            "EasyShipShipmentStatus": "easy_ship_shipment_status",
-            "FulfillmentChannel": "fulfillment_channel",
-            "FulfillmentInstruction": "fulfillment_instruction",
-            "HasRegulatedItems": "has_regulated_items",
-            "IsBusinessOrder": "is_business_order",
-            "IsEstimatedShipDateSet": "is_estimated_ship_date_set",
-            "IsGlobalExpressEnabled": "is_global_express_enabled",
-            "IsIBA": "is_iba",
-            "IsISPU": "is_ispu",
-            "IsPremiumOrder": "is_premium_order",
-            "IsPrime": "is_prime",
-            "IsReplacementOrder": "is_replacement_order",
-            "IsSoldByAB": "is_sold_by_ab",
-            "LastUpdateDate": "last_update_date",
-            "LatestDeliveryDate": "latest_delivery_date",
-            "LatestShipDate": "latest_ship_date",
-            "MarketplaceId": "marketplace_id",
-            "MarketplaceTaxInfo": "marketplace_tax_info",
-            "NumberOfItemsShipped": "number_of_items_shipped",
-            "NumberOfItemsUnshipped": "number_of_items_unshipped",
-            "OrderChannel": "order_channel",
-            "OrderStatus": "order_status",
-            "OrderTotal": "order_total",
-            "OrderType": "order_type",
-            "PaymentExecutionDetail": "payment_execution_detail",
-            "PaymentMethod": "payment_method",
-            "PaymentMethodDetails": "payment_method_details",
-            "PromiseResponseDueDate": "promise_response_due_date",
-            "PurchaseDate": "purchase_date",
-            "ReplacedOrderId": "replaced_order_id",
-            "SalesChannel": "sales_channel",
-            "SellerDisplayName": "seller_display_name",
-            "SellerOrderId": "seller_order_id",
-            "ShipServiceLevel": "ship_service_level",
-            "ShipmentServiceLevelCategory": "shipment_service_level_category",
-            "ShippingAddress": "shipping_address",
-        }
+        "AmazonOrderId": ["amazon_order_id", "string"],
+        "AutomatedShippingSettings": ["automated_shipping_settings", "object"],
+        "BuyerInfo": ["buyer_info", "object"],
+        "BuyerInvoicePreference": ["buyer_invoice_preference", "string"],
+        "BuyerTaxInformation": ["buyer_tax_information", "object"],
+        "CbaDisplayableShippingLabel": ["cba_displayable_shipping_label", "string"],
+        "DefaultShipFromLocationAddress": ["default_ship_from_location_address", "object"],
+        "EarliestDeliveryDate": ["earliest_delivery_date", "string"],
+        "EarliestShipDate": ["earliest_ship_date", "string"],
+        "EasyShipShipmentStatus": ["easy_ship_shipment_status", "string"],
+        "FulfillmentChannel": ["fulfillment_channel", "string"],
+        "FulfillmentInstruction": ["fulfillment_instruction", "object"],
+        "HasRegulatedItems": ["has_regulated_items", "boolean"],
+        "IsBusinessOrder": ["is_business_order", "boolean"],
+        "IsEstimatedShipDateSet": ["is_estimated_ship_date_set", "boolean"],
+        "IsGlobalExpressEnabled": ["is_global_express_enabled", "boolean"],
+        "IsIBA": ["is_iba", "boolean"],
+        "IsISPU": ["is_ispu", "boolean"],
+        "IsPremiumOrder": ["is_premium_order", "boolean"],
+        "IsPrime": ["is_prime", "boolean"],
+        "IsReplacementOrder": ["is_replacement_order", "boolean"],
+        "IsSoldByAB": ["is_sold_by_ab", "boolean"],
+        "LastUpdateDate": ["last_update_date", "string"],
+        "LatestDeliveryDate": ["latest_delivery_date", "string"],
+        "LatestShipDate": ["latest_ship_date", "string"],
+        "MarketplaceId": ["marketplace_id", "string"],
+        "MarketplaceTaxInfo": ["marketplace_tax_info", "object"],
+        "NumberOfItemsShipped": ["number_of_items_shipped", "integer"],
+        "NumberOfItemsUnshipped": ["number_of_items_unshipped", "integer"],
+        "OrderChannel": ["order_channel", "string"],
+        "OrderStatus": ["order_status", "string"],
+        "OrderTotal": ["order_total", "object"],
+        "OrderType": ["order_type", "string"],
+        "PaymentExecutionDetail": ["payment_execution_detail", "array"],
+        "PaymentMethod": ["payment_method", "string"],
+        "PaymentMethodDetails": ["payment_method_details", "array"],
+        "PromiseResponseDueDate": ["promise_response_due_date", "string"],
+        "PurchaseDate": ["purchase_date", "string"],
+        "ReplacedOrderId": ["replaced_order_id", "string"],
+        "SalesChannel": ["sales_channel", "string"],
+        "SellerDisplayName": ["seller_display_name", "string"],
+        "SellerOrderId": ["seller_order_id", "string"],
+        "ShipServiceLevel": ["ship_service_level", "string"],
+        "ShipmentServiceLevelCategory": ["shipment_service_level_category", "string"],
+        "ShippingAddress": ["shipping_address", "object"],
     }
 
 
@@ -1065,7 +1049,7 @@ class OrderAddress(BaseObject):
     The shipping address for the order.
     """
 
-    _attrs_config = {"name-convert": {"AmazonOrderId": "amazon_order_id", "ShippingAddress": "shipping_address"}}
+    _attrs_config = {"AmazonOrderId": ["amazon_order_id", "string"], "ShippingAddress": ["shipping_address", "object"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1117,14 +1101,12 @@ class OrderBuyerInfo(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "AmazonOrderId": "amazon_order_id",
-            "BuyerCounty": "buyer_county",
-            "BuyerEmail": "buyer_email",
-            "BuyerName": "buyer_name",
-            "BuyerTaxInfo": "buyer_tax_info",
-            "PurchaseOrderNumber": "purchase_order_number",
-        }
+        "AmazonOrderId": ["amazon_order_id", "string"],
+        "BuyerCounty": ["buyer_county", "string"],
+        "BuyerEmail": ["buyer_email", "string"],
+        "BuyerName": ["buyer_name", "string"],
+        "BuyerTaxInfo": ["buyer_tax_info", "object"],
+        "PurchaseOrderNumber": ["purchase_order_number", "string"],
     }
 
 
@@ -1377,42 +1359,40 @@ class OrderItem(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "ASIN": "asin",
-            "BuyerInfo": "buyer_info",
-            "BuyerRequestedCancel": "buyer_requested_cancel",
-            "CODFee": "codfee",
-            "CODFeeDiscount": "codfee_discount",
-            "ConditionId": "condition_id",
-            "ConditionNote": "condition_note",
-            "ConditionSubtypeId": "condition_subtype_id",
-            "DeemedResellerCategory": "deemed_reseller_category",
-            "IossNumber": "ioss_number",
-            "IsGift": "is_gift",
-            "IsTransparency": "is_transparency",
-            "ItemPrice": "item_price",
-            "ItemTax": "item_tax",
-            "OrderItemId": "order_item_id",
-            "PointsGranted": "points_granted",
-            "PriceDesignation": "price_designation",
-            "ProductInfo": "product_info",
-            "PromotionDiscount": "promotion_discount",
-            "PromotionDiscountTax": "promotion_discount_tax",
-            "PromotionIds": "promotion_ids",
-            "QuantityOrdered": "quantity_ordered",
-            "QuantityShipped": "quantity_shipped",
-            "ScheduledDeliveryEndDate": "scheduled_delivery_end_date",
-            "ScheduledDeliveryStartDate": "scheduled_delivery_start_date",
-            "SellerSKU": "seller_sku",
-            "SerialNumberRequired": "serial_number_required",
-            "ShippingDiscount": "shipping_discount",
-            "ShippingDiscountTax": "shipping_discount_tax",
-            "ShippingPrice": "shipping_price",
-            "ShippingTax": "shipping_tax",
-            "StoreChainStoreId": "store_chain_store_id",
-            "TaxCollection": "tax_collection",
-            "Title": "title",
-        }
+        "ASIN": ["asin", "string"],
+        "BuyerInfo": ["buyer_info", "object"],
+        "BuyerRequestedCancel": ["buyer_requested_cancel", "object"],
+        "CODFee": ["codfee", "object"],
+        "CODFeeDiscount": ["codfee_discount", "object"],
+        "ConditionId": ["condition_id", "string"],
+        "ConditionNote": ["condition_note", "string"],
+        "ConditionSubtypeId": ["condition_subtype_id", "string"],
+        "DeemedResellerCategory": ["deemed_reseller_category", "string"],
+        "IossNumber": ["ioss_number", "string"],
+        "IsGift": ["is_gift", "boolean"],
+        "IsTransparency": ["is_transparency", "boolean"],
+        "ItemPrice": ["item_price", "object"],
+        "ItemTax": ["item_tax", "object"],
+        "OrderItemId": ["order_item_id", "string"],
+        "PointsGranted": ["points_granted", "object"],
+        "PriceDesignation": ["price_designation", "string"],
+        "ProductInfo": ["product_info", "object"],
+        "PromotionDiscount": ["promotion_discount", "object"],
+        "PromotionDiscountTax": ["promotion_discount_tax", "object"],
+        "PromotionIds": ["promotion_ids", "array"],
+        "QuantityOrdered": ["quantity_ordered", "integer"],
+        "QuantityShipped": ["quantity_shipped", "integer"],
+        "ScheduledDeliveryEndDate": ["scheduled_delivery_end_date", "string"],
+        "ScheduledDeliveryStartDate": ["scheduled_delivery_start_date", "string"],
+        "SellerSKU": ["seller_sku", "string"],
+        "SerialNumberRequired": ["serial_number_required", "boolean"],
+        "ShippingDiscount": ["shipping_discount", "object"],
+        "ShippingDiscountTax": ["shipping_discount_tax", "object"],
+        "ShippingPrice": ["shipping_price", "object"],
+        "ShippingTax": ["shipping_tax", "object"],
+        "StoreChainStoreId": ["store_chain_store_id", "string"],
+        "TaxCollection": ["tax_collection", "object"],
+        "Title": ["title", "string"],
     }
 
 
@@ -1465,14 +1445,12 @@ class OrderItemBuyerInfo(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "BuyerCustomizedInfo": "buyer_customized_info",
-            "GiftMessageText": "gift_message_text",
-            "GiftWrapLevel": "gift_wrap_level",
-            "GiftWrapPrice": "gift_wrap_price",
-            "GiftWrapTax": "gift_wrap_tax",
-            "OrderItemId": "order_item_id",
-        }
+        "BuyerCustomizedInfo": ["buyer_customized_info", "object"],
+        "GiftMessageText": ["gift_message_text", "string"],
+        "GiftWrapLevel": ["gift_wrap_level", "string"],
+        "GiftWrapPrice": ["gift_wrap_price", "object"],
+        "GiftWrapTax": ["gift_wrap_tax", "object"],
+        "OrderItemId": ["order_item_id", "string"],
     }
 
 
@@ -1504,7 +1482,9 @@ class OrderItemsBuyerInfoList(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {"AmazonOrderId": "amazon_order_id", "NextToken": "next_token", "OrderItems": "order_items"}
+        "AmazonOrderId": ["amazon_order_id", "string"],
+        "NextToken": ["next_token", "string"],
+        "OrderItems": ["order_items", "array"],
     }
 
 
@@ -1525,7 +1505,7 @@ class OrderItemsItem(BaseObject):
     the quantity of items that needs an update of the shipment status
     """
 
-    _attrs_config = {"name-convert": {"orderItemId": "order_item_id", "quantity": "quantity"}}
+    _attrs_config = {"orderItemId": ["order_item_id", "string"], "quantity": ["quantity", "integer"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1556,7 +1536,9 @@ class OrderItemsList(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {"AmazonOrderId": "amazon_order_id", "NextToken": "next_token", "OrderItems": "order_items"}
+        "AmazonOrderId": ["amazon_order_id", "string"],
+        "NextToken": ["next_token", "string"],
+        "OrderItems": ["order_items", "array"],
     }
 
 
@@ -1595,12 +1577,10 @@ class OrderRegulatedInfo(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "AmazonOrderId": "amazon_order_id",
-            "RegulatedInformation": "regulated_information",
-            "RegulatedOrderVerificationStatus": "regulated_order_verification_status",
-            "RequiresDosageLabel": "requires_dosage_label",
-        }
+        "AmazonOrderId": ["amazon_order_id", "string"],
+        "RegulatedInformation": ["regulated_information", "object"],
+        "RegulatedOrderVerificationStatus": ["regulated_order_verification_status", "object"],
+        "RequiresDosageLabel": ["requires_dosage_label", "boolean"],
     }
 
 
@@ -1639,12 +1619,10 @@ class OrdersList(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "CreatedBefore": "created_before",
-            "LastUpdatedBefore": "last_updated_before",
-            "NextToken": "next_token",
-            "Orders": "orders",
-        }
+        "CreatedBefore": ["created_before", "string"],
+        "LastUpdatedBefore": ["last_updated_before", "string"],
+        "NextToken": ["next_token", "string"],
+        "Orders": ["orders", "array"],
     }
 
 
@@ -1672,7 +1650,7 @@ class PaymentExecutionDetailItem(BaseObject):
         * PointsAccount - Amazon Points.
     """
 
-    _attrs_config = {"name-convert": {"Payment": "payment", "PaymentMethod": "payment_method"}}
+    _attrs_config = {"Payment": ["payment", "object"], "PaymentMethod": ["payment_method", "string"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1695,7 +1673,10 @@ class PointsGrantedDetail(BaseObject):
     The number of Amazon Points granted with the purchase of an item.
     """
 
-    _attrs_config = {"name-convert": {"PointsMonetaryValue": "points_monetary_value", "PointsNumber": "points_number"}}
+    _attrs_config = {
+        "PointsMonetaryValue": ["points_monetary_value", "object"],
+        "PointsNumber": ["points_number", "integer"],
+    }
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1711,7 +1692,7 @@ class ProductInfoDetail(BaseObject):
     The total number of items that are included in the ASIN.
     """
 
-    _attrs_config = {"name-convert": {"NumberOfItems": "number_of_items"}}
+    _attrs_config = {"NumberOfItems": ["number_of_items", "integer"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1727,7 +1708,7 @@ class RegulatedInformation(BaseObject):
     A list of regulated information fields as collected from the regulatory form.
     """
 
-    _attrs_config = {"name-convert": {"Fields": "fields"}}
+    _attrs_config = {"Fields": ["fields", "array"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1765,12 +1746,10 @@ class RegulatedInformationField(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "FieldId": "field_id",
-            "FieldLabel": "field_label",
-            "FieldType": "field_type",
-            "FieldValue": "field_value",
-        }
+        "FieldId": ["field_id", "string"],
+        "FieldLabel": ["field_label", "string"],
+        "FieldType": ["field_type", "string"],
+        "FieldValue": ["field_value", "string"],
     }
 
 
@@ -1825,14 +1804,12 @@ class RegulatedOrderVerificationStatus(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "ExternalReviewerId": "external_reviewer_id",
-            "RejectionReason": "rejection_reason",
-            "RequiresMerchantAction": "requires_merchant_action",
-            "ReviewDate": "review_date",
-            "Status": "status",
-            "ValidRejectionReasons": "valid_rejection_reasons",
-        }
+        "ExternalReviewerId": ["external_reviewer_id", "string"],
+        "RejectionReason": ["rejection_reason", "object"],
+        "RequiresMerchantAction": ["requires_merchant_action", "boolean"],
+        "ReviewDate": ["review_date", "string"],
+        "Status": ["status", "string"],
+        "ValidRejectionReasons": ["valid_rejection_reasons", "array"],
     }
 
 
@@ -1857,10 +1834,8 @@ class RejectionReason(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "RejectionReasonDescription": "rejection_reason_description",
-            "RejectionReasonId": "rejection_reason_id",
-        }
+        "RejectionReasonDescription": ["rejection_reason_description", "string"],
+        "RejectionReasonId": ["rejection_reason_id", "string"],
     }
 
 
@@ -1872,7 +1847,7 @@ class ShipmentStatus(BaseObject):
 
     pass
 
-    _attrs_config = {"name-convert": {}}
+    _attrs_config = {}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1895,7 +1870,7 @@ class TaxClassification(BaseObject):
     The buyer's tax identifier.
     """
 
-    _attrs_config = {"name-convert": {"Name": "name", "Value": "value"}}
+    _attrs_config = {"Name": ["name", "string"], "Value": ["value", "string"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1918,7 +1893,7 @@ class TaxCollection(BaseObject):
     The party responsible for withholding the taxes and remitting them to the taxing authority.
     """
 
-    _attrs_config = {"name-convert": {"Model": "model", "ResponsibleParty": "responsible_party"}}
+    _attrs_config = {"Model": ["model", "string"], "ResponsibleParty": ["responsible_party", "string"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1934,7 +1909,7 @@ class UpdateShipmentStatusErrorResponse(BaseObject):
     A list of error responses returned when a request is unsuccessful.
     """
 
-    _attrs_config = {"name-convert": {"errors": "errors"}}
+    _attrs_config = {"errors": ["errors", "array"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -1965,11 +1940,9 @@ class UpdateShipmentStatusRequest(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "marketplaceId": "marketplace_id",
-            "orderItems": "order_items",
-            "shipmentStatus": "shipment_status",
-        }
+        "marketplaceId": ["marketplace_id", "string"],
+        "orderItems": ["order_items", "array"],
+        "shipmentStatus": ["shipment_status", "string"],
     }
 
 
@@ -1986,7 +1959,7 @@ class UpdateVerificationStatusErrorResponse(BaseObject):
     A list of error responses returned when a request is unsuccessful.
     """
 
-    _attrs_config = {"name-convert": {"errors": "errors"}}
+    _attrs_config = {"errors": ["errors", "array"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -2002,7 +1975,7 @@ class UpdateVerificationStatusRequest(BaseObject):
     The updated values of the VerificationStatus field.
     """
 
-    _attrs_config = {"name-convert": {"regulatedOrderVerificationStatus": "regulated_order_verification_status"}}
+    _attrs_config = {"regulatedOrderVerificationStatus": ["regulated_order_verification_status", "object"]}
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
@@ -2033,11 +2006,9 @@ class UpdateVerificationStatusRequestBody(BaseObject):
     """
 
     _attrs_config = {
-        "name-convert": {
-            "externalReviewerId": "external_reviewer_id",
-            "rejectionReasonId": "rejection_reason_id",
-            "status": "status",
-        }
+        "externalReviewerId": ["external_reviewer_id", "string"],
+        "rejectionReasonId": ["rejection_reason_id", "string"],
+        "status": ["status", "string"],
     }
 
 
