@@ -443,18 +443,15 @@ class Generator:
     def class_name(self):
         return ''.join(word.capitalize() for word in self.package_name.split('_'))
 
-    @cached_property
-    def output_directory(self):
-        return Path(__file__).parent.parent / 'amazon_sp_api_clients_2' / 'api'
-
     def generate(self):
-        self.output_directory.mkdir(parents=True, exist_ok=True)
+        directory = Path(__file__).parent.parent / 'amazon_sp_api_clients_2' / 'api'
+        directory.mkdir(parents=True, exist_ok=True)
 
         init_content = ''
-        with open(self.output_directory / '__init__.py', 'w+', encoding='utf-8') as f:
+        with open(directory / '__init__.py', 'w+', encoding='utf-8') as f:
             existing_content = f.read()
             init_content != existing_content and f.write(init_content)
-        with open(self.output_directory / f'{self.package_name}.py', 'w+', encoding='utf-8') as f:
+        with open(directory / f'{self.package_name}.py', 'w+', encoding='utf-8') as f:
             existing_content = f.read()
             self.rendered_content != existing_content and f.write(self.rendered_content)
 
