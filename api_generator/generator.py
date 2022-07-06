@@ -351,7 +351,16 @@ class Generator:
         fields = {f for f in schema.__fields_set__ if getattr(schema, f) is not None}
         assert fields.issubset(probable_fields), fields - probable_fields
 
-        child = self.get_type_hint_of_schema(schema.items) if schema.type in ('object', 'array') else 'Any'
+        child = 'Any'
+        if schema.type == 'array':
+            child_item = schema.items
+            if isinstance(child_item, Reference):
+                child = schema.items.ref.split('/')[-1]
+                child = f"'{child}'"
+            elif isinstance(child_item, Schema):
+                child = self.get_type_hint_of_schema(schema.items)
+            else:
+                raise TypeError(type(child_item))
         if isinstance(schema, ParsedSchema) and schema.type == 'object' and schema.ref_name:
             return f"'{schema.ref_name}'"
 
@@ -359,8 +368,8 @@ class Generator:
             ('integer', None): 'int',
             ('string', None): 'str',
             ('boolean', None): 'bool',
-            ('object', None): f'Dict[str, {child}]',
-            ('array', None): f'List[{child}]',
+            ('object', None): f"Dict[str, {child}]",
+            ('array', None): f"List[{child}]",
             ('number', None): 'float',
             ('string', 'date-time'): 'datetime',
             ('string', 'date'): 'date',
