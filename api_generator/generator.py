@@ -184,8 +184,9 @@ class ParsedOperation(Operation):
             assert all(isinstance(i, Reference) for i in schemas)
             schemas = tuple(self.generator.resolve_ref(schema) for schema in schemas)
             assert all(s.type == 'object' for s in schemas)
-            fields = {'required', 'properties', 'type', 'description'}
-            assert set(chain.from_iterable(s.__fields_set__ for s in schemas)).issubset(fields)
+            # TODO check the parameters
+            # fields = {'required', 'properties', 'type', 'description'}
+            # assert set(chain.from_iterable(s.__fields_set__ for s in schemas)).issubset(fields)
             required = tuple(chain.from_iterable(s.required for s in schemas if s.required))
             assert len(set(required)) == len(required)
             properties = tuple((name, obj) for s in schemas for name, obj in s.properties.items())
@@ -243,9 +244,10 @@ class Generator:
             return ref
         match = re.match(r'^#/components/(.*?)/(.*?)$', ref.ref)
         category, name = match.group(1, 2)
-        result = getattr(self.openapi_data.components, category).get(name)
-        assert result is not None, f'{category}/{name}'
-        return result
+        selected = [i for i in self.schemas if i.name == name]
+        if not selected:
+            raise ValueError(f'schema not found: {category}/{name}')
+        return selected[0]
 
     @cached_property
     def openapi_data(self) -> OpenAPI:
@@ -350,7 +352,7 @@ class Generator:
         values = [v.dict() | {'name': k, 'generator': self} for k, v in schemas]
         dst: list[ParsedSchema] = [ParsedSchema.parse_obj(v) for v in values]
         dst.sort(key=lambda i: i.name)
-        dst = [v for v in dst if v.type != 'array']  # do not render array type as standalone class
+        # dst = [v for v in dst if v.type != 'array']  # do not render array type as standalone class
         return dst
 
     def get_type_hint_of_schema(self, schema: Schema):

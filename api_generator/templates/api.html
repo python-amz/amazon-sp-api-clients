@@ -14,6 +14,7 @@ from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
 {% for schema in data.schemas %}
+    {% if schema.type != 'array' %}
 @attrs.define(kw_only=True,frozen=True,slots={% if schema.additionalProperties %}False{% else %}True{% endif %})
 class {{ schema.name }}(BaseObject):
     {% if schema.parsed_description %}"""
@@ -46,6 +47,7 @@ class {{ schema.name }}(BaseObject):
     {% endif %}
 
     _attrs_config = {{ schema.attrs_config }}
+    {% endif %}
 {% endfor %}
 
 
