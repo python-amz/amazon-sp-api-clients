@@ -106,15 +106,12 @@ class ParsedParameter(Parameter):
 
 class ParsedResponse(Response):
     status_code: str
-    generator: Any
     media_type: str
+    schema_for_type_hint: Schema
 
     @property
     def type_hint(self):
-        schema = self.content.get(self.media_type).media_type_schema
-        assert isinstance(schema, Reference), type(schema)
-        schema = self.generator.resolve_ref(schema)
-        return Utils.get_type_hint(schema)
+        return Utils.get_type_hint(self.schema_for_type_hint)
 
 
 class ParsedOperation(Operation):
@@ -125,7 +122,6 @@ class ParsedOperation(Operation):
     @property
     def method_name(self):
         name = re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.operationId).lower()
-        # print(f'{self.operationId:>40} | {name}')
         return name
 
     @property
@@ -186,7 +182,10 @@ class ParsedOperation(Operation):
                     if name in {'application/json', 'application/hal+json'})
 
         return [ParsedResponse.parse_obj(response.dict() | {
-            'status_code': status, 'media_type': name, 'generator': self.generator})
+            'status_code': status,
+            'media_type': name,
+            'schema_for_type_hint': self.generator.resolve_ref(response.content.get(name).media_type_schema),
+        })
                 for status, name, response in response]
 
     @property
