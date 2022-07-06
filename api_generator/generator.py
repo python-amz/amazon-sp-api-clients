@@ -21,7 +21,7 @@ settings.configure(TEMPLATES=[{
 django.setup()
 
 
-class SchemaBase(Schema):
+class ParsedSchema(Schema):
     name: str
     generator: Any
     ref_name: str = ''
@@ -63,10 +63,8 @@ class SchemaBase(Schema):
     def is_dict(self):
         return self.type == 'object'
 
-
-class ParsedSchema(SchemaBase):
     @property
-    def parsed_properties(self) -> list[SchemaBase]:
+    def parsed_properties(self) -> list['ParsedSchema']:
         parsed = self.properties
         parsed = parsed.items() if parsed else ()
         parsed = list(sorted(parsed, key=lambda i: i[0]))
@@ -74,7 +72,7 @@ class ParsedSchema(SchemaBase):
         for k, src in parsed:
             is_ref = isinstance(src, Reference)
             dst = self.generator.resolve_ref(src) if is_ref else src
-            dst = SchemaBase.parse_obj(dst.dict() | {'name': k, 'generator': self.generator})
+            dst = ParsedSchema.parse_obj(dst.dict() | {'name': k, 'generator': self.generator})
             if is_ref:
                 dst.ref_name = src.ref.split('/')[-1]
             result.append(dst)
@@ -356,7 +354,7 @@ class Generator:
         assert fields.issubset(probable_fields), fields - probable_fields
 
         child = self.get_type_hint_of_schema(schema.items) if schema.type in ('object', 'array') else 'Any'
-        if isinstance(schema, SchemaBase) and schema.type == 'object' and schema.ref_name:
+        if isinstance(schema, ParsedSchema) and schema.type == 'object' and schema.ref_name:
             return f"'{schema.ref_name}'"
 
         type_convert = {
