@@ -136,64 +136,48 @@ class ParsedMediaType(MediaType):
 class ParsedRequestBody(RequestBody):
     content: dict[str, ParsedMediaType]
 
+    # noinspection PyMethodParameters
     @pydantic.validator('required')
     def validate_required(cls, value):
         assert value is True
         return value
 
+    # noinspection PyMethodParameters
+    @pydantic.validator('content')
+    def validate_content(cls, value: dict[str, ParsedMediaType]):
+        assert all(k == 'application/json' for k in value.keys())
+        return value
+
+    def feed(self, generator: 'Generator'):
+        schemas = list(i.media_type_schema for i in self.content.values())
+        assert all(isinstance(i, Reference) for i in schemas)
+        schemas = list(generator.resolve_ref(schema) for schema in schemas)
+        assert all(s.type == 'object' for s in schemas)
+        # TODO check the parameters
+        # fields = {'required', 'properties', 'type', 'description'}
+        # assert set(chain.from_iterable(s.__fields_set__ for s in schemas)).issubset(fields)
+        required = tuple(chain.from_iterable(s.required for s in schemas if s.required))
+        assert len(set(required)) == len(required)
+        properties = tuple((name, obj) for s in schemas for name, obj in s.properties.items())
+        properties = tuple((k, generator.resolve_ref(v) if isinstance(v, Reference) else v)
+                           for k, v in properties)
+        properties = tuple(sorted(properties, key=lambda i: i[0]))
+        self.params = [ParsedParameter(name=k, param_in='body', description=v.description,
+                                       required=k in required, param_schema=v) for k, v in properties]
+
+    params: list[ParsedParameter] = None
+
 
 class ParsedOperation(Operation):
     path: str
     method: str
-    generator: Any
     requestBody: ParsedRequestBody = None
+    responses: dict[str, ParsedResponse]
+    parsed_parameters: list[ParsedParameter] = None
 
     @property
     def method_name(self):
         return Utils.camel_to_underline(self.operationId)
-
-    @property
-    def parsed_parameters(self) -> list[ParsedParameter]:
-        params_or_refs = [] if (v := self.parameters) is None else v
-        params: list[Parameter] = [self.generator.resolve_ref(p) for p in params_or_refs]
-        assert all(isinstance(p, Parameter) for p in params)
-
-        known = {'param_in', 'name', 'param_schema', 'description', 'required',
-                 'style', 'example', 'allowEmptyValue', 'allowReserved', 'deprecated', 'explode'}  # useless
-        for p in params:
-            assert not (fields := {f for f in p.__fields_set__ if getattr(p, f) is not None} - known), fields
-            assert p.allowEmptyValue is p.allowReserved is p.deprecated is p.explode is False
-
-        # convert post object to parameter objects, the main work of following code is data validation
-        if (body := self.requestBody) is not None:
-            content = body.content
-            assert all(k == 'application/json' for k in content.keys())
-            schemas = tuple(i.media_type_schema for i in content.values())
-            assert all(isinstance(i, Reference) for i in schemas)
-            schemas = tuple(self.generator.resolve_ref(schema) for schema in schemas)
-            assert all(s.type == 'object' for s in schemas)
-            # TODO check the parameters
-            # fields = {'required', 'properties', 'type', 'description'}
-            # assert set(chain.from_iterable(s.__fields_set__ for s in schemas)).issubset(fields)
-            required = tuple(chain.from_iterable(s.required for s in schemas if s.required))
-            assert len(set(required)) == len(required)
-            properties = tuple((name, obj) for s in schemas for name, obj in s.properties.items())
-            properties = tuple((k, self.generator.resolve_ref(v) if isinstance(v, Reference) else v)
-                               for k, v in properties)
-            properties = tuple(sorted(properties, key=lambda i: i[0]))
-            params.extend([Parameter(name=k, param_in='body', description=v.description,
-                                     required=k in required, param_schema=v) for k, v in properties])
-
-        assert all(isinstance(p.param_schema, Schema) for p in params)
-        parsed_params: list[ParsedParameter] = [ParsedParameter.parse_obj(p.dict()) for p in params]
-        [i.feed(self.generator) for i in parsed_params]
-
-        # Ensure that post parameters do not conflict with path and query parameters
-        assert len(parsed_params) == len({p.name for p in parsed_params})
-
-        return parsed_params
-
-    responses: dict[str, ParsedResponse]
 
     # noinspection PyMethodParameters
     @pydantic.validator('responses', pre=True)
@@ -217,6 +201,31 @@ class ParsedOperation(Operation):
     def feed(self, generator: 'Generator'):
         for i in self.responses.values():
             i.feed(generator)
+        if (body := self.requestBody) is not None:
+            body.feed(generator)
+
+        params_or_refs = [] if (v := self.parameters) is None else v
+        params: list[Parameter] = [generator.resolve_ref(p) for p in params_or_refs]
+        assert all(isinstance(p, Parameter) for p in params)
+
+        known = {'param_in', 'name', 'param_schema', 'description', 'required',
+                 'style', 'example', 'allowEmptyValue', 'allowReserved', 'deprecated', 'explode'}  # useless
+        for p in params:
+            assert not (fields := {f for f in p.__fields_set__ if getattr(p, f) is not None} - known), fields
+            assert p.allowEmptyValue is p.allowReserved is p.deprecated is p.explode is False
+
+        # convert post object to parameter objects, the main work of following code is data validation
+        if (body := self.requestBody) is not None:
+            params.extend(body.params)
+
+        assert all(isinstance(p.param_schema, Schema) for p in params)
+        parsed_params: list[ParsedParameter] = [ParsedParameter.parse_obj(p.dict()) for p in params]
+        [i.feed(generator) for i in parsed_params]
+
+        # Ensure that post parameters do not conflict with path and query parameters
+        assert len(parsed_params) == len({p.name for p in parsed_params})
+
+        self.parsed_parameters = parsed_params
 
     @property
     def parsed_responses(self) -> list[ParsedResponse]:
@@ -361,7 +370,7 @@ class Generator:
         assert len(schema_names) == len(set(schema_names)), f'schema names should not conflict: {schema_names}'
         self.openapi_data.components.schemas = dict(schemas)
 
-        values = [v.dict() | {'name': k, 'generator': self} for k, v in schemas]
+        values = [v.dict() | {'name': k} for k, v in schemas]
         dst: list[ParsedSchema] = [ParsedSchema.parse_obj(v) for v in values]
         dst.sort(key=lambda i: i.name)
         return dst
@@ -372,14 +381,12 @@ class Generator:
 
     @cached_property
     def operations(self) -> list['ParsedOperation']:
-        operations = (ParsedOperation.parse_obj(
-            {'path': path, 'method': method, 'generator': self} | getattr(item, method).dict())
-            for path, item in self.openapi_data.paths.items() for method in item.__fields_set__)
-        operations = list(operations)
-        for i in operations:
-            i.feed(self)
-        operations = (sorted(operations, key=lambda k: k.operationId))
-        return list(operations)
+        operations: list[ParsedOperation] = list(ParsedOperation.parse_obj(
+            {'path': path, 'method': method} | getattr(item, method).dict()
+        ) for path, item in self.openapi_data.paths.items() for method in item.__fields_set__)
+        [i.feed(self) for i in operations]
+        operations = list(sorted(operations, key=lambda k: k.operationId))
+        return operations
 
     @cached_property
     def package_name(self):
