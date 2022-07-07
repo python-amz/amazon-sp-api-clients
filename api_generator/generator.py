@@ -186,6 +186,7 @@ class ParsedOperation(Operation):
 
     @property
     def result_type(self):
+        """The type hint of function return value."""
         result_types = {r.type_hint for r in self.parsed_responses}
         result_types = list(sorted(result_types))
         result_types = ', '.join(result_types)
