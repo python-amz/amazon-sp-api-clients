@@ -1,3 +1,10 @@
+"""
+The parsing process follows the following two steps:
+1. Build the pydantic hierarchy according to the parsing order;
+2. Assign the parser to each object in turn to optimize the parsing process, including converting each reference into a
+schema and other processes.
+"""
+
 import json
 import multiprocessing
 import re
@@ -108,11 +115,11 @@ class ParsedParameter(Parameter):
 class ParsedResponse(Response):
     status_code: str
     media_type: str
-    schema_for_type_hint: Schema = None
+    type_hint: str = ''
 
-    @property
-    def type_hint(self):
-        return Utils.get_type_hint(self.schema_for_type_hint)
+    def feed(self, generator: 'Generator'):
+        type_hint_schema = generator.resolve_ref(self.content.get(self.media_type).media_type_schema)
+        self.type_hint = Utils.get_type_hint(type_hint_schema)
 
 
 class ParsedOperation(Operation):
@@ -193,7 +200,7 @@ class ParsedOperation(Operation):
 
     def feed(self, generator: 'Generator'):
         for i in self.responses.values():
-            i.schema_for_type_hint = generator.resolve_ref(i.content.get(i.media_type).media_type_schema)
+            i.feed(generator)
 
     @property
     def parsed_responses(self) -> list[ParsedResponse]:
