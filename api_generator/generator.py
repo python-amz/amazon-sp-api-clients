@@ -24,14 +24,13 @@ django.setup()
 
 class ParsedSchema(Schema):
     name: str
-    generator: Any
     ref_name: str = ''
     is_property: bool = False  # both class and class property use Schema, use this flag to distinguish.
 
     @property
     def extra_fields(self):
         known = {'description', 'name', 'generator', 'type', 'ref', 'enum', 'items', 'properties', 'required',
-                 'ref_name', 'is_property'}
+                 'ref_name', 'is_property', 'parsed_properties'}
         fields = self.__fields_set__ - known
         fields = list(sorted(fields))
         fields = {k: getattr(self, k) for k in fields}
@@ -60,19 +59,25 @@ class ParsedSchema(Schema):
     def is_dict(self):
         return self.type == 'object'
 
-    @property
-    def parsed_properties(self) -> list['ParsedSchema']:
+    # noinspection PyMethodParameters
+    @pydantic.validator('properties')
+    def validate_properties(cls, properties: list[Schema]):
+        return properties
+
+    parsed_properties: Any = None
+
+    def feed(self, generator: 'Generator'):
         parsed = self.properties
         parsed = parsed.items() if parsed else ()
         parsed = list(sorted(parsed, key=lambda i: i[0]))
         result = []
         for k, src in parsed:
-            is_ref = isinstance(src, Reference)
-            dst = self.generator.resolve_ref(src) if is_ref else src
-            dst = ParsedSchema.parse_obj(dst.dict() | {'name': k, 'generator': self.generator, 'is_property': True})
+            dst = generator.resolve_ref(src) if isinstance(src, Reference) else src
+            dst = ParsedSchema.parse_obj(dst.dict() | {'name': k, 'is_property': True})
+            dst.feed(generator)
             result.append(dst)
         result.sort(key=lambda i: i.name)
-        return result
+        self.parsed_properties = result
 
     @property
     def attrs_config(self):
@@ -226,6 +231,7 @@ class Generator:
             raise ValueError(f'schema not found: {category}/{name}')
         schema = selected[0]
         schema = ParsedSchema.parse_obj(schema.dict() | {'ref_name': name})
+        schema.feed(self)
         return schema
 
     @cached_property
@@ -327,6 +333,10 @@ class Generator:
         dst.sort(key=lambda i: i.name)
         return dst
 
+    def feed(self):
+        for i in self.schemas:
+            i.feed(self)
+
     @cached_property
     def operations(self) -> list['ParsedOperation']:
         operations = (ParsedOperation.parse_obj(
@@ -359,6 +369,7 @@ class Generator:
     @classmethod
     def worker(cls, path: Path):
         obj = cls(path)
+        obj.feed()
         obj.generate()
         return obj
 

@@ -57,7 +57,7 @@ class Utils:
                            'minItems', 'maxItems', 'pattern', 'default', 'required', 'minLength', 'maxLength',
                            'uniqueItems', 'example',
                            'schema_format', 'properties', 'additionalProperties',
-                           'ref_name', 'is_property'}
+                           'ref_name', 'is_property', 'parsed_properties'}
         fields = {f for f in schema.__fields_set__ if getattr(schema, f) is not None}
         assert fields.issubset(probable_fields), fields - probable_fields
 
