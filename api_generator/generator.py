@@ -18,7 +18,8 @@ import pydantic
 from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
-from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody, Schema, Response
+from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody, Schema, Response, \
+    MediaType
 
 from api_generator.utils import Utils
 
@@ -128,10 +129,24 @@ class ParsedResponse(Response):
         self.type_hint = Utils.get_type_hint(type_hint_schema)
 
 
+class ParsedMediaType(MediaType):
+    pass
+
+
+class ParsedRequestBody(RequestBody):
+    content: dict[str, ParsedMediaType]
+
+    @pydantic.validator('required')
+    def validate_required(cls, value):
+        assert value is True
+        return value
+
+
 class ParsedOperation(Operation):
     path: str
     method: str
     generator: Any
+    requestBody: ParsedRequestBody = None
 
     @property
     def method_name(self):
@@ -151,9 +166,6 @@ class ParsedOperation(Operation):
 
         # convert post object to parameter objects, the main work of following code is data validation
         if (body := self.requestBody) is not None:
-            assert isinstance(body, RequestBody)
-            assert body.required is True
-            _ = body.description  # Useless, do not process
             content = body.content
             assert all(k == 'application/json' for k in content.keys())
             schemas = tuple(i.media_type_schema for i in content.values())
