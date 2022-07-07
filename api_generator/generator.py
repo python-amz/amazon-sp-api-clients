@@ -90,11 +90,7 @@ class ParsedSchema(Schema):
 
 
 class ParsedParameter(Parameter):
-    generator: Any
-
-    @property
-    def type_hint(self):
-        return Utils.get_type_hint(self.generator.resolve_ref(self.param_schema))
+    type_hint: str = ''
 
     @property
     def variable_name(self):
@@ -104,6 +100,9 @@ class ParsedParameter(Parameter):
     def parsed_description(self):
         result = f'{self.variable_name}: {self.description if self.description else "no description"}'
         return Utils.wrap_description(result, subsequent_indent=8, initial_indent=4, width=112)
+
+    def feed(self, generator: 'Generator'):
+        self.type_hint = Utils.get_type_hint(generator.resolve_ref(self.param_schema))
 
 
 class ParsedResponse(Response):
@@ -161,8 +160,8 @@ class ParsedOperation(Operation):
                                      required=k in required, param_schema=v) for k, v in properties])
 
         assert all(isinstance(p.param_schema, Schema) for p in params)
-        parsed_params: list[ParsedParameter] = [ParsedParameter.parse_obj(
-            p.dict() | {'generator': self.generator}) for p in params]
+        parsed_params: list[ParsedParameter] = [ParsedParameter.parse_obj(p.dict()) for p in params]
+        [i.feed(self.generator) for i in parsed_params]
 
         # Ensure that post parameters do not conflict with path and query parameters
         assert len(parsed_params) == len({p.name for p in parsed_params})
