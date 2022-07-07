@@ -1,3 +1,4 @@
+import re
 import textwrap
 from itertools import chain
 
@@ -74,3 +75,11 @@ class Utils:
         choices = ', '.join(f'Literal["{v}"]' for v in schema.enum) if schema.enum is not None else None
         type_hint = f'Union[{choices}]' if type_hint == 'str' and choices is not None else type_hint
         return type_hint
+
+    @staticmethod
+    def camel_to_underline(name: str):
+        return re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', name).lower()
+
+    @staticmethod
+    def camel_to_class_name(name: str):
+        return re.sub(r'^_?([a-z])', lambda s: s.group(1).upper(), name)

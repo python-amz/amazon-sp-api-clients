@@ -9,7 +9,6 @@ from typing import Any
 
 import black
 import django.template
-import pydantic
 from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
@@ -46,7 +45,7 @@ class ParsedSchema(Schema):
 
     @property
     def variable_name(self):
-        return re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.name).lower()
+        return Utils.camel_to_underline(self.name)
 
     @property
     def parsed_description(self):
@@ -80,10 +79,7 @@ class ParsedSchema(Schema):
     def attrs_config(self):
         data = {}
         for p in self.parsed_properties:
-            value = (
-                p.variable_name,
-                p.type,
-            )
+            value = (p.variable_name, p.type)
             data.setdefault(p.name, value)
         # pprint(data)
         return json.dumps(data)
@@ -98,7 +94,7 @@ class ParsedParameter(Parameter):
 
     @property
     def variable_name(self):
-        return re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.name).lower()
+        return Utils.camel_to_underline(self.name)
 
     @property
     def parsed_description(self):
@@ -123,8 +119,7 @@ class ParsedOperation(Operation):
 
     @property
     def method_name(self):
-        name = re.sub('(?<=[a-z])[A-Z]+', lambda m: f'_{m.group(0).lower()}', self.operationId).lower()
-        return name
+        return Utils.camel_to_underline(self.operationId)
 
     @property
     def parsed_parameters(self) -> list[ParsedParameter]:
@@ -275,7 +270,7 @@ class Generator:
                     if sub_schema.type in simple_types:
                         continue
                     assert sub_schema.type in ('object', 'array')
-                    capitalized_sub_name = re.sub(r'^_?([a-z])', lambda s: s.group(1).upper(), sub_name)
+                    capitalized_sub_name = Utils.camel_to_class_name(sub_name)
 
                     if sub_schema.type == 'object':
                         new_schema_name = f'{name}{capitalized_sub_name}'
@@ -339,7 +334,6 @@ class Generator:
     @staticmethod
     def format_python_file(content: str):
         content = html.unescape(content)
-        # content = re.sub(r'\n+', '\n', content)
         try:
             content = black.format_str(content, mode=black.Mode(line_length=120))
         except black.parsing.InvalidInput:
