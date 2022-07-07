@@ -376,8 +376,7 @@ class Generator:
         return dst
 
     def feed(self):
-        for i in self.schemas:
-            i.feed(self)
+        [i.feed(self) for i in self.schemas]
 
     @cached_property
     def operations(self) -> list['ParsedOperation']:
