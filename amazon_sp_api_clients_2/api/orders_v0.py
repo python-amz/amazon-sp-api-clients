@@ -2539,3 +2539,5 @@ class OrdersV0Client(BaseClient):
         500: "UpdateVerificationStatusErrorResponse",
         503: "UpdateVerificationStatusErrorResponse",
     }
+
+    pass

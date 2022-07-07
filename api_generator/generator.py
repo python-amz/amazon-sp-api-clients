@@ -109,7 +109,7 @@ class ParsedParameter(Parameter):
 class ParsedResponse(Response):
     status_code: str
     media_type: str
-    schema_for_type_hint: Schema
+    schema_for_type_hint: Schema = None
 
     @property
     def type_hint(self):
@@ -171,23 +171,34 @@ class ParsedOperation(Operation):
         assert all(p.param_in in ('query', 'path', 'body') for p in parsed_params)
         return parsed_params
 
-    @property
-    def parsed_responses(self) -> list[ParsedResponse]:
+    responses: dict[str, ParsedResponse]
+
+    # noinspection PyMethodParameters
+    @pydantic.validator('responses', pre=True)
+    def validate_responses(cls, responses: dict[str, Response]):
+        responses = {k: Response.parse_obj(v) for k, v in responses.items()}
         assert all({f for f in media.__fields_set__ if getattr(media, f) is not None}.issubset(
             {'example', 'media_type_schema'} if name in {'application/json', 'application/hal+json'} else {'example'})
-                   for status, response in self.responses.items()
+                   for status, response in responses.items()
                    for name, media in response.content.items())
         response = ((status, name, response)
-                    for status, response in self.responses.items()
+                    for status, response in responses.items()
                     for name, media in response.content.items()
                     if name in {'application/json', 'application/hal+json'})
-
-        return [ParsedResponse.parse_obj(response.dict() | {
+        parsed = {f'{status} {name}': ParsedResponse.parse_obj(response.dict() | {
             'status_code': status,
             'media_type': name,
-            'schema_for_type_hint': self.generator.resolve_ref(response.content.get(name).media_type_schema),
         })
-                for status, name, response in response]
+                  for status, name, response in response}
+        return parsed
+
+    def feed(self, generator: 'Generator'):
+        for i in self.responses.values():
+            i.schema_for_type_hint = generator.resolve_ref(i.content.get(i.media_type).media_type_schema)
+
+    @property
+    def parsed_responses(self) -> list[ParsedResponse]:
+        return list(self.responses.values())
 
     @property
     def result_type(self):
@@ -342,6 +353,9 @@ class Generator:
         operations = (ParsedOperation.parse_obj(
             {'path': path, 'method': method, 'generator': self} | getattr(item, method).dict())
             for path, item in self.openapi_data.paths.items() for method in item.__fields_set__)
+        operations = list(operations)
+        for i in operations:
+            i.feed(self)
         operations = (sorted(operations, key=lambda k: k.operationId))
         return list(operations)
 
