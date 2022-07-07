@@ -111,6 +111,12 @@ class ParsedParameter(Parameter):
     def feed(self, generator: 'Generator'):
         self.type_hint = Utils.get_type_hint(generator.resolve_ref(self.param_schema))
 
+    # noinspection PyMethodParameters
+    @pydantic.validator('param_in')
+    def validate_param_in(cls, value):
+        assert value in ('query', 'path', 'body')
+        return value
+
 
 class ParsedResponse(Response):
     status_code: str
@@ -173,8 +179,6 @@ class ParsedOperation(Operation):
         # Ensure that post parameters do not conflict with path and query parameters
         assert len(parsed_params) == len({p.name for p in parsed_params})
 
-        # Currently, there is no parameter in header or cookie
-        assert all(p.param_in in ('query', 'path', 'body') for p in parsed_params)
         return parsed_params
 
     responses: dict[str, ParsedResponse]
