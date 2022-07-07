@@ -9,6 +9,7 @@ from typing import Any
 
 import black
 import django.template
+import pydantic
 from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
@@ -197,6 +198,16 @@ class ParsedOperation(Operation):
         return Utils.wrap_description(self.description, subsequent_indent=0, initial_indent=0, width=112)
 
 
+class OpenApi(OpenAPI):
+    # noinspection PyMethodParameters
+    @pydantic.validator('servers')
+    def validate_servers(cls, servers: list):
+        # servers are useless
+        # url='https://sellingpartnerapi-na.amazon.com/' description=None variables=None
+        assert len(servers) == 1
+        return servers
+
+
 class Generator:
     def __init__(self, path: Path):
         """Generate a sdk client from OpenAPI json.
@@ -222,13 +233,7 @@ class Generator:
     def openapi_data(self) -> OpenAPI:
         with open(self.path) as f:
             data = json.load(f)
-        data = OpenAPI.parse_obj(data)
-
-        # servers is useless
-        # url='https://sellingpartnerapi-na.amazon.com/' description=None variables=None
-        assert len(data.servers) == 1
-
-        return data
+        return OpenAPI.parse_obj(data)
 
     def _find_new_schema(self, name: str, schema: Schema | Reference | Parameter) -> list[tuple[str, Schema]]:
         """Find inline schemas, which are not able to convert in python.
