@@ -1,4 +1,3 @@
-import html
 import json
 import multiprocessing
 import re
@@ -7,7 +6,6 @@ from itertools import chain
 from pathlib import Path
 from typing import Any
 
-import black
 import django.template
 import pydantic
 from django.conf import settings
@@ -336,38 +334,23 @@ class Generator:
         operations = (sorted(operations, key=lambda k: k.operationId))
         return list(operations)
 
-    @staticmethod
-    def format_python_file(content: str):
-        content = html.unescape(content)
-        try:
-            content = black.format_str(content, mode=black.Mode(line_length=120))
-        except black.parsing.InvalidInput:
-            content_with_line_number = '\n'.join(
-                [f'{index + 1:>3} {line}' for index, line in enumerate(content.splitlines())])
-            print(content_with_line_number)
-            raise
-        return content
-
     @cached_property
     def package_name(self):
         return self.path.stem
 
     @cached_property
     def class_name(self):
-        return ''.join(word.capitalize() for word in self.package_name.split('_'))
+        return Utils.underline_to_class_name(self.package_name)
 
     def generate(self):
         directory = Path(__file__).parent.parent / 'amazon_sp_api_clients_2' / 'api'
         directory.mkdir(parents=True, exist_ok=True)
-
         init_content = ''
         with open(directory / '__init__.py', 'w+', encoding='utf-8') as f:
             existing_content = f.read()
             init_content != existing_content and f.write(init_content)
-
         content = render(RequestFactory(), 'api.html', {'data': self}).content.decode('utf-8')
-        content = self.format_python_file(content)
-
+        content = Utils.format_python_file(content)
         with open(directory / f'{self.package_name}.py', 'w+', encoding='utf-8') as f:
             existing_content = f.read()
             content != existing_content and f.write(content)
@@ -390,6 +373,6 @@ class Generator:
                 generators = pool.map(cls.worker, files)
         [g.generate() for g in generators]
         content = render(RequestFactory(), 'init.html', {'data': generators}).content.decode('utf-8')
-        content = cls.format_python_file(content)
+        content = Utils.format_python_file(content)
         with open(Path(__file__).parent.parent / 'amazon_sp_api_clients_2' / '__init__.py', 'w') as f:
             f.write(content)

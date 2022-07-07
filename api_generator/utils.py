@@ -1,6 +1,9 @@
+import html
 import re
 import textwrap
 from itertools import chain
+
+import black
 
 
 class Utils:
@@ -83,3 +86,19 @@ class Utils:
     @staticmethod
     def camel_to_class_name(name: str):
         return re.sub(r'^_?([a-z])', lambda s: s.group(1).upper(), name)
+
+    @staticmethod
+    def underline_to_class_name(name: str):
+        return ''.join(word.capitalize() for word in name.split('_'))
+
+    @staticmethod
+    def format_python_file(content: str):
+        content = html.unescape(content)
+        try:
+            content = black.format_str(content, mode=black.Mode(line_length=120))
+        except black.parsing.InvalidInput:
+            content_with_line_number = '\n'.join(
+                [f'{index + 1:>3} {line}' for index, line in enumerate(content.splitlines())])
+            print(content_with_line_number)
+            raise
+        return content
