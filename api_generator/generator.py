@@ -74,15 +74,6 @@ class ParsedSchema(Schema):
     def validate_properties(cls, properties: list[Schema]):
         return properties if properties else {}
 
-    def feed(self, generator: 'Generator'):
-        result = []
-        for k, obj in self.properties.items():
-            obj = generator.resolve_ref(obj) if isinstance(obj, Reference) else obj
-            obj = ParsedSchema.parse_obj(obj.dict() | {'name': k, 'is_property': True})
-            result.append(obj)
-        result.sort(key=lambda i: i.name)
-        self.parsed_properties = result
-
     @property
     def attrs_config(self):
         data = {}
@@ -271,7 +262,6 @@ class Generator:
             raise ValueError(f'schema not found: {category}/{name}')
         schema = selected[0]
         schema = ParsedSchema.parse_obj(schema.dict() | {'ref_name': name})
-        schema.feed(self)
         return schema
 
     @cached_property
@@ -288,7 +278,14 @@ class Generator:
         return dst
 
     def feed(self):
-        [i.feed(self) for i in self.schemas]
+        for i in self.schemas:
+            result = []
+            for k, obj in i.properties.items():
+                obj = self.resolve_ref(obj) if isinstance(obj, Reference) else obj
+                obj = ParsedSchema.parse_obj(obj.dict() | {'name': k, 'is_property': True})
+                result.append(obj)
+            result.sort(key=lambda i: i.name)
+            i.parsed_properties = result
 
     @cached_property
     def operations(self) -> list['ParsedOperation']:
