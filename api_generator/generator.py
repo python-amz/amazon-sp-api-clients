@@ -112,10 +112,6 @@ class ParsedResponse(Response):
     media_type: str
     type_hint: str = ''
 
-    def feed(self, generator: 'Generator'):
-        type_hint_schema = generator.resolve_ref(self.content.get(self.media_type).media_type_schema)
-        self.type_hint = Utils.get_type_hint(type_hint_schema)
-
 
 class ParsedMediaType(MediaType):
     pass
@@ -196,7 +192,10 @@ class ParsedOperation(Operation):
         return responses
 
     def feed(self, generator: 'Generator'):
-        [i.feed(generator) for i in self.responses.values()]
+        for i in self.responses.values():
+            type_hint_schema = generator.resolve_ref(i.content.get(i.media_type).media_type_schema)
+            i.type_hint = Utils.get_type_hint(type_hint_schema)
+
         (body := self.requestBody) is None or body.feed(generator)
 
         # convert post object to parameter objects, the main work of following code is data validation
