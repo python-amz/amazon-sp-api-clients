@@ -230,9 +230,7 @@ class ParsedOperation(Operation):
     @property
     def return_value_type_hint(self):
         """The type hint of function return value."""
-        result_types = {r.type_hint for r in self.responses.values()}
-        result_types = list(sorted(result_types))
-        result_types = ', '.join(result_types)
+        result_types = ', '.join(sorted({r.type_hint for r in self.responses.values()}))
         return f'Union[{result_types}]'
 
     @property
