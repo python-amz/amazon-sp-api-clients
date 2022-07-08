@@ -221,9 +221,9 @@ class ParsedComponents(Components):
     @pydantic.validator('schemas')
     def validate_schemas(cls, schemas: dict[str, ParsedSchema]):
         expanded = list(chain.from_iterable(Utils.find_new_schema(k, v) for k, v in schemas.items()))
-        schema_names = [k for k, v in expanded]
-        assert set(schemas).issubset(set(schema_names)), 'existing schemas should not be deleted'
-        assert len(schema_names) == len(set(schema_names)), f'schema names should not conflict: {schema_names}'
+        names = [k for k, v in expanded]
+        assert set(schemas).issubset(set(names)), 'existing schemas should not be deleted'
+        assert len(names) == len(set(names)), f'schema names should not conflict: {names}'
         return {k: ParsedSchema.parse_obj(v.dict()) for k, v in expanded}
 
 
