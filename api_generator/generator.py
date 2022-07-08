@@ -99,6 +99,7 @@ class ParsedSchema(Schema):
 
 class ParsedParameter(Parameter):
     type_hint: str = ''
+    param_schema: Schema
 
     @property
     def variable_name(self):
@@ -173,22 +174,24 @@ class ParsedOperation(Operation):
     method: str
     requestBody: ParsedRequestBody = None
     responses: dict[str, ParsedResponse]
-    parameters: list[Parameter] = None
-    parsed_parameters: list[ParsedParameter] = None
+    parameters: list[ParsedParameter] = None
 
     @property
     def method_name(self):
         return Utils.camel_to_underline(self.operationId)
 
     # noinspection PyMethodParameters
-    @pydantic.validator('parameters', pre=True)
-    def validate_parameters(cls, parameters):
-        parameters: list[Parameter] = [Parameter.parse_obj(i) for i in parameters]
+    @pydantic.validator('parameters')
+    def validate_parameters(cls, parameters: list[ParsedParameter]):
         known_fields = {'param_in', 'name', 'param_schema', 'description', 'required',
                         'style', 'example', 'allowEmptyValue', 'allowReserved', 'deprecated', 'explode'}  # useless
         for p in parameters:
             assert not (fields := {f for f in p.__fields_set__ if getattr(p, f) is not None} - known_fields), fields
             assert p.allowEmptyValue is p.allowReserved is p.deprecated is p.explode is False
+
+        # Ensure that post parameters do not conflict with path and query parameters
+        assert len(parameters) == len({p.name for p in parameters})
+
         return parameters
 
     # noinspection PyMethodParameters
@@ -214,15 +217,7 @@ class ParsedOperation(Operation):
 
         # convert post object to parameter objects, the main work of following code is data validation
         (body := self.requestBody) is None or self.parameters.extend(body.params)
-
-        assert all(isinstance(p.param_schema, Schema) for p in self.parameters)
-        parsed_params: list[ParsedParameter] = [ParsedParameter.parse_obj(p.dict()) for p in self.parameters]
-        [i.feed(generator) for i in parsed_params]
-
-        # Ensure that post parameters do not conflict with path and query parameters
-        assert len(parsed_params) == len({p.name for p in parsed_params})
-
-        self.parsed_parameters = parsed_params
+        [i.feed(generator) for i in self.parameters]
 
     @property
     def return_value_type_hint(self):

@@ -2493,7 +2493,7 @@ class OrdersV0Client(BaseClient):
     def update_verification_status(
         self,
         order_id: str,
-        regulated_order_verification_status: Dict[str, Any],
+        regulated_order_verification_status: "UpdateVerificationStatusRequestBody",
     ) -> Union["UpdateVerificationStatusErrorResponse"]:
         """
         Updates (approves or rejects) the verification status of an order containing regulated products.

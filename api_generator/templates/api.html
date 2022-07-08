@@ -54,12 +54,12 @@ class {{ schema.name }}(BaseObject):
 class {{ data.class_name }}Client(BaseClient):
 {% for operation in data.operations %}
     def {{ operation.method_name }}(self,
-        {% for param in operation.parsed_parameters %}
+        {% for param in operation.parameters %}
             {% if param.required %}
             {{ param.variable_name }}: {{ param.type_hint }}{% if not param.required %}=None{% endif %},
             {% endif %}
         {% endfor %}
-        {% for param in operation.parsed_parameters %}
+        {% for param in operation.parameters %}
             {% if not param.required %}
             {{ param.variable_name }}: {{ param.type_hint }}{% if not param.required %}=None{% endif %},
             {% endif %}
@@ -69,18 +69,18 @@ class {{ data.class_name }}Client(BaseClient):
 {{ operation.parsed_description }}
 
 Args:
-{% for param in operation.parsed_parameters %}{{ param.parsed_description }}
+{% for param in operation.parameters %}{{ param.parsed_description }}
 {% endfor %}
 """
         url = "{{ operation.path }}"
-        values = ({% for p in operation.parsed_parameters %}{{ p.variable_name }},{% endfor %})
+        values = ({% for p in operation.parameters %}{{ p.variable_name }},{% endfor %})
         response = self._parse_args_and_request(url, '{{ operation.method | upper }}', values,
         self._{{ operation.method_name }}_params,
         self._{{ operation.method_name }}_responses,
     )
         return response
     _{{ operation.method_name }}_params = ( # name, param in
-        {% for p in operation.parsed_parameters %}
+        {% for p in operation.parameters %}
             ("{{ p.name }}", "{{ p.param_in }}"),{% endfor %}
     )
 
