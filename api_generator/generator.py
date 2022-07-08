@@ -173,11 +173,23 @@ class ParsedOperation(Operation):
     method: str
     requestBody: ParsedRequestBody = None
     responses: dict[str, ParsedResponse]
+    parameters: list[Parameter] = None
     parsed_parameters: list[ParsedParameter] = None
 
     @property
     def method_name(self):
         return Utils.camel_to_underline(self.operationId)
+
+    # noinspection PyMethodParameters
+    @pydantic.validator('parameters', pre=True)
+    def validate_parameters(cls, parameters):
+        parameters: list[Parameter] = [Parameter.parse_obj(i) for i in parameters]
+        known_fields = {'param_in', 'name', 'param_schema', 'description', 'required',
+                        'style', 'example', 'allowEmptyValue', 'allowReserved', 'deprecated', 'explode'}  # useless
+        for p in parameters:
+            assert not (fields := {f for f in p.__fields_set__ if getattr(p, f) is not None} - known_fields), fields
+            assert p.allowEmptyValue is p.allowReserved is p.deprecated is p.explode is False
+        return parameters
 
     # noinspection PyMethodParameters
     @pydantic.validator('responses', pre=True)
@@ -198,24 +210,13 @@ class ParsedOperation(Operation):
 
     def feed(self, generator: 'Generator'):
         [i.feed(generator) for i in self.responses.values()]
-        self.requestBody is not None and self.requestBody.feed(generator)
-
-        params_or_refs = [] if (v := self.parameters) is None else v
-        params: list[Parameter] = [generator.resolve_ref(p) for p in params_or_refs]
-        assert all(isinstance(p, Parameter) for p in params)
-
-        known = {'param_in', 'name', 'param_schema', 'description', 'required',
-                 'style', 'example', 'allowEmptyValue', 'allowReserved', 'deprecated', 'explode'}  # useless
-        for p in params:
-            assert not (fields := {f for f in p.__fields_set__ if getattr(p, f) is not None} - known), fields
-            assert p.allowEmptyValue is p.allowReserved is p.deprecated is p.explode is False
+        (body := self.requestBody) is None or body.feed(generator)
 
         # convert post object to parameter objects, the main work of following code is data validation
-        if (body := self.requestBody) is not None:
-            params.extend(body.params)
+        (body := self.requestBody) is None or self.parameters.extend(body.params)
 
-        assert all(isinstance(p.param_schema, Schema) for p in params)
-        parsed_params: list[ParsedParameter] = [ParsedParameter.parse_obj(p.dict()) for p in params]
+        assert all(isinstance(p.param_schema, Schema) for p in self.parameters)
+        parsed_params: list[ParsedParameter] = [ParsedParameter.parse_obj(p.dict()) for p in self.parameters]
         [i.feed(generator) for i in parsed_params]
 
         # Ensure that post parameters do not conflict with path and query parameters
