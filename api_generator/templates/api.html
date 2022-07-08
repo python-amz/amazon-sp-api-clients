@@ -85,7 +85,7 @@ Args:
     )
 
     _{{ operation.method_name }}_responses = {
-    {% for response in operation.parsed_responses %}
+    {% for response in operation.responses.values %}
         {{ response.status_code }}: {{ response.type_hint }},
     {% endfor %}
     }
