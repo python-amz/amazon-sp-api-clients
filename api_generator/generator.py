@@ -14,12 +14,12 @@ from pathlib import Path
 from typing import Any
 
 import django.template
-import pydantic
 from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
 from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody, Schema, Response, \
     MediaType, Components
+from pydantic import root_validator, validator
 
 from api_generator.utils import Utils
 
@@ -70,7 +70,7 @@ class ParsedSchema(Schema):
         return self.type == 'object'
 
     # noinspection PyMethodParameters
-    @pydantic.validator('properties')
+    @validator('properties')
     def validate_properties(cls, properties: list[Schema]):
         return properties if properties else {}
 
@@ -101,7 +101,7 @@ class ParsedParameter(Parameter):
         self.type_hint = Utils.get_type_hint(generator.resolve_ref(self.param_schema))
 
     # noinspection PyMethodParameters
-    @pydantic.validator('param_in')
+    @validator('param_in')
     def validate_param_in(cls, value):
         assert value in ('query', 'path', 'body')
         return value
@@ -126,13 +126,13 @@ class ParsedRequestBody(RequestBody):
     params: list[ParsedParameter] = None
 
     # noinspection PyMethodParameters
-    @pydantic.validator('required')
+    @validator('required')
     def validate_required(cls, value):
         assert value is True
         return value
 
     # noinspection PyMethodParameters
-    @pydantic.validator('content')
+    @validator('content')
     def validate_content(cls, value: dict[str, ParsedMediaType]):
         assert all(k == 'application/json' for k in value.keys())
         return value
@@ -156,8 +156,8 @@ class ParsedRequestBody(RequestBody):
 
 
 class ParsedOperation(Operation):
-    path: str
-    method: str
+    path: str = ''
+    method: str = ''
     requestBody: ParsedRequestBody = None
     responses: dict[str, ParsedResponse]
     parameters: list[ParsedParameter] = None
@@ -167,7 +167,7 @@ class ParsedOperation(Operation):
         return Utils.camel_to_underline(self.operationId)
 
     # noinspection PyMethodParameters
-    @pydantic.validator('parameters')
+    @validator('parameters')
     def validate_parameters(cls, parameters: list[ParsedParameter]):
         known_fields = {'param_in', 'name', 'param_schema', 'description', 'required',
                         'style', 'example', 'allowEmptyValue', 'allowReserved', 'deprecated', 'explode'}  # useless
@@ -179,7 +179,7 @@ class ParsedOperation(Operation):
         return parameters
 
     # noinspection PyMethodParameters
-    @pydantic.validator('responses', pre=True)
+    @validator('responses', pre=True)
     def validate_responses(cls, responses: dict[str, Response]):
         responses = {k: Response.parse_obj(v) for k, v in responses.items()}
         for status, response in responses.items():
@@ -218,7 +218,7 @@ class ParsedComponents(Components):
     schemas: dict[str, ParsedSchema] = None
 
     # noinspection PyMethodParameters
-    @pydantic.validator('schemas')
+    @validator('schemas')
     def validate_schemas(cls, schemas: dict[str, ParsedSchema]):
         expanded = list(chain.from_iterable(Utils.find_new_schema(k, v) for k, v in schemas.items()))
         names = [k for k, v in expanded]
@@ -229,14 +229,25 @@ class ParsedComponents(Components):
 
 class ParsedOpenApi(OpenAPI):
     components: ParsedComponents = None
+    operations: dict[str, ParsedOperation] = None
 
     # noinspection PyMethodParameters
-    @pydantic.validator('servers')
+    @validator('servers')
     def validate_servers(cls, servers: list):
         # servers are useless
         # url='https://sellingpartnerapi-na.amazon.com/' description=None variables=None
         assert len(servers) == 1
         return servers
+
+    # noinspection PyMethodParameters
+    @root_validator
+    def parse_operations(cls, values):
+        operations: list[ParsedOperation] = list(ParsedOperation.parse_obj(
+            {'path': path, 'method': method} | getattr(item, method).dict()
+        ) for path, item in values.get('paths', {}).items() for method in item.__fields_set__)
+        operations = list(sorted(operations, key=lambda k: k.operationId))
+        values['operations'] = {f'{o.operationId}': o for o in operations}
+        return values
 
 
 class Generator:
@@ -281,11 +292,8 @@ class Generator:
 
     @cached_property
     def operations(self) -> list['ParsedOperation']:
-        operations: list[ParsedOperation] = list(ParsedOperation.parse_obj(
-            {'path': path, 'method': method} | getattr(item, method).dict()
-        ) for path, item in self.openapi_data.paths.items() for method in item.__fields_set__)
+        operations = self.openapi_data.operations.values()
         [i.feed(self) for i in operations]
-        operations = list(sorted(operations, key=lambda k: k.operationId))
         return operations
 
     @cached_property
