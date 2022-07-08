@@ -282,89 +282,12 @@ class Generator:
             data = json.load(f)
         return OpenAPI.parse_obj(data)
 
-    def _find_new_schema(self, name: str, schema: Schema | Reference | Parameter) -> list[tuple[str, Schema]]:
-        """Find inline schemas, which are not able to convert in python.
-
-        Python type hint for dict do not support inline type hint.
-        This method will find the inline schemas and convert to reference, which will be created as classes.
-
-        Args:
-            name: the name of the new schema, will be rendered as the class name
-            schema: the inline schema
-
-        Returns:
-            Like the input arguments, but as a list.
-            The first of the tuple is the path of the inline schema, including parent path,
-            like ``offer.price.unit``.
-
-        """
-        fields = schema.__fields_set__
-        fields = {f for f in fields if getattr(schema, f) is not None}
-        new_schemas: list[tuple[str, Schema]] = [(name, schema)]
-        if isinstance(schema, Schema):
-            fields -= {'type', 'description', 'required', 'properties', 'minLength', 'maxLength', 'enum', 'items',
-                       'allOf', 'additionalProperties', 'schema_format', 'maxItems', 'minItems', 'minimum', 'maximum',
-                       'example', 'pattern'}
-            assert not fields
-
-            # additional properties only contains simple types, do not need to convert
-            if (additional := schema.additionalProperties) is not None:
-                assert isinstance(additional, (Schema, Reference))
-                if isinstance(additional, Schema):
-                    assert additional.__fields_set__.issubset({'type'})
-
-            simple_types = 'string', 'integer', 'boolean', 'number'
-            if schema.properties:
-                for sub_name, sub_schema in schema.properties.items():
-                    if isinstance(sub_schema, Reference):
-                        continue
-                    assert isinstance(sub_schema, Schema)
-                    if sub_schema.type in simple_types:
-                        continue
-                    assert sub_schema.type in ('object', 'array')
-                    capitalized_sub_name = Utils.camel_to_class_name(sub_name)
-
-                    if sub_schema.type == 'object':
-                        new_schema_name = f'{name}{capitalized_sub_name}'
-                        schema.properties[sub_name] = Reference(ref=f"#/components/schemas/{new_schema_name}")
-                        new_schemas.extend(self._find_new_schema(new_schema_name, sub_schema))
-
-                    if sub_schema.type == 'array':
-                        item = sub_schema.items
-                        if isinstance(item, Reference):
-                            continue
-                        assert isinstance(item, Schema)
-                        if item.type in simple_types:
-                            continue
-                        assert item.type == 'object', item.type
-                        new_schema_name = f'{name}{capitalized_sub_name}Item'
-                        sub_schema.items = Reference(ref=f"#/components/schemas/{new_schema_name}")
-                        new_schemas.extend(self._find_new_schema(new_schema_name, item))
-
-            if item := schema.items:
-                assert isinstance(item, (Reference, Schema))
-                if isinstance(item, Schema):
-                    known = {'type', 'maxLength', 'enum', 'description', 'properties'}
-                    assert not (v := item.__fields_set__ - known), v
-                    assert item.type in ('string', 'object')
-                    if item.type == 'object':
-                        assert item.properties is not None
-                        new_schema_name = f'{name}Item'
-                        schema.items = Reference(ref=f"#/components/schemas/{new_schema_name}")
-                        new_schemas.extend(self._find_new_schema(new_schema_name, item))
-
-        elif isinstance(schema, Reference):
-            pass
-        else:
-            raise ValueError(f'Not supported: {type(schema)}')
-        return new_schemas
-
     @cached_property
     def schemas(self) -> list[ParsedSchema]:
         src = self.openapi_data.components.schemas
         src = {k: v for k, v in src.items() if isinstance(v, Schema)}
         schemas = list(src.items())
-        schemas = list(chain.from_iterable(self._find_new_schema(k, v) for k, v in schemas))
+        schemas = list(chain.from_iterable(Utils.find_new_schema(k, v) for k, v in schemas))
         schema_names = [k for k, v in schemas]
         assert set(src).issubset(set(schema_names)), 'existing schemas should not be deleted'
         assert len(schema_names) == len(set(schema_names)), f'schema names should not conflict: {schema_names}'
