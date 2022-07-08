@@ -183,20 +183,18 @@ class ParsedOperation(Operation):
     @pydantic.validator('responses', pre=True)
     def validate_responses(cls, responses: dict[str, Response]):
         responses = {k: Response.parse_obj(v) for k, v in responses.items()}
-        assert all({f for f in media.__fields_set__ if getattr(media, f) is not None}.issubset(
-            {'example', 'media_type_schema'} if name in {'application/json', 'application/hal+json'} else {'example'})
-                   for status, response in responses.items()
-                   for name, media in response.content.items())
-        response = ((status, name, response)
-                    for status, response in responses.items()
-                    for name, media in response.content.items()
-                    if name in {'application/json', 'application/hal+json'})
-        parsed = {f'{status} {name}': ParsedResponse.parse_obj(response.dict() | {
-            'status_code': status,
-            'media_type': name,
-        })
-                  for status, name, response in response}
-        return parsed
+        for status, response in responses.items():
+            for name, media in response.content.items():
+                known_fields = {'example'}
+                name in {'application/json', 'application/hal+json'} and known_fields.add('media_type_schema')
+                assert {f for f in media.__fields_set__ if getattr(media, f) is not None}.issubset(known_fields)
+        # Flatten the response objects.
+        responses = {f'{status} {name}': ParsedResponse.parse_obj(
+            response.dict() | {'status_code': status, 'media_type': name})
+            for status, response in responses.items()
+            for name, media in response.content.items()
+            if name in {'application/json', 'application/hal+json'}}
+        return responses
 
     def feed(self, generator: 'Generator'):
         for i in self.responses.values():
