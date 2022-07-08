@@ -81,7 +81,6 @@ class ParsedSchema(Schema):
         for k, src in parsed:
             dst = generator.resolve_ref(src) if isinstance(src, Reference) else src
             dst = ParsedSchema.parse_obj(dst.dict() | {'name': k, 'is_property': True})
-            dst.feed(generator)
             result.append(dst)
         result.sort(key=lambda i: i.name)
         self.parsed_properties = result
