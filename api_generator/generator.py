@@ -19,7 +19,7 @@ from django.conf import settings
 from django.shortcuts import render
 from django.test import RequestFactory
 from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody, Schema, Response, \
-    MediaType
+    MediaType, Components
 
 from api_generator.utils import Utils
 
@@ -244,7 +244,23 @@ class ParsedOperation(Operation):
         return Utils.wrap_description(self.description, subsequent_indent=0, initial_indent=0, width=112)
 
 
-class OpenApi(OpenAPI):
+class ParsedComponents(Components):
+    schemas: dict[str, Schema] = None
+
+    # noinspection PyMethodParameters
+    @pydantic.validator('schemas')
+    def validate_schemas(cls, value):
+        value: dict[str, Schema]
+        value = {k: v for k, v in value.items() if isinstance(v, Schema)}
+        schemas = list(value.items())
+        schemas = list(chain.from_iterable(Utils.find_new_schema(k, v) for k, v in schemas))
+        schema_names = [k for k, v in schemas]
+        assert set(value).issubset(set(schema_names)), 'existing schemas should not be deleted'
+        assert len(schema_names) == len(set(schema_names)), f'schema names should not conflict: {schema_names}'
+        return dict(schemas)
+
+
+class ParsedOpenApi(OpenAPI):
     # noinspection PyMethodParameters
     @pydantic.validator('servers')
     def validate_servers(cls, servers: list):
@@ -252,6 +268,8 @@ class OpenApi(OpenAPI):
         # url='https://sellingpartnerapi-na.amazon.com/' description=None variables=None
         assert len(servers) == 1
         return servers
+
+    components: ParsedComponents = None
 
 
 class Generator:
@@ -277,23 +295,14 @@ class Generator:
         return schema
 
     @cached_property
-    def openapi_data(self) -> OpenAPI:
+    def openapi_data(self) -> ParsedOpenApi:
         with open(self.path) as f:
             data = json.load(f)
-        return OpenAPI.parse_obj(data)
+        return ParsedOpenApi.parse_obj(data)
 
     @cached_property
     def schemas(self) -> list[ParsedSchema]:
-        src = self.openapi_data.components.schemas
-        src = {k: v for k, v in src.items() if isinstance(v, Schema)}
-        schemas = list(src.items())
-        schemas = list(chain.from_iterable(Utils.find_new_schema(k, v) for k, v in schemas))
-        schema_names = [k for k, v in schemas]
-        assert set(src).issubset(set(schema_names)), 'existing schemas should not be deleted'
-        assert len(schema_names) == len(set(schema_names)), f'schema names should not conflict: {schema_names}'
-        self.openapi_data.components.schemas = dict(schemas)
-
-        values = [v.dict() | {'name': k} for k, v in schemas]
+        values = [v.dict() | {'name': k} for k, v in self.openapi_data.components.schemas.items()]
         dst: list[ParsedSchema] = [ParsedSchema.parse_obj(v) for v in values]
         dst.sort(key=lambda i: i.name)
         return dst
