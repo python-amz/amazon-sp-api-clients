@@ -64,7 +64,7 @@ class {{ data.class_name }}Client(BaseClient):
             {{ param.variable_name }}: {{ param.type_hint }}{% if not param.required %}=None{% endif %},
             {% endif %}
         {% endfor %}
-    ) -> {{ operation.result_type }}:
+    ) -> {{ operation.return_value_type_hint }}:
         """
 {{ operation.parsed_description }}
 

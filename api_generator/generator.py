@@ -228,7 +228,7 @@ class ParsedOperation(Operation):
         self.parsed_parameters = parsed_params
 
     @property
-    def result_type(self):
+    def return_value_type_hint(self):
         """The type hint of function return value."""
         result_types = {r.type_hint for r in self.responses.values()}
         result_types = list(sorted(result_types))
