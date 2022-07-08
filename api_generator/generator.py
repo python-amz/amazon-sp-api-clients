@@ -278,14 +278,10 @@ class Generator:
         return dst
 
     def feed(self):
-        for i in self.schemas:
-            result = []
-            for k, obj in i.properties.items():
-                obj = self.resolve_ref(obj) if isinstance(obj, Reference) else obj
-                obj = ParsedSchema.parse_obj(obj.dict() | {'name': k, 'is_property': True})
-                result.append(obj)
-            result.sort(key=lambda i: i.name)
-            i.parsed_properties = result
+        for schema in self.schemas:
+            schema.parsed_properties = list(sorted((ParsedSchema.parse_obj(
+                self.resolve_ref(obj).dict() | {'name': p, 'is_property': True}
+            ) for p, obj in schema.properties.items()), key=lambda i: i.name))
 
     @cached_property
     def operations(self) -> list['ParsedOperation']:
