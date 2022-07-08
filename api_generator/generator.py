@@ -219,16 +219,13 @@ class ParsedComponents(Components):
 
     # noinspection PyMethodParameters
     @pydantic.validator('schemas')
-    def validate_schemas(cls, value):
-        value: dict[str, Schema]
-        value = {k: v for k, v in value.items() if isinstance(v, Schema)}
-        schemas = list(value.items())
-        schemas = list(chain.from_iterable(Utils.find_new_schema(k, v) for k, v in schemas))
-        schema_names = [k for k, v in schemas]
-        assert set(value).issubset(set(schema_names)), 'existing schemas should not be deleted'
+    def validate_schemas(cls, schemas: dict[str, Schema]):
+        schemas = {k: v for k, v in schemas.items() if isinstance(v, Schema)}
+        expanded = list(chain.from_iterable(Utils.find_new_schema(k, v) for k, v in schemas.items()))
+        schema_names = [k for k, v in expanded]
+        assert set(schemas).issubset(set(schema_names)), 'existing schemas should not be deleted'
         assert len(schema_names) == len(set(schema_names)), f'schema names should not conflict: {schema_names}'
-        value = dict(schemas)
-        return value
+        return dict(expanded)
 
 
 class ParsedOpenApi(OpenAPI):
