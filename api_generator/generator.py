@@ -257,7 +257,8 @@ class ParsedComponents(Components):
         schema_names = [k for k, v in schemas]
         assert set(value).issubset(set(schema_names)), 'existing schemas should not be deleted'
         assert len(schema_names) == len(set(schema_names)), f'schema names should not conflict: {schema_names}'
-        return dict(schemas)
+        value = dict(schemas)
+        return value
 
 
 class ParsedOpenApi(OpenAPI):
