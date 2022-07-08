@@ -76,7 +76,6 @@ class ParsedSchema(Schema):
     def feed(self, generator: 'Generator'):
         parsed = self.properties
         parsed = parsed.items() if parsed else ()
-        parsed = list(sorted(parsed, key=lambda i: i[0]))
         result = []
         for k, src in parsed:
             dst = generator.resolve_ref(src) if isinstance(src, Reference) else src
