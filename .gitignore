@@ -7,3 +7,4 @@ __pycache__
 /tests/client_config.py
 /report_types.md
 /docs/build
+/tests/*.json

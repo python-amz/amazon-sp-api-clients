@@ -45,19 +45,14 @@ For saving time, I just paste part of my test code here as a demo.
 For better understanding, all the fields are the same length of actual fields, and some readable information are kept.
 
 ```python
-def test_api():
-    from datetime import datetime
-    import amazon_sp_api_clients
-    endpoint = "https://sellingpartnerapi-eu.amazon.com"
-    marketplace_id = "XXXXXXXXXXXXXX"
-
-    refresh_token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-
-
-order_pk = '123-1234567-1234567'
+from datetime import datetime
+import amazon_sp_api_clients
+endpoint = "https://sellingpartnerapi-eu.amazon.com"
+marketplace_id = "XXXXXXXXXXXXXX"
+refresh_token = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 role_arn = "arn:aws:iam::123456789012:role/xxxxxx"
 aws_access_key = 'XXXXXXXXXXXXXXXXXXXX'
 aws_secret_key = "XXXXX/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
@@ -73,14 +68,13 @@ client_config = dict(
     lwa_client_key=client_id,
     lwa_client_secret=client_secret,
 )
-order_client = amazon_sp_api_clients.OrdersV0Client(**client_config)
-
-orders = order_client.getOrders(
+clients = amazon_sp_api_clients.AmazonSpApiClients(**client_config)
+orders = clients.orders_v0.getOrders(
     MarketplaceIds=[marketplace_id],
-    CreatedAfter=datetime(2000, 1, 1).isoformat()).payload.Orders
-assert len(orders) > 0
-assert orders[0].AmazonOrderId == order_pk
-
+    CreatedAfter=datetime(2000, 1, 1).isoformat()
+).payload.Orders
+for order in orders:
+    print(order.AmazonOrderId, order.LastUpdateDate)
 ```
 
 ## Configuration
