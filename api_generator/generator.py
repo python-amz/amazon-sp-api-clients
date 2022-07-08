@@ -188,10 +188,8 @@ class ParsedOperation(Operation):
         for p in parameters:
             assert not (fields := {f for f in p.__fields_set__ if getattr(p, f) is not None} - known_fields), fields
             assert p.allowEmptyValue is p.allowReserved is p.deprecated is p.explode is False
-
         # Ensure that post parameters do not conflict with path and query parameters
         assert len(parameters) == len({p.name for p in parameters})
-
         return parameters
 
     # noinspection PyMethodParameters
