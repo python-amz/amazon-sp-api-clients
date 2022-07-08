@@ -31,9 +31,10 @@ django.setup()
 
 
 class ParsedSchema(Schema):
-    name: str
+    name: str = ''
     ref_name: str = ''
     is_property: bool = False  # both class and class property use Schema, use this flag to distinguish.
+    # properties: dict[str, 'ParsedSchema'] = None
     parsed_properties: Any = None
 
     @property
@@ -71,16 +72,14 @@ class ParsedSchema(Schema):
     # noinspection PyMethodParameters
     @pydantic.validator('properties')
     def validate_properties(cls, properties: list[Schema]):
-        return properties
+        return properties if properties else {}
 
     def feed(self, generator: 'Generator'):
-        parsed = self.properties
-        parsed = parsed.items() if parsed else ()
         result = []
-        for k, src in parsed:
-            dst = generator.resolve_ref(src) if isinstance(src, Reference) else src
-            dst = ParsedSchema.parse_obj(dst.dict() | {'name': k, 'is_property': True})
-            result.append(dst)
+        for k, obj in self.properties.items():
+            obj = generator.resolve_ref(obj) if isinstance(obj, Reference) else obj
+            obj = ParsedSchema.parse_obj(obj.dict() | {'name': k, 'is_property': True})
+            result.append(obj)
         result.sort(key=lambda i: i.name)
         self.parsed_properties = result
 
