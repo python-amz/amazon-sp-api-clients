@@ -197,10 +197,8 @@ class ParsedOperation(Operation):
         return responses
 
     def feed(self, generator: 'Generator'):
-        for i in self.responses.values():
-            i.feed(generator)
-        if (body := self.requestBody) is not None:
-            body.feed(generator)
+        [i.feed(generator) for i in self.responses.values()]
+        self.requestBody is not None and self.requestBody.feed(generator)
 
         params_or_refs = [] if (v := self.parameters) is None else v
         params: list[Parameter] = [generator.resolve_ref(p) for p in params_or_refs]
