@@ -34,6 +34,7 @@ class ParsedSchema(Schema):
     name: str
     ref_name: str = ''
     is_property: bool = False  # both class and class property use Schema, use this flag to distinguish.
+    parsed_properties: Any = None
 
     @property
     def extra_fields(self):
@@ -71,8 +72,6 @@ class ParsedSchema(Schema):
     @pydantic.validator('properties')
     def validate_properties(cls, properties: list[Schema]):
         return properties
-
-    parsed_properties: Any = None
 
     def feed(self, generator: 'Generator'):
         parsed = self.properties
@@ -136,6 +135,7 @@ class ParsedMediaType(MediaType):
 
 class ParsedRequestBody(RequestBody):
     content: dict[str, ParsedMediaType]
+    params: list[ParsedParameter] = None
 
     # noinspection PyMethodParameters
     @pydantic.validator('required')
@@ -165,8 +165,6 @@ class ParsedRequestBody(RequestBody):
         properties = tuple(sorted(properties, key=lambda i: i[0]))
         self.params = [ParsedParameter(name=k, param_in='body', description=v.description,
                                        required=k in required, param_schema=v) for k, v in properties]
-
-    params: list[ParsedParameter] = None
 
 
 class ParsedOperation(Operation):
@@ -246,6 +244,8 @@ class ParsedComponents(Components):
 
 
 class ParsedOpenApi(OpenAPI):
+    components: ParsedComponents = None
+
     # noinspection PyMethodParameters
     @pydantic.validator('servers')
     def validate_servers(cls, servers: list):
@@ -253,8 +253,6 @@ class ParsedOpenApi(OpenAPI):
         # url='https://sellingpartnerapi-na.amazon.com/' description=None variables=None
         assert len(servers) == 1
         return servers
-
-    components: ParsedComponents = None
 
 
 class Generator:
