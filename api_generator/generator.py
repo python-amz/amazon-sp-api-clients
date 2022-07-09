@@ -130,23 +130,6 @@ class ParsedRequestBody(RequestBody):
         assert all(k == 'application/json' for k in value.keys())
         return value
 
-    def feed(self, generator: 'Generator'):
-        schemas = list(i.media_type_schema for i in self.content.values())
-        assert all(isinstance(i, Reference) for i in schemas)
-        schemas = list(generator.resolve_ref(schema) for schema in schemas)
-        assert all(s.type == 'object' for s in schemas)
-        # TODO check the parameters
-        # fields = {'required', 'properties', 'type', 'description'}
-        # assert set(chain.from_iterable(s.__fields_set__ for s in schemas)).issubset(fields)
-        required = tuple(chain.from_iterable(s.required for s in schemas if s.required))
-        assert len(set(required)) == len(required)
-        properties = tuple((name, obj) for s in schemas for name, obj in s.properties.items())
-        properties = tuple((k, generator.resolve_ref(v) if isinstance(v, Reference) else v)
-                           for k, v in properties)
-        properties = tuple(sorted(properties, key=lambda i: i[0]))
-        self.params = [ParsedParameter(name=k, param_in='body', description=v.description,
-                                       required=k in required, param_schema=v) for k, v in properties]
-
 
 class ParsedOperation(Operation):
     path: str = ''
@@ -243,6 +226,7 @@ class Generator:
             path: OpenAPI json file version 3.
         """
         self.path = path
+        self.feed()
 
     def resolve_ref(self, ref: Reference | Schema | Parameter):
         if not isinstance(ref, Reference):
@@ -280,7 +264,22 @@ class Generator:
                 type_hint_schema = self.resolve_ref(i.content.get(i.media_type).media_type_schema)
                 i.type_hint = Utils.get_type_hint(type_hint_schema)
 
-            (body := operation.requestBody) is None or body.feed(self)
+            if (body := operation.requestBody) is not None:
+                schemas = list(i.media_type_schema for i in body.content.values())
+                assert all(isinstance(i, Reference) for i in schemas)
+                schemas = list(self.resolve_ref(schema) for schema in schemas)
+                assert all(s.type == 'object' for s in schemas)
+                # TODO check the parameters
+                # fields = {'required', 'properties', 'type', 'description'}
+                # assert set(chain.from_iterable(s.__fields_set__ for s in schemas)).issubset(fields)
+                required = tuple(chain.from_iterable(s.required for s in schemas if s.required))
+                assert len(set(required)) == len(required)
+                properties = tuple((name, obj) for s in schemas for name, obj in s.properties.items())
+                properties = tuple((k, self.resolve_ref(v) if isinstance(v, Reference) else v)
+                                   for k, v in properties)
+                properties = tuple(sorted(properties, key=lambda i: i[0]))
+                body.params = [ParsedParameter(name=k, param_in='body', description=v.description,
+                                               required=k in required, param_schema=v) for k, v in properties]
 
             # convert post object to parameter objects, the main work of following code is data validation
             (body := operation.requestBody) is None or operation.parameters.extend(body.params)
@@ -311,7 +310,6 @@ class Generator:
     @classmethod
     def worker(cls, path: Path):
         obj = cls(path)
-        obj.feed()
         obj.generate()
         return obj
 
