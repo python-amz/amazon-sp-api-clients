@@ -228,18 +228,6 @@ class Generator:
         self.path = path
         self.feed()
 
-    def resolve_ref(self, ref: Reference | Schema | Parameter):
-        if not isinstance(ref, Reference):
-            return ref
-        match = re.match(r'^#/components/(.*?)/(.*?)$', ref.ref)
-        category, name = match.group(1, 2)
-        selected = [i for i in self.openapi_data.components.schemas.values() if i.name == name]
-        if not selected:
-            raise ValueError(f'schema not found: {category}/{name}')
-        schema = selected[0]
-        schema = ParsedSchema.parse_obj(schema.dict() | {'ref_name': name})
-        return schema
-
     @cached_property
     def openapi_data(self) -> ParsedOpenApi:
         with open(self.path) as f:
@@ -247,20 +235,33 @@ class Generator:
         return ParsedOpenApi.parse_obj(data)
 
     def feed(self):
+
+        def resolve_ref(ref: Reference | Schema | Parameter):
+            if not isinstance(ref, Reference):
+                return ref
+            match = re.match(r'^#/components/(.*?)/(.*?)$', ref.ref)
+            category, name = match.group(1, 2)
+            selected = [i for i in self.openapi_data.components.schemas.values() if i.name == name]
+            if not selected:
+                raise ValueError(f'schema not found: {category}/{name}')
+            schema = selected[0]
+            schema = ParsedSchema.parse_obj(schema.dict() | {'ref_name': name})
+            return schema
+
         for schema in self.openapi_data.components.schemas.values():
             schema.parsed_properties = list(sorted((ParsedSchema.parse_obj(
-                self.resolve_ref(obj).dict() | {'name': p, 'is_property': True}
+                resolve_ref(obj).dict() | {'name': p, 'is_property': True}
             ) for p, obj in schema.properties.items()), key=lambda i: i.name))
         for operation in self.openapi_data.operations.values():
 
             for i in operation.responses.values():
-                type_hint_schema = self.resolve_ref(i.content.get(i.media_type).media_type_schema)
+                type_hint_schema = resolve_ref(i.content.get(i.media_type).media_type_schema)
                 i.type_hint = Utils.get_type_hint(type_hint_schema)
 
             if (body := operation.requestBody) is not None:
                 schemas = list(i.media_type_schema for i in body.content.values())
                 assert all(isinstance(i, Reference) for i in schemas)
-                schemas = list(self.resolve_ref(schema) for schema in schemas)
+                schemas = list(resolve_ref(schema) for schema in schemas)
                 assert all(s.type == 'object' for s in schemas)
                 # TODO check the parameters
                 # fields = {'required', 'properties', 'type', 'description'}
@@ -268,7 +269,7 @@ class Generator:
                 required = tuple(chain.from_iterable(s.required for s in schemas if s.required))
                 assert len(set(required)) == len(required)
                 properties = tuple((name, obj) for s in schemas for name, obj in s.properties.items())
-                properties = tuple((k, self.resolve_ref(v) if isinstance(v, Reference) else v)
+                properties = tuple((k, resolve_ref(v) if isinstance(v, Reference) else v)
                                    for k, v in properties)
                 properties = tuple(sorted(properties, key=lambda i: i[0]))
                 body.params = [ParsedParameter(name=k, param_in='body', description=v.description,
@@ -277,7 +278,7 @@ class Generator:
             # convert post object to parameter objects, the main work of following code is data validation
             (body := operation.requestBody) is None or operation.parameters.extend(body.params)
             for parameter in operation.parameters:
-                parameter.type_hint = Utils.get_type_hint(self.resolve_ref(parameter.param_schema))
+                parameter.type_hint = Utils.get_type_hint(resolve_ref(parameter.param_schema))
 
     @cached_property
     def package_name(self):
