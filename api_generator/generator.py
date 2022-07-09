@@ -235,18 +235,16 @@ class Generator:
         return ParsedOpenApi.parse_obj(data)
 
     def resolve(self):
+        available_schemas: dict[str, ParsedSchema] = {s.name: s for s in self.openapi_data.components.schemas.values()}
 
         def resolve_ref(ref: Reference | Schema | Parameter):
             if not isinstance(ref, Reference):
                 return ref
-            match = re.match(r'^#/components/(.*?)/(.*?)$', ref.ref)
-            category, name = match.group(1, 2)
-            selected = [i for i in self.openapi_data.components.schemas.values() if i.name == name]
-            if not selected:
-                raise ValueError(f'schema not found: {category}/{name}')
-            schema = selected[0]
-            schema = ParsedSchema.parse_obj(schema.dict() | {'ref_name': name})
-            return schema
+            name = re.match(r'^#/components/schemas/(.*?)$', ref.ref).group(1)
+            resolved_schema = available_schemas[name]
+            assert resolved_schema.ref_name in (None, '', name)  # Schema ref name should not change.
+            resolved_schema.ref_name = name
+            return resolved_schema
 
         for schema in self.openapi_data.components.schemas.values():
             schema.parsed_properties = list(sorted((ParsedSchema.parse_obj(
