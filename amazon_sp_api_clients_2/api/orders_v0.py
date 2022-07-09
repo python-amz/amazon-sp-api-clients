@@ -100,26 +100,6 @@ class UpdateVerificationStatusRequestBody(BaseObject):
 
 
 @attrs.define(kw_only=True, frozen=True, slots=True)
-class OrderItemsItem(BaseObject):
-
-    order_item_id: Optional[str] = attrs.field(
-        default=None,
-    )
-    """
-    the unique identifier for the order item
-    """
-
-    quantity: Optional[int] = attrs.field(
-        default=None,
-    )
-    """
-    the quantity of items that needs an update of the shipment status
-    """
-
-    _attrs_config = {"orderItemId": ["order_item_id", "string"], "quantity": ["quantity", "integer"]}
-
-
-@attrs.define(kw_only=True, frozen=True, slots=True)
 class UpdateShipmentStatusErrorResponse(BaseObject):
     """
     The error response schema for the UpdateShipmentStatus operation.
@@ -2019,6 +1999,26 @@ class Error(BaseObject):
     """
 
     _attrs_config = {"code": ["code", "string"], "details": ["details", "string"], "message": ["message", "string"]}
+
+
+@attrs.define(kw_only=True, frozen=True, slots=True)
+class OrderItemsItem(BaseObject):
+
+    order_item_id: Optional[str] = attrs.field(
+        default=None,
+    )
+    """
+    the unique identifier for the order item
+    """
+
+    quantity: Optional[int] = attrs.field(
+        default=None,
+    )
+    """
+    the quantity of items that needs an update of the shipment status
+    """
+
+    _attrs_config = {"orderItemId": ["order_item_id", "string"], "quantity": ["quantity", "integer"]}
 
 
 class OrdersV0Client(BaseClient):

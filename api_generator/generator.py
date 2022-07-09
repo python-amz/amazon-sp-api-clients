@@ -9,7 +9,6 @@ import json
 import multiprocessing
 import re
 from functools import cached_property
-from itertools import chain
 from pathlib import Path
 
 import django.template
@@ -217,13 +216,25 @@ class ParsedComponents(Components):
     # noinspection PyMethodParameters
     @validator('schemas')
     def validate_schemas(cls, schemas: dict[str, ParsedSchema]):
-        expanded = list(chain.from_iterable(Utils.find_new_schema(k, v) for k, v in schemas.items()))
-        names = [k for k, v in expanded]
-        assert set(schemas).issubset(set(names)), 'existing schemas should not be deleted'
-        assert len(names) == len(set(names)), f'schema names should not conflict: {names}'
-        schemas = {k: ParsedSchema.parse_obj(v.dict() | {'name': k}) for k, v in expanded}
+        for k, v in schemas.items():
+            assert isinstance(k, str) and isinstance(v, ParsedSchema)
+
+        # find the list items and property items as new schemas.
+        for k, v in list(schemas.items()):
+            for k2, v2 in (Utils.find_new_schema(k, v) or ()):
+                assert k2 not in schemas or schemas[k2] is v2, k2
+                schemas[k2] = v2
+
+        for k, v in schemas.items():
+            if not isinstance(v, ParsedSchema):
+                assert isinstance(v, Schema)
+                v = ParsedSchema.parse_obj(v.dict())
+                schemas[k] = v
+            v.name = k
 
         for schema in schemas.values():
+            if not schema.properties:
+                continue
             for property_name, property_obj in schema.properties.items():
                 if isinstance(property_obj, Reference):
                     name = re.match(r'^#/components/schemas/(.*?)$', property_obj.ref).group(1)
