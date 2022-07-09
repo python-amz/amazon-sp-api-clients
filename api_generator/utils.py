@@ -134,7 +134,7 @@ class Utils:
         if isinstance(schema, Schema):
             fields -= {'type', 'description', 'required', 'properties', 'minLength', 'maxLength', 'enum', 'items',
                        'allOf', 'additionalProperties', 'schema_format', 'maxItems', 'minItems', 'minimum', 'maximum',
-                       'example', 'pattern'}
+                       'example', 'pattern', 'name'}
             assert not fields
 
             # additional properties only contains simple types, do not need to convert
