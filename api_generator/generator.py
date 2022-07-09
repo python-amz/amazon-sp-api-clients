@@ -76,8 +76,10 @@ class ParsedSchema(Schema):
 
     # noinspection PyMethodParameters
     @validator('properties')
-    def validate_properties(cls, properties: list[Schema]):
-        return properties if properties else {}
+    def validate_properties(cls, properties: dict[str, Schema]):
+        if properties is None:
+            properties = {}
+        return properties
 
     @property
     def attrs_config(self):
