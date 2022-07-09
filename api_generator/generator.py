@@ -281,13 +281,11 @@ class ParsedOpenApi(OpenAPI):
 
             if (body := operation.requestBody) is not None:
                 body: ParsedRequestBody
-                content = body.content
-                for i in content.values():
-                    media_type = resolve_ref(i.media_type_schema)
-                    i.media_type_schema = media_type
-                    for name, obj in media_type.properties.items():
+                for i in body.content.values():
+                    i.media_type_schema = resolve_ref(i.media_type_schema)
+                    for name, obj in i.media_type_schema.properties.items():
                         if isinstance(obj, Reference):
-                            media_type.properties[name] = resolve_ref(obj)
+                            i.media_type_schema.properties[name] = resolve_ref(obj)
                 operation.parameters.extend(body.params)
 
         return values
