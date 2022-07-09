@@ -11,7 +11,6 @@ import re
 from functools import cached_property
 from itertools import chain
 from pathlib import Path
-from typing import Any
 
 import django.template
 from django.conf import settings
@@ -34,8 +33,14 @@ class ParsedSchema(Schema):
     name: str = ''
     ref_name: str = ''
     is_property: bool = False  # both class and class property use Schema, use this flag to distinguish.
+
     # properties: dict[str, 'ParsedSchema'] = None
-    parsed_properties: Any = None
+
+    @property
+    def parsed_properties(self):
+        return list(sorted((ParsedSchema.parse_obj(
+            obj.dict() | {'name': p, 'is_property': True}
+        ) for p, obj in self.properties.items()), key=lambda i: i.name))
 
     @property
     def extra_fields(self):
@@ -253,9 +258,8 @@ class Generator:
             return resolved_schema
 
         for schema in self.openapi_data.components.schemas.values():
-            schema.parsed_properties = list(sorted((ParsedSchema.parse_obj(
-                resolve_ref(obj).dict() | {'name': p, 'is_property': True}
-            ) for p, obj in schema.properties.items()), key=lambda i: i.name))
+            schema.properties = {k: resolve_ref(v) for k, v in schema.properties.items()}
+
         for operation in self.openapi_data.operations.values():
 
             for i in operation.responses.values():
