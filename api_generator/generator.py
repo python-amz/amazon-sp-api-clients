@@ -261,9 +261,10 @@ class ParsedOpenApi(OpenAPI):
                 obj.media_type_schema = resolve_ref(obj.media_type_schema)
 
             if (body := operation.requestBody) is not None:
+                body: ParsedRequestBody
+                for i in body.content.values():
+                    i.media_type_schema = resolve_ref(i.media_type_schema)
                 schemas = list(i.media_type_schema for i in body.content.values())
-                assert all(isinstance(i, Reference) for i in schemas)
-                schemas = list(resolve_ref(schema) for schema in schemas)
                 assert all(s.type == 'object' for s in schemas)
                 # TODO check the parameters
                 # fields = {'required', 'properties', 'type', 'description'}
