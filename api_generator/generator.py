@@ -285,8 +285,7 @@ class ParsedOpenApi(OpenAPI):
                             param_schema=obj,
                         ))
                 body.params.sort(key=lambda i: i.name)
-
-            (body := operation.requestBody) is None or operation.parameters.extend(body.params)
+                operation.parameters.extend(body.params)
 
         return values
 
