@@ -85,8 +85,11 @@ class ParsedSchema(Schema):
 
 
 class ParsedParameter(Parameter):
-    type_hint: str = ''
     param_schema: Schema
+
+    @property
+    def type_hint(self):
+        return Utils.get_type_hint(self.param_schema)
 
     @property
     def variable_name(self):
@@ -276,7 +279,7 @@ class Generator:
             # convert post object to parameter objects, the main work of following code is data validation
             (body := operation.requestBody) is None or operation.parameters.extend(body.params)
             for parameter in operation.parameters:
-                parameter.type_hint = Utils.get_type_hint(resolve_ref(parameter.param_schema))
+                parameter.param_schema = resolve_ref(parameter.param_schema)
 
     @cached_property
     def package_name(self):
