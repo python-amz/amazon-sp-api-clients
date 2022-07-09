@@ -226,7 +226,7 @@ class Generator:
             path: OpenAPI json file version 3.
         """
         self.path = path
-        self.feed()
+        self.resolve()
 
     @cached_property
     def openapi_data(self) -> ParsedOpenApi:
@@ -234,7 +234,7 @@ class Generator:
             data = json.load(f)
         return ParsedOpenApi.parse_obj(data)
 
-    def feed(self):
+    def resolve(self):
 
         def resolve_ref(ref: Reference | Schema | Parameter):
             if not isinstance(ref, Reference):
