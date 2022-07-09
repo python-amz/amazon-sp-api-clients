@@ -129,7 +129,6 @@ class ParsedMediaType(MediaType):
 
 class ParsedRequestBody(RequestBody):
     content: dict[str, ParsedMediaType]
-    params: list[ParsedParameter] = None
 
     # noinspection PyMethodParameters
     @validator('required')
@@ -142,6 +141,23 @@ class ParsedRequestBody(RequestBody):
     def validate_content(cls, value: dict[str, ParsedMediaType]):
         assert all(k == 'application/json' for k in value.keys())
         return value
+
+    @property
+    def params(self) -> list[ParsedParameter]:
+        schemas = list(i.media_type_schema for i in self.content.values())
+        result = []
+        for media_type in schemas:
+            assert media_type.type == 'object'
+            for name, obj in media_type.properties.items():
+                result.append(ParsedParameter(
+                    name=name,
+                    param_in='body',
+                    description=obj.description,
+                    required=name in media_type.required,
+                    param_schema=obj,
+                ))
+        result.sort(key=lambda i: i.name)
+        return result
 
 
 class ParsedOperation(Operation):
@@ -267,24 +283,11 @@ class ParsedOpenApi(OpenAPI):
                 body: ParsedRequestBody
                 content = body.content
                 for i in content.values():
-                    i.media_type_schema = resolve_ref(i.media_type_schema)
-                schemas = list(i.media_type_schema for i in body.content.values())
-                body.params = []
-                for media_type in schemas:
-                    assert media_type.type == 'object'
-                    # TODO check the parameters
-                    # fields = {'required', 'properties', 'type', 'description'}
-                    # assert set(chain.from_iterable(s.__fields_set__ for s in schemas)).issubset(fields)
+                    media_type = resolve_ref(i.media_type_schema)
+                    i.media_type_schema = media_type
                     for name, obj in media_type.properties.items():
-                        obj = resolve_ref(obj) if isinstance(obj, Reference) else obj
-                        body.params.append(ParsedParameter(
-                            name=name,
-                            param_in='body',
-                            description=obj.description,
-                            required=name in media_type.required,
-                            param_schema=obj,
-                        ))
-                body.params.sort(key=lambda i: i.name)
+                        if isinstance(obj, Reference):
+                            media_type.properties[name] = resolve_ref(obj)
                 operation.parameters.extend(body.params)
 
         return values
