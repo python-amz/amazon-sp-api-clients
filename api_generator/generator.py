@@ -191,17 +191,6 @@ class ParsedOperation(Operation):
             if name in {'application/json', 'application/hal+json'}}
         return responses
 
-    def feed(self, generator: 'Generator'):
-        for i in self.responses.values():
-            type_hint_schema = generator.resolve_ref(i.content.get(i.media_type).media_type_schema)
-            i.type_hint = Utils.get_type_hint(type_hint_schema)
-
-        (body := self.requestBody) is None or body.feed(generator)
-
-        # convert post object to parameter objects, the main work of following code is data validation
-        (body := self.requestBody) is None or self.parameters.extend(body.params)
-        [i.feed(generator) for i in self.parameters]
-
     @property
     def return_value_type_hint(self):
         """The type hint of function return value."""
@@ -288,7 +277,17 @@ class Generator:
             schema.parsed_properties = list(sorted((ParsedSchema.parse_obj(
                 self.resolve_ref(obj).dict() | {'name': p, 'is_property': True}
             ) for p, obj in schema.properties.items()), key=lambda i: i.name))
-        [i.feed(self) for i in self.openapi_data.operations.values()]
+        for operation in self.openapi_data.operations.values():
+
+            for i in operation.responses.values():
+                type_hint_schema = self.resolve_ref(i.content.get(i.media_type).media_type_schema)
+                i.type_hint = Utils.get_type_hint(type_hint_schema)
+
+            (body := operation.requestBody) is None or body.feed(self)
+
+            # convert post object to parameter objects, the main work of following code is data validation
+            (body := operation.requestBody) is None or operation.parameters.extend(body.params)
+            [i.feed(self) for i in operation.parameters]
 
     @cached_property
     def package_name(self):
