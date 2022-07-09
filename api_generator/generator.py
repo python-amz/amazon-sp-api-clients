@@ -262,21 +262,26 @@ class ParsedOpenApi(OpenAPI):
 
             if (body := operation.requestBody) is not None:
                 body: ParsedRequestBody
-                for i in body.content.values():
+                content = body.content
+                for i in content.values():
                     i.media_type_schema = resolve_ref(i.media_type_schema)
                 schemas = list(i.media_type_schema for i in body.content.values())
-                assert all(s.type == 'object' for s in schemas)
-                # TODO check the parameters
-                # fields = {'required', 'properties', 'type', 'description'}
-                # assert set(chain.from_iterable(s.__fields_set__ for s in schemas)).issubset(fields)
-                required = tuple(chain.from_iterable(s.required for s in schemas if s.required))
-                assert len(set(required)) == len(required)
-                properties = tuple((name, obj) for s in schemas for name, obj in s.properties.items())
-                properties = tuple((k, resolve_ref(v) if isinstance(v, Reference) else v)
-                                   for k, v in properties)
-                properties = tuple(sorted(properties, key=lambda i: i[0]))
-                body.params = [ParsedParameter(name=k, param_in='body', description=v.description,
-                                               required=k in required, param_schema=v) for k, v in properties]
+                body.params = []
+                for media_type in schemas:
+                    assert media_type.type == 'object'
+                    # TODO check the parameters
+                    # fields = {'required', 'properties', 'type', 'description'}
+                    # assert set(chain.from_iterable(s.__fields_set__ for s in schemas)).issubset(fields)
+                    for name, obj in media_type.properties.items():
+                        obj = resolve_ref(obj) if isinstance(obj, Reference) else obj
+                        body.params.append(ParsedParameter(
+                            name=name,
+                            param_in='body',
+                            description=obj.description,
+                            required=name in media_type.required,
+                            param_schema=obj,
+                        ))
+                body.params.sort(key=lambda i: i.name)
 
             # convert post object to parameter objects, the main work of following code is data validation
             (body := operation.requestBody) is None or operation.parameters.extend(body.params)
