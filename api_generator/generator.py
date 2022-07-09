@@ -110,7 +110,10 @@ class ParsedParameter(Parameter):
 class ParsedResponse(Response):
     status_code: str
     media_type: str
-    type_hint: str = ''
+
+    @property
+    def type_hint(self):
+        return Utils.get_type_hint(self.content.get(self.media_type).media_type_schema)
 
 
 class ParsedMediaType(MediaType):
@@ -256,8 +259,8 @@ class Generator:
         for operation in self.openapi_data.operations.values():
 
             for i in operation.responses.values():
-                type_hint_schema = resolve_ref(i.content.get(i.media_type).media_type_schema)
-                i.type_hint = Utils.get_type_hint(type_hint_schema)
+                obj = i.content.get(i.media_type)
+                obj.media_type_schema = resolve_ref(obj.media_type_schema)
 
             if (body := operation.requestBody) is not None:
                 schemas = list(i.media_type_schema for i in body.content.values())
