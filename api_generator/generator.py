@@ -222,15 +222,13 @@ class ParsedComponents(Components):
         # find the list items and property items as new schemas.
         for k, v in list(schemas.items()):
             for k2, v2 in (Utils.find_new_schema(k, v) or ()):
-                assert k2 not in schemas or schemas[k2] is v2, k2
+                if k2 in schemas:
+                    assert schemas[k2] is v2
+                if not isinstance(v2, ParsedSchema):
+                    assert isinstance(v2, Schema)
+                    v2: ParsedSchema = ParsedSchema.parse_obj(v2.dict())
+                v2.name = k2
                 schemas[k2] = v2
-
-        for k, v in schemas.items():
-            if not isinstance(v, ParsedSchema):
-                assert isinstance(v, Schema)
-                v = ParsedSchema.parse_obj(v.dict())
-                schemas[k] = v
-            v.name = k
 
         for schema in schemas.values():
             if not schema.properties:
