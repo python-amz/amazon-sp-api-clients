@@ -288,12 +288,7 @@ class Generator:
             schema.parsed_properties = list(sorted((ParsedSchema.parse_obj(
                 self.resolve_ref(obj).dict() | {'name': p, 'is_property': True}
             ) for p, obj in schema.properties.items()), key=lambda i: i.name))
-
-    @cached_property
-    def operations(self) -> list['ParsedOperation']:
-        operations = list(self.openapi_data.operations.values())
-        [i.feed(self) for i in operations]
-        return operations
+        [i.feed(self) for i in self.openapi_data.operations.values()]
 
     @cached_property
     def package_name(self):

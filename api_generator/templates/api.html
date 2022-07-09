@@ -52,7 +52,7 @@ class {{ schema.name }}(BaseObject):
 
 
 class {{ data.class_name }}Client(BaseClient):
-{% for operation in data.operations %}
+{% for operation in data.openapi_data.operations.values %}
     def {{ operation.method_name }}(self,
         {% for param in operation.parameters %}
             {% if param.required %}
