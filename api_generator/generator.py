@@ -291,7 +291,7 @@ class Generator:
 
     @cached_property
     def operations(self) -> list['ParsedOperation']:
-        operations = self.openapi_data.operations.values()
+        operations = list(self.openapi_data.operations.values())
         [i.feed(self) for i in operations]
         return operations
 
