@@ -192,7 +192,7 @@ class ParsedComponents(Components):
         names = [k for k, v in expanded]
         assert set(schemas).issubset(set(names)), 'existing schemas should not be deleted'
         assert len(names) == len(set(names)), f'schema names should not conflict: {names}'
-        return {k: ParsedSchema.parse_obj(v.dict()) for k, v in expanded}
+        return {k: ParsedSchema.parse_obj(v.dict() | {'name': k}) for k, v in expanded}
 
 
 class ParsedOpenApi(OpenAPI):
@@ -233,7 +233,7 @@ class Generator:
             return ref
         match = re.match(r'^#/components/(.*?)/(.*?)$', ref.ref)
         category, name = match.group(1, 2)
-        selected = [i for i in self.schemas if i.name == name]
+        selected = [i for i in self.openapi_data.components.schemas.values() if i.name == name]
         if not selected:
             raise ValueError(f'schema not found: {category}/{name}')
         schema = selected[0]
@@ -246,15 +246,8 @@ class Generator:
             data = json.load(f)
         return ParsedOpenApi.parse_obj(data)
 
-    @cached_property
-    def schemas(self) -> list[ParsedSchema]:
-        values = [v.dict() | {'name': k} for k, v in self.openapi_data.components.schemas.items()]
-        dst: list[ParsedSchema] = [ParsedSchema.parse_obj(v) for v in values]
-        dst.sort(key=lambda i: i.name)
-        return dst
-
     def feed(self):
-        for schema in self.schemas:
+        for schema in self.openapi_data.components.schemas.values():
             schema.parsed_properties = list(sorted((ParsedSchema.parse_obj(
                 self.resolve_ref(obj).dict() | {'name': p, 'is_property': True}
             ) for p, obj in schema.properties.items()), key=lambda i: i.name))

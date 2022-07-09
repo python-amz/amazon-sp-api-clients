@@ -13,7 +13,7 @@ from ..utils.base_object import BaseObject
 from typing import Any, List, Dict, Union, Literal, Optional
 from datetime import date, datetime
 
-{% for schema in data.schemas %}
+{% for schema in data.openapi_data.components.schemas.values %}
     {% if schema.type == 'object' %}
 @attrs.define(kw_only=True,frozen=True,slots={% if schema.additionalProperties %}False{% else %}True{% endif %})
 class {{ schema.name }}(BaseObject):
