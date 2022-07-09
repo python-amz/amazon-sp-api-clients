@@ -205,7 +205,18 @@ class ParsedComponents(Components):
         names = [k for k, v in expanded]
         assert set(schemas).issubset(set(names)), 'existing schemas should not be deleted'
         assert len(names) == len(set(names)), f'schema names should not conflict: {names}'
-        return {k: ParsedSchema.parse_obj(v.dict() | {'name': k}) for k, v in expanded}
+        schemas = {k: ParsedSchema.parse_obj(v.dict() | {'name': k}) for k, v in expanded}
+
+        for schema in schemas.values():
+            for property_name, property_obj in schema.properties.items():
+                if isinstance(property_obj, Reference):
+                    name = re.match(r'^#/components/schemas/(.*?)$', property_obj.ref).group(1)
+                    property_obj = schemas[name]
+                    assert property_obj.ref_name in (None, '', name)  # Schema ref name should not change.
+                    property_obj.ref_name = name
+                    schema.properties[property_name] = property_obj
+
+        return schemas
 
 
 class ParsedOpenApi(OpenAPI):
@@ -258,9 +269,6 @@ class Generator:
             assert resolved_schema.ref_name in (None, '', name)  # Schema ref name should not change.
             resolved_schema.ref_name = name
             return resolved_schema
-
-        for schema in self.openapi_data.components.schemas.values():
-            schema.properties = {k: resolve_ref(v) for k, v in schema.properties.items()}
 
         for operation in self.openapi_data.operations.values():
 
