@@ -18,7 +18,7 @@ from django.shortcuts import render
 from django.test import RequestFactory
 from openapi_schema_pydantic.v3.v3_0_3 import OpenAPI, Operation, Reference, Parameter, RequestBody, Schema, Response, \
     MediaType, Components
-from pydantic import root_validator, validator
+from pydantic import validator
 
 from api_generator.utils import Utils
 
@@ -237,7 +237,6 @@ class ParsedComponents(Components):
 
 class ParsedOpenApi(OpenAPI):
     components: ParsedComponents = None
-    operations: dict[str, ParsedOperation] = None
 
     # noinspection PyMethodParameters
     @validator('servers')
@@ -247,17 +246,15 @@ class ParsedOpenApi(OpenAPI):
         assert len(servers) == 1
         return servers
 
-    # noinspection PyMethodParameters
-    @root_validator
-    def parse_operations(cls, values):
-        components: ParsedComponents = values.get('components', ParsedComponents.parse_obj({}))
+    @property
+    def operations(self) -> dict[str, ParsedOperation]:
+        components: ParsedComponents = self.components
 
         operations = list(ParsedOperation.parse_obj(
             {'path': path, 'method': method} | getattr(item, method).dict()
-        ) for path, item in values.get('paths', {}).items() for method in item.__fields_set__)
+        ) for path, item in self.paths.items() for method in item.__fields_set__)
         operations = list(sorted(operations, key=lambda k: k.operationId))
         operations = {f'{o.operationId}': o for o in operations}
-        values['operations'] = operations
 
         available_schemas: dict[str, ParsedSchema] = {s.name: s for s in components.schemas.values()}
 
@@ -288,7 +285,7 @@ class ParsedOpenApi(OpenAPI):
                             i.media_type_schema.properties[name] = resolve_ref(obj)
                 operation.parameters.extend(body.params)
 
-        return values
+        return operations
 
 
 class Generator:
