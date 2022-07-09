@@ -234,32 +234,16 @@ class ParsedOpenApi(OpenAPI):
     # noinspection PyMethodParameters
     @root_validator
     def parse_operations(cls, values):
-        operations: list[ParsedOperation] = list(ParsedOperation.parse_obj(
+        components: ParsedComponents = values.get('components', ParsedComponents.parse_obj({}))
+
+        operations = list(ParsedOperation.parse_obj(
             {'path': path, 'method': method} | getattr(item, method).dict()
         ) for path, item in values.get('paths', {}).items() for method in item.__fields_set__)
         operations = list(sorted(operations, key=lambda k: k.operationId))
-        values['operations'] = {f'{o.operationId}': o for o in operations}
-        return values
+        operations = {f'{o.operationId}': o for o in operations}
+        values['operations'] = operations
 
-
-class Generator:
-    def __init__(self, path: Path):
-        """Generate a sdk client from OpenAPI json.
-
-        Args:
-            path: OpenAPI json file version 3.
-        """
-        self.path = path
-        self.resolve()
-
-    @cached_property
-    def openapi_data(self) -> ParsedOpenApi:
-        with open(self.path) as f:
-            data = json.load(f)
-        return ParsedOpenApi.parse_obj(data)
-
-    def resolve(self):
-        available_schemas: dict[str, ParsedSchema] = {s.name: s for s in self.openapi_data.components.schemas.values()}
+        available_schemas: dict[str, ParsedSchema] = {s.name: s for s in components.schemas.values()}
 
         def resolve_ref(ref: Reference | Schema | Parameter):
             if not isinstance(ref, Reference):
@@ -270,7 +254,7 @@ class Generator:
             resolved_schema.ref_name = name
             return resolved_schema
 
-        for operation in self.openapi_data.operations.values():
+        for operation in operations.values():
 
             for i in operation.responses.values():
                 obj = i.content.get(i.media_type)
@@ -297,6 +281,24 @@ class Generator:
             (body := operation.requestBody) is None or operation.parameters.extend(body.params)
             for parameter in operation.parameters:
                 parameter.param_schema = resolve_ref(parameter.param_schema)
+
+        return values
+
+
+class Generator:
+    def __init__(self, path: Path):
+        """Generate a sdk client from OpenAPI json.
+
+        Args:
+            path: OpenAPI json file version 3.
+        """
+        self.path = path
+
+    @cached_property
+    def openapi_data(self) -> ParsedOpenApi:
+        with open(self.path) as f:
+            data = json.load(f)
+        return ParsedOpenApi.parse_obj(data)
 
     @cached_property
     def package_name(self):
