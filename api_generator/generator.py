@@ -216,11 +216,9 @@ class ParsedComponents(Components):
     # noinspection PyMethodParameters
     @validator('schemas')
     def validate_schemas(cls, schemas: dict[str, ParsedSchema]):
-        for k, v in schemas.items():
-            assert isinstance(k, str) and isinstance(v, ParsedSchema)
-
         # find the list items and property items as new schemas.
         for k, v in list(schemas.items()):
+            assert isinstance(k, str) and isinstance(v, ParsedSchema)
             for k2, v2 in (Utils.find_new_schema(k, v) or ()):
                 if k2 in schemas:
                     assert schemas[k2] is v2
