@@ -256,6 +256,9 @@ class ParsedOpenApi(OpenAPI):
 
         for operation in operations.values():
 
+            for parameter in operation.parameters:
+                parameter.param_schema = resolve_ref(parameter.param_schema)
+
             for i in operation.responses.values():
                 obj = i.content.get(i.media_type)
                 obj.media_type_schema = resolve_ref(obj.media_type_schema)
@@ -283,10 +286,7 @@ class ParsedOpenApi(OpenAPI):
                         ))
                 body.params.sort(key=lambda i: i.name)
 
-            # convert post object to parameter objects, the main work of following code is data validation
             (body := operation.requestBody) is None or operation.parameters.extend(body.params)
-            for parameter in operation.parameters:
-                parameter.param_schema = resolve_ref(parameter.param_schema)
 
         return values
 
