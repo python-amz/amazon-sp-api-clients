@@ -120,11 +120,17 @@ class Utils:
             like ``offer.price.unit``.
 
         """
+        from .generator import ParsedSchema
         from openapi_schema_pydantic.v3.v3_0_3 import Reference, Schema
-        assert isinstance(schema, Schema)
+
+        assert isinstance(schema, (ParsedSchema, Schema)), type(schema)
+        if isinstance(schema, Schema) and not isinstance(schema, ParsedSchema):
+            schema: ParsedSchema = ParsedSchema.parse_obj(schema.dict())
+        new_schemas: list[tuple[str, Schema]] = [(name, schema)]
+        schema.name = name
+
         fields = schema.__fields_set__
         fields = {f for f in fields if getattr(schema, f) is not None}
-        new_schemas: list[tuple[str, Schema]] = [(name, schema)]
         if isinstance(schema, Schema):
             fields -= {'type', 'description', 'required', 'properties', 'minLength', 'maxLength', 'enum', 'items',
                        'allOf', 'additionalProperties', 'schema_format', 'maxItems', 'minItems', 'minimum', 'maximum',
