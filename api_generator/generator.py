@@ -97,9 +97,6 @@ class ParsedParameter(Parameter):
         result = f'{self.variable_name}: {self.description if self.description else "no description"}'
         return Utils.wrap_description(result, subsequent_indent=8, initial_indent=4, width=112)
 
-    def feed(self, generator: 'Generator'):
-        self.type_hint = Utils.get_type_hint(generator.resolve_ref(self.param_schema))
-
     # noinspection PyMethodParameters
     @validator('param_in')
     def validate_param_in(cls, value):
@@ -287,7 +284,8 @@ class Generator:
 
             # convert post object to parameter objects, the main work of following code is data validation
             (body := operation.requestBody) is None or operation.parameters.extend(body.params)
-            [i.feed(self) for i in operation.parameters]
+            for parameter in operation.parameters:
+                parameter.type_hint = Utils.get_type_hint(self.resolve_ref(parameter.param_schema))
 
     @cached_property
     def package_name(self):
