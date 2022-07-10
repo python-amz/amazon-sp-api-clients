@@ -221,12 +221,10 @@ class ParsedComponents(Components):
         for k, v in list(schemas.items()):
             v.name = k
             assert isinstance(k, str) and isinstance(v, ParsedSchema)
-            for k2, v2 in (Utils.find_new_schema(v).items() or ()):
-                if k2 in schemas:
-                    assert schemas[k2] is v2
+            for v2 in (Utils.find_new_schema(v) or ()):
+                assert v2.name not in schemas
                 assert isinstance(v2, ParsedSchema), type(v2)
-                v2.name = k2
-                schemas[k2] = v2
+                schemas[v2.name] = v2
 
         for schema in schemas.values():
             if not schema.properties:

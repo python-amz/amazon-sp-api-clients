@@ -123,7 +123,7 @@ class Utils:
         from openapi_schema_pydantic.v3.v3_0_3 import Reference
 
         assert isinstance(schema, ParsedSchema), type(schema)
-        new_schemas: dict[str, ParsedSchema] = {schema.name: schema}
+        new_schemas: list[ParsedSchema] = []
 
         fields = schema.__fields_set__
         fields = {f for f in fields if getattr(schema, f) is not None}
@@ -157,8 +157,8 @@ class Utils:
                         assert item.type == 'object', item.type
                         item.name = f'{schema.name}{capitalized_sub_name}Item'
                         sub_schema.items = Reference(ref=f"#/components/schemas/{item.name}")
-                        temp = Utils.find_new_schema(item)
-                        new_schemas.update(temp)
+                        new_schemas.append(item)
+                        new_schemas.extend(Utils.find_new_schema(item))
 
         if item := schema.items:
             assert isinstance(item, (Reference, ParsedSchema))
@@ -170,5 +170,6 @@ class Utils:
                     assert item.properties is not None
                     item.name = f'{schema.name}Item'
                     schema.items = Reference(ref=f"#/components/schemas/{item.name}")
-                    new_schemas.update(Utils.find_new_schema(item))
+                    new_schemas.append(item)
+                    new_schemas.extend(Utils.find_new_schema(item))
         return new_schemas
