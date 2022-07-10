@@ -219,6 +219,7 @@ class ParsedComponents(Components):
     def validate_schemas(cls, schemas: dict[str, ParsedSchema]):
         # find the list items and property items as new schemas.
         for k, v in list(schemas.items()):
+            v.name = k
             assert isinstance(k, str) and isinstance(v, ParsedSchema)
             for k2, v2 in (Utils.find_new_schema(k, v).items() or ()):
                 if k2 in schemas:

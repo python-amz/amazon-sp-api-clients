@@ -125,7 +125,7 @@ class Utils:
 
         assert isinstance(schema, ParsedSchema), type(schema)
         new_schemas: dict[str, ParsedSchema] = {name: schema}
-        schema.name = name
+        assert schema.name == name
 
         fields = schema.__fields_set__
         fields = {f for f in fields if getattr(schema, f) is not None}
@@ -157,9 +157,9 @@ class Utils:
                         if item.type in ('string', 'integer', 'boolean', 'number'):
                             continue
                         assert item.type == 'object', item.type
-                        new_schema_name = f'{name}{capitalized_sub_name}Item'
-                        sub_schema.items = Reference(ref=f"#/components/schemas/{new_schema_name}")
-                        temp = Utils.find_new_schema(new_schema_name, item)
+                        item.name = f'{name}{capitalized_sub_name}Item'
+                        sub_schema.items = Reference(ref=f"#/components/schemas/{item.name}")
+                        temp = Utils.find_new_schema(item.name, item)
                         new_schemas.update(temp)
 
         if item := schema.items:
@@ -170,7 +170,7 @@ class Utils:
                 assert item.type in ('string', 'object')
                 if item.type == 'object':
                     assert item.properties is not None
-                    new_schema_name = f'{name}Item'
-                    schema.items = Reference(ref=f"#/components/schemas/{new_schema_name}")
-                    new_schemas.update(Utils.find_new_schema(new_schema_name, item))
+                    item.name = f'{name}Item'
+                    schema.items = Reference(ref=f"#/components/schemas/{item.name}")
+                    new_schemas.update(Utils.find_new_schema(item.name, item))
         return new_schemas
