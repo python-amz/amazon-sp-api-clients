@@ -1,6 +1,7 @@
 import html
 import re
 import textwrap
+from builtins import isinstance
 from itertools import chain
 
 import black
@@ -134,9 +135,8 @@ class Utils:
 
         # additional properties only contains simple types, do not need to convert
         if (additional := schema.additionalProperties) is not None:
-            assert isinstance(additional, (ParsedSchema, Reference))
-            if isinstance(additional, ParsedSchema):
-                assert additional.__fields_set__.issubset({'type'})
+            assert isinstance(additional, ParsedSchema)
+            assert additional.__fields_set__.issubset({'type'})
 
         if schema.properties:
             for sub_name, sub_schema in schema.properties.items():
