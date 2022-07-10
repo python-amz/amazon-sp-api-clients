@@ -104,14 +104,13 @@ class Utils:
         return content
 
     @staticmethod
-    def find_new_schema(name: str, schema):
+    def find_new_schema(schema):
         """Find inline schemas, which are not able to convert in python.
 
         Python type hint for dict do not support inline type hint.
         This method will find the inline schemas and convert to reference, which will be created as classes.
 
         Args:
-            name: the name of the new schema, will be rendered as the class name
             schema: the inline schema
 
         Returns:
@@ -124,8 +123,7 @@ class Utils:
         from openapi_schema_pydantic.v3.v3_0_3 import Reference
 
         assert isinstance(schema, ParsedSchema), type(schema)
-        new_schemas: dict[str, ParsedSchema] = {name: schema}
-        assert schema.name == name
+        new_schemas: dict[str, ParsedSchema] = {schema.name: schema}
 
         fields = schema.__fields_set__
         fields = {f for f in fields if getattr(schema, f) is not None}
@@ -157,9 +155,9 @@ class Utils:
                         if item.type in ('string', 'integer', 'boolean', 'number'):
                             continue
                         assert item.type == 'object', item.type
-                        item.name = f'{name}{capitalized_sub_name}Item'
+                        item.name = f'{schema.name}{capitalized_sub_name}Item'
                         sub_schema.items = Reference(ref=f"#/components/schemas/{item.name}")
-                        temp = Utils.find_new_schema(item.name, item)
+                        temp = Utils.find_new_schema(item)
                         new_schemas.update(temp)
 
         if item := schema.items:
@@ -170,7 +168,7 @@ class Utils:
                 assert item.type in ('string', 'object')
                 if item.type == 'object':
                     assert item.properties is not None
-                    item.name = f'{name}Item'
+                    item.name = f'{schema.name}Item'
                     schema.items = Reference(ref=f"#/components/schemas/{item.name}")
-                    new_schemas.update(Utils.find_new_schema(item.name, item))
+                    new_schemas.update(Utils.find_new_schema(item))
         return new_schemas

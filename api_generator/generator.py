@@ -221,7 +221,7 @@ class ParsedComponents(Components):
         for k, v in list(schemas.items()):
             v.name = k
             assert isinstance(k, str) and isinstance(v, ParsedSchema)
-            for k2, v2 in (Utils.find_new_schema(k, v).items() or ()):
+            for k2, v2 in (Utils.find_new_schema(v).items() or ()):
                 if k2 in schemas:
                     assert schemas[k2] is v2
                 assert isinstance(v2, ParsedSchema), type(v2)
