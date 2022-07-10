@@ -121,17 +121,15 @@ class Utils:
 
         """
         from .generator import ParsedSchema
-        from openapi_schema_pydantic.v3.v3_0_3 import Reference, Schema
+        from openapi_schema_pydantic.v3.v3_0_3 import Reference
 
-        assert isinstance(schema, (ParsedSchema, Schema)), type(schema)
-        if isinstance(schema, Schema) and not isinstance(schema, ParsedSchema):
-            schema: ParsedSchema = ParsedSchema.parse_obj(schema.dict())
-        new_schemas: list[tuple[str, Schema]] = [(name, schema)]
+        assert isinstance(schema, ParsedSchema), type(schema)
+        new_schemas: list[tuple[str, ParsedSchema]] = [(name, schema)]
         schema.name = name
 
         fields = schema.__fields_set__
         fields = {f for f in fields if getattr(schema, f) is not None}
-        if isinstance(schema, Schema):
+        if isinstance(schema, ParsedSchema):
             fields -= {'type', 'description', 'required', 'properties', 'minLength', 'maxLength', 'enum', 'items',
                        'allOf', 'additionalProperties', 'schema_format', 'maxItems', 'minItems', 'minimum', 'maximum',
                        'example', 'pattern', 'name'}
@@ -139,8 +137,8 @@ class Utils:
 
             # additional properties only contains simple types, do not need to convert
             if (additional := schema.additionalProperties) is not None:
-                assert isinstance(additional, (Schema, Reference))
-                if isinstance(additional, Schema):
+                assert isinstance(additional, (ParsedSchema, Reference))
+                if isinstance(additional, ParsedSchema):
                     assert additional.__fields_set__.issubset({'type'})
 
             simple_types = 'string', 'integer', 'boolean', 'number'
@@ -148,7 +146,7 @@ class Utils:
                 for sub_name, sub_schema in schema.properties.items():
                     if isinstance(sub_schema, Reference):
                         continue
-                    assert isinstance(sub_schema, Schema)
+                    assert isinstance(sub_schema, ParsedSchema)
                     if sub_schema.type in simple_types:
                         continue
                     assert sub_schema.type in ('object', 'array')
@@ -163,7 +161,7 @@ class Utils:
                         item = sub_schema.items
                         if isinstance(item, Reference):
                             continue
-                        assert isinstance(item, Schema)
+                        assert isinstance(item, ParsedSchema)
                         if item.type in simple_types:
                             continue
                         assert item.type == 'object', item.type
@@ -172,8 +170,8 @@ class Utils:
                         new_schemas.extend(Utils.find_new_schema(new_schema_name, item))
 
             if item := schema.items:
-                assert isinstance(item, (Reference, Schema))
-                if isinstance(item, Schema):
+                assert isinstance(item, (Reference, ParsedSchema))
+                if isinstance(item, ParsedSchema):
                     known = {'type', 'maxLength', 'enum', 'description', 'properties'}
                     assert not (v := item.__fields_set__ - known), v
                     assert item.type in ('string', 'object')

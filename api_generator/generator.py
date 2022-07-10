@@ -33,7 +33,8 @@ class ParsedSchema(Schema):
     ref_name: str = ''
     is_property: bool = False  # both class and class property use Schema, use this flag to distinguish.
 
-    # properties: dict[str, 'ParsedSchema'] = None
+    properties: 'dict[str, Reference | ParsedSchema]' = None
+    items: 'Reference | ParsedSchema' = None
 
     @property
     def parsed_properties(self):
