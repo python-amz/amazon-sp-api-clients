@@ -129,53 +129,47 @@ class Utils:
 
         fields = schema.__fields_set__
         fields = {f for f in fields if getattr(schema, f) is not None}
-        if isinstance(schema, ParsedSchema):
-            fields -= {'type', 'description', 'required', 'properties', 'minLength', 'maxLength', 'enum', 'items',
-                       'allOf', 'additionalProperties', 'schema_format', 'maxItems', 'minItems', 'minimum', 'maximum',
-                       'example', 'pattern', 'name'}
-            assert not fields
+        fields -= {'type', 'description', 'required', 'properties', 'minLength', 'maxLength', 'enum', 'items',
+                   'allOf', 'additionalProperties', 'schema_format', 'maxItems', 'minItems', 'minimum', 'maximum',
+                   'example', 'pattern', 'name'}
+        assert not fields
 
-            # additional properties only contains simple types, do not need to convert
-            if (additional := schema.additionalProperties) is not None:
-                assert isinstance(additional, (ParsedSchema, Reference))
-                if isinstance(additional, ParsedSchema):
-                    assert additional.__fields_set__.issubset({'type'})
+        # additional properties only contains simple types, do not need to convert
+        if (additional := schema.additionalProperties) is not None:
+            assert isinstance(additional, (ParsedSchema, Reference))
+            if isinstance(additional, ParsedSchema):
+                assert additional.__fields_set__.issubset({'type'})
 
-            if schema.properties:
-                for sub_name, sub_schema in schema.properties.items():
-                    if isinstance(sub_schema, Reference):
-                        continue
-                    assert isinstance(sub_schema, ParsedSchema)
-                    assert sub_schema.type in ('string', 'integer', 'boolean', 'number', 'array')
+        if schema.properties:
+            for sub_name, sub_schema in schema.properties.items():
+                if isinstance(sub_schema, Reference):
+                    continue
+                assert isinstance(sub_schema, ParsedSchema)
+                assert sub_schema.type in ('string', 'integer', 'boolean', 'number', 'array')
+                if sub_schema.type == 'array':
+                    capitalized_sub_name = Utils.camel_to_class_name(sub_name)
+
                     if sub_schema.type == 'array':
-                        capitalized_sub_name = Utils.camel_to_class_name(sub_name)
-
-                        if sub_schema.type == 'array':
-                            item = sub_schema.items
-                            if isinstance(item, Reference):
-                                continue
-                            assert isinstance(item, ParsedSchema)
-                            if item.type in ('string', 'integer', 'boolean', 'number'):
-                                continue
-                            assert item.type == 'object', item.type
-                            new_schema_name = f'{name}{capitalized_sub_name}Item'
-                            sub_schema.items = Reference(ref=f"#/components/schemas/{new_schema_name}")
-                            new_schemas.extend(Utils.find_new_schema(new_schema_name, item))
-
-            if item := schema.items:
-                assert isinstance(item, (Reference, ParsedSchema))
-                if isinstance(item, ParsedSchema):
-                    known = {'type', 'maxLength', 'enum', 'description', 'properties'}
-                    assert not (v := item.__fields_set__ - known), v
-                    assert item.type in ('string', 'object')
-                    if item.type == 'object':
-                        assert item.properties is not None
-                        new_schema_name = f'{name}Item'
-                        schema.items = Reference(ref=f"#/components/schemas/{new_schema_name}")
+                        item = sub_schema.items
+                        if isinstance(item, Reference):
+                            continue
+                        assert isinstance(item, ParsedSchema)
+                        if item.type in ('string', 'integer', 'boolean', 'number'):
+                            continue
+                        assert item.type == 'object', item.type
+                        new_schema_name = f'{name}{capitalized_sub_name}Item'
+                        sub_schema.items = Reference(ref=f"#/components/schemas/{new_schema_name}")
                         new_schemas.extend(Utils.find_new_schema(new_schema_name, item))
 
-        elif isinstance(schema, Reference):
-            pass
-        else:
-            raise ValueError(f'Not supported: {type(schema)}')
+        if item := schema.items:
+            assert isinstance(item, (Reference, ParsedSchema))
+            if isinstance(item, ParsedSchema):
+                known = {'type', 'maxLength', 'enum', 'description', 'properties'}
+                assert not (v := item.__fields_set__ - known), v
+                assert item.type in ('string', 'object')
+                if item.type == 'object':
+                    assert item.properties is not None
+                    new_schema_name = f'{name}Item'
+                    schema.items = Reference(ref=f"#/components/schemas/{new_schema_name}")
+                    new_schemas.extend(Utils.find_new_schema(new_schema_name, item))
         return new_schemas
