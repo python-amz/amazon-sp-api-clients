@@ -149,6 +149,7 @@ class BaseClient:
                  lwa_client_key: str = None,
                  lwa_client_secret: str = None,
                  use_cache=False,
+                 raise_exceptions=True,
                  ):
         """Create a base client.
 
@@ -163,6 +164,7 @@ class BaseClient:
             aws_access_key: 'xxxxxxxxxxxxxxxxxxxx'
             aws_secret_key: "xxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
             use_cache: if True, check if cached and return cached response, or get new response and save
+            raise_exceptions: if True, raise SellingApiException, or if False, just return the json as-is.
         """
         if role_arn is None:
             role_arn = os.environ.get('SP_API_ROLE_ARN')
@@ -193,6 +195,7 @@ class BaseClient:
         self._client_id = lwa_client_key
         self._client_secret = lwa_client_secret
         self.use_cache = use_cache
+        self._raise_exceptions = raise_exceptions
         if self.use_cache:
             warnings.warn('Caching by peewee will be removed in version 2. Please do not use this method.')
             self.request_cache = RequestCache(
@@ -227,7 +230,9 @@ class BaseClient:
             return demjson.decode(response.text)
 
     def request(self, path: str, *, data: Union[dict, bytes] = None, params: dict = None, headers=None,
-                method='GET', check_exception=True) -> Response:
+                method='GET', check_exception=None) -> Response:
+
+        check_exception = self._raise_exceptions if check_exception is None else check_exception
 
         # process params
         parsed_params = {}
@@ -323,6 +328,7 @@ class BaseClients:
                  aws_secret_key: str = None,
                  lwa_client_key: str = None,
                  lwa_client_secret: str = None,
+                 raise_exceptions: bool = True,
                  ):
         """Create a base client.
 
@@ -336,7 +342,7 @@ class BaseClients:
                             "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
             aws_access_key: 'xxxxxxxxxxxxxxxxxxxx'
             aws_secret_key: "xxxxx/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-            use_cache: if True, check if cached and return cached response, or get new response and save
+            raise_exceptions: if True, raise SellingApiException, or if False, just return the json as-is.
         """
         if role_arn is None:
             role_arn = os.environ.get('SP_API_ROLE_ARN')
@@ -375,4 +381,5 @@ class BaseClients:
             aws_secret_key=aws_secret_key,
             lwa_client_key=lwa_client_key,
             lwa_client_secret=lwa_client_secret,
+            raise_exceptions=raise_exceptions,
         )
