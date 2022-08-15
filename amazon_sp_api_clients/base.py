@@ -124,7 +124,7 @@ class AWSSigV4(AuthBase):
         return r
 
 
-class SellingApiException(BaseException):
+class SellingApiException(Exception):
     pass
 
 
