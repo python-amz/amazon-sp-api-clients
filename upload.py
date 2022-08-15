@@ -8,7 +8,7 @@ def main():
     os.system(f'poetry version {version}')
     os.system(f'poetry publish --build')
     os.system(f'git add "pyproject.toml"')
-    version_number = os.popen('poetry version').read().split(' ')[1]
+    version_number = os.popen('poetry version').read().split(' ', maxsplit=1)[1].strip()
     os.system(f'git commit -m "v{version_number}: new {version} version"')
     os.system('git push')
 
