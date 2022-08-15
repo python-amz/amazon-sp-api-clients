@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "amazon-sp-api-clients"
-version = "1.8.4"
+version = "1.8.5"
 description = "Amazon selling partner api clients."
 authors = ["Haoyu Pan <panhaoyu.china@outlook.com>"]
 license = "MIT"
