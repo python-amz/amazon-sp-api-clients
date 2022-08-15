@@ -8,3 +8,4 @@ __pycache__
 /report_types.md
 /docs/build
 /tests/*.json
+/dist
