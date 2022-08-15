@@ -19,11 +19,3 @@ class AmazonSpApiClients(BaseClients):
     def {{ client.package }}(self):
         return {{ client.class_name }}Client(**self._parameters)
     {% endfor %}
-
-
-version = '1.8.3'
-name = "amazon-sp-api-clients"
-author = "Haoyu Pan"
-author_email = "panhaoyu.china@outlook.com"
-description = "Amazon selling partner api clients."
-url = "https://github.com/panhaoyu/sp-api-clients"

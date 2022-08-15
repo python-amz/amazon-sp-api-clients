@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "amazon-sp-api-clients"
+version = "1.8.3"
+description = "Amazon selling partner api clients."
+authors = ["Haoyu Pan <panhaoyu.china@outlook.com>"]
+license = "MIT"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+readme = 'README.md'
+
+[tool.poetry.urls]
+repository = "https://github.com/panhaoyu/sp-api-clients"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+peewee = ""
+cachetools = ""
+requests = ""
+boto3 = ""
+pycryptodome = ""
+chardet = ""
+
+[tool.poetry.dev-dependencies]
+black = ""
+pytest = ""
+jinja2 = ""
+wheel = ""
+twine = ""
+beautifulsoup4 = ""
+markdown = ""
+sphinx = ""
+recommonmark = ""
+sphinx-inplace = { version = "", python = ">=3.8" }
+pydata_sphinx_theme = ""
+cached_property = ""
+openapi-schema-pydantic = ""
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

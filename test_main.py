@@ -139,11 +139,3 @@ def test_generate_clients():
 
     with open('amazon_sp_api_clients/__init__.py', mode='w', encoding='utf-8') as f:
         f.write(init_content)
-
-
-def test_upload():
-    os.system('python setup.py sdist bdist_wheel')
-    os.system('twine upload dist/*')
-    shutil.rmtree('dist')
-    shutil.rmtree('build')
-    shutil.rmtree('amazon_sp_api_clients.egg-info')
