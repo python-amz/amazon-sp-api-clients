@@ -1,7 +1,7 @@
 """
 The groups and report names are defined.
-The enums are generated automatically from github markdown file, but they will not be covered in the future. The index
-values can be guaranteed too be consistent, and can be saved in database.
+The enums are generated automatically from GitHub markdown file, but they will not be covered in the future. The index
+values can be guaranteed to be consistent, and can be saved in database.
 """
 
 from dataclasses import dataclass

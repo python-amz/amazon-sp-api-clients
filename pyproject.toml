@@ -37,6 +37,8 @@ sphinx-inplace = { version = "", python = ">=3.8" }
 pydata_sphinx_theme = ""
 cached_property = ""
 openapi-schema-pydantic = ""
+lxml = "^4.9.1"
+lxml-stubs = "^0.4.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
