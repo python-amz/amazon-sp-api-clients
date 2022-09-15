@@ -11,7 +11,6 @@ import black
 import requests
 from bs4 import BeautifulSoup, Tag
 from jinja2 import Template
-from markdown import markdown
 
 from swagger_client_generator.stages import render
 
@@ -52,40 +51,67 @@ def test_convert_to_open_api_3():
 
 
 def test_get_parse_report_markdown():
-    url = 'https://raw.githubusercontent.com/amzn/selling-partner-api-docs/main' \
-          '/references/reports-api/reportType_string_array_values.md'
+    url = 'https://developer-docs.amazon.com/sp-api/docs/report-type-values'
     text = requests.get(url).text
-    with open('report_types.md', 'w', encoding='utf-8') as f:
+    with open('report_types.html', 'w', encoding='utf-8') as f:
         f.write(text)
 
 
 def test_parse_reports():
-    with open('report_types.md', 'r', encoding='utf-8') as f:
-        text = f.read()
-    html = markdown(text)
+    with open('report_types.html', 'r', encoding='utf-8') as f:
+        html = f.read()
     soup = BeautifulSoup(html)
     print()
     groups: dict[str, dict[str, str]] = {}
-    for i in soup.select('h2'):
-        i: Tag
-        group_name = i.text.lower().replace(' ', '_').replace('(', '').replace(')', '').replace('-', '_')
+    soup = soup.select_one('.content-body > .markdown-body')
+    elements = soup.select('h2.heading-2, div.rdmd-table > .rdmd-table-inner > table > tbody > tr > td:first-child')
+    element_groups = []
+    current_element_group = []
+    for e in elements:
+        if e.name == 'h2':
+            element_groups.append(current_element_group)
+            current_element_group = [e]
+        else:
+            current_element_group.append(e)
+    element_groups.append(current_element_group)
+    element_groups.pop(0)
+    for h2_element, *td_elements in element_groups:
+        group_name = h2_element.text.strip().lower() \
+            .replace(' ', '_').replace('(', '').replace(')', '').replace('-', '_')
         group_name = re.sub(r'_+', '_', group_name)
-
-        for row in i.find_next('table').select('tr td:first-child'):
+        print()
+        print(f'Group: {group_name}')
+        for row in td_elements:
             row: Tag
             lines = row.text.splitlines()
-            if len(lines) == 1:
-                continue
-            report_name = lines[0]
-            if lines[-1].startswith('reportType value: '):
-                report_type_slug = lines[-1].split('reportType value: ', maxsplit=1)[1]
-            elif lines[-2] == 'reportType value:':
-                report_type_slug = lines[-1]
-            else:
-                raise
-            report_name = report_name.lower().replace(' ', '_').replace('(', '').replace(')', '').replace('-', '_')
-            report_name = re.sub(r'_+', '_', report_name)
-
+            lines = [i.strip() for i in lines]
+            lines = [i for i in lines if i]
+            match len(lines):
+                case 1:
+                    line1 = lines[0]
+                    # like a subtitle, just skip is ok
+                    if line1 in ('FBA Sales Reports',):
+                        continue
+                    raise NotImplementedError(f'Unsupported line: {line1}')
+                # case 2:
+                #     line1, line2 = lines
+                #     assert (m := re.match(r'^reportType value: ?([A-Z0-9_]+?)$', line2)), line2
+                #     report_type_slug = m.group(1)
+                #     assert (m := re.match(r'^([A-Za-z 0-9_:\-()&]*?)$', line1)), line1
+                #     report_name = re.sub(r'[-_ :()&]+', '_', m.group(1))
+                case 2 | 3 | 4:
+                    line = ' '.join(lines)
+                    assert (m := re.match(r'^([A-Za-z 0-9_:\-()&]*?) reportType value: ?([A-Z0-9_]+?)$', line)), line
+                    report_name, report_type_slug = m.group(1, 2)
+                    report_name = re.sub(r'[-_ :()&]+', '_', m.group(1))
+                case other:
+                    raise NotImplementedError(f'TD element with {other} lines cannot be parsed')
+            report_name = report_name.lower().strip('_') \
+                .removeprefix('scheduled_') \
+                .removeprefix('requested_or_scheduled_') \
+                .replace('_report_', '_') \
+                .removesuffix('_report')
+            print(f'{report_name:>60} {report_type_slug}')
             groups.setdefault(group_name, {}).setdefault(report_name, report_type_slug)
 
     template_path = Path(__file__).parent.absolute() / 'swagger_client_generator' / 'report_types.pyt'

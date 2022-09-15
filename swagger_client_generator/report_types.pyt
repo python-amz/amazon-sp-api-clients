@@ -1,10 +1,15 @@
 from enum import IntEnum, Enum
 from dataclasses import dataclass
 
-class _ReportTypeGroup(IntEnum):
+class ReportTypeGroup(IntEnum):
 {% for group, reports in groups.items() %}
     {{ group }} = {{ loop.index }}
 {% endfor %}
+
+    @property
+    def reports(self):
+        return (report for report in ReportType if report.group == self)
+
 
 @dataclass
 class __ReportTypeDefinition:
@@ -17,8 +22,8 @@ class __ReportTypeDefinition:
         return self.__group_index * 100 + self.__report_index
 
     @property
-    def group(self) -> _ReportTypeGroup:
-        return _ReportTypeGroup(self.__group_index)
+    def group(self) -> ReportTypeGroup:
+        return ReportTypeGroup(self.__group_index)
 
 class ReportType(__ReportTypeDefinition, Enum):
 {% for group, reports in groups.items() %}
