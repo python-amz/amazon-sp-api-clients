@@ -24,22 +24,31 @@ class Script:
         with open(self.html_file_path, 'r', encoding='utf-8') as f:
             return f.read()
 
-    def run(self):
+    @cached_property
+    def markdown_body(self):
         soup = BeautifulSoup(self.html, 'lxml')
-        groups: dict[str, dict[str, str]] = {}
         soup = soup.select_one('.content-body > .markdown-body')
-        elements = soup.select('h2.heading-2, div.rdmd-table > .rdmd-table-inner > table > tbody > tr > td:first-child')
-        element_groups = []
-        current_element_group = []
+        return soup
+
+    @cached_property
+    def element_groups(self):
+        elements = self.markdown_body.select(
+            'h2.heading-2, div.rdmd-table > .rdmd-table-inner > table > tbody > tr > td:first-child')
+        groups = []
+        current = []
         for e in elements:
             if e.name == 'h2':
-                element_groups.append(current_element_group)
-                current_element_group = [e]
+                groups.append(current)
+                current = [e]
             else:
-                current_element_group.append(e)
-        element_groups.append(current_element_group)
-        element_groups.pop(0)
-        for h2_element, *td_elements in element_groups:
+                current.append(e)
+        groups.append(current)
+        groups.pop(0)
+        return groups
+
+    def run(self):
+        groups: dict[str, dict[str, str]] = {}
+        for h2_element, *td_elements in self.element_groups:
             group_name = h2_element.text.strip().lower() \
                 .replace(' ', '_').replace('(', '').replace(')', '').replace('-', '_')
             group_name = re.sub(r'_+', '_', group_name)
