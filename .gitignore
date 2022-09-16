@@ -9,4 +9,4 @@ __pycache__
 /docs/build
 /tests/*.json
 /dist
-/report_types.html
+/scripts/report_types.html
