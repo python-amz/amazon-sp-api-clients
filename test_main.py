@@ -3,6 +3,7 @@ import os
 import re
 import shutil
 import traceback
+from functools import reduce
 from glob import glob
 from os import path
 from pathlib import Path
@@ -112,8 +113,7 @@ def test_parse_reports():
         template = Template(f.read())
     content = template.render(groups=groups)
     content = black.format_str(content, mode=black.Mode(line_length=120))
-    for _ in range(5):
-        content = content.replace('\n\n', '\n')
+    content = reduce(lambda i, j: str.replace(i, '\n\n', '\n'), range(5), content)
     content = black.format_str(content, mode=black.Mode(line_length=120))
     with open('amazon_sp_api_static/report_types.py', 'w', encoding='utf-8') as f:
         f.write(content)
