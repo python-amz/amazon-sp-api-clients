@@ -89,16 +89,10 @@ def test_parse_reports():
             match len(lines):
                 case 1:
                     line1 = lines[0]
-                    # like a subtitle, just skip is ok
+                    # if there's only one line, then it's like a subtitle, so just skip is ok
                     if line1 in ('FBA Sales Reports',):
                         continue
                     raise NotImplementedError(f'Unsupported line: {line1}')
-                # case 2:
-                #     line1, line2 = lines
-                #     assert (m := re.match(r'^reportType value: ?([A-Z0-9_]+?)$', line2)), line2
-                #     report_type_slug = m.group(1)
-                #     assert (m := re.match(r'^([A-Za-z 0-9_:\-()&]*?)$', line1)), line1
-                #     report_name = re.sub(r'[-_ :()&]+', '_', m.group(1))
                 case 2 | 3 | 4:
                     line = ' '.join(lines)
                     assert (m := re.match(r'^([A-Za-z 0-9_:\-()&]*?) reportType value: ?([A-Z0-9_]+?)$', line)), line
