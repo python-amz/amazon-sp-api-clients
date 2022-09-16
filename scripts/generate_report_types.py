@@ -7,6 +7,8 @@ import requests
 from bs4 import BeautifulSoup, Tag
 from jinja2 import Template
 
+from amazon_sp_api_clients import ReportTypeGroup
+
 base_dir = Path(__file__).absolute().parent.parent
 
 
@@ -45,6 +47,19 @@ class Script:
         groups.append(current)
         groups.pop(0)
         return groups
+
+    @cached_property
+    def group_enum(self):
+        result = {i.name: i.value for i in ReportTypeGroup}
+        group_elements = [i[0] for i in self.element_groups]
+        for element in group_elements:
+            name = element.text.strip().lower()
+            name = re.sub(r'[_ ()-]+', '_', name)
+            if name not in result:
+                index = max(result.values()) + 1
+                print(f'Found new group: {name} = {index}')
+                result[name] = index
+        return result
 
     def run(self):
         groups: dict[str, dict[str, str]] = {}
