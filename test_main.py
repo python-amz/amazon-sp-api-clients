@@ -105,7 +105,6 @@ def test_parse_reports():
                 .removeprefix('requested_or_scheduled_') \
                 .replace('_report_', '_') \
                 .removesuffix('_report')
-            print(f'{report_name:>60} {report_type_slug}')
             groups.setdefault(group_name, {}).setdefault(report_name, report_type_slug)
 
     template_path = Path(__file__).parent.absolute() / 'swagger_client_generator' / 'report_types.pyt'
