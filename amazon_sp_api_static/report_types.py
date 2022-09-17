@@ -217,6 +217,9 @@ class ReportType(__ReportTypeDefinition, Enum):
 
     @classmethod
     def get_by_index(cls, index: int) -> "ReportType":
+        # for compatibility. The reports are found in two groups, so in the previous the reports are defined twice.
+        # In current version, the reports should only defined once.
+        index = {804: 301, 805: 302, 806: 304, 807: 305}.get(index, index)
         return _index_report_map[index]
 
 
