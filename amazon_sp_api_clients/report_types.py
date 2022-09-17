@@ -218,3 +218,25 @@ class ReportType(__ReportTypeDefinition, Enum):
     amazonpay_sandbox_settlement_report = get_flat_file_offamazonpayments_sandbox_settlement_data
     b2b_product_opportunities_recommended_for_you_report = get_b2b_product_opportunities_recommended_for_you
     b2b_product_opportunities_not_yet_on_amazon = get_b2b_product_opportunities_not_yet_on_amazon
+
+
+_group_report_relation = {
+    15: (1501, 1502, 1503),
+    16: (1601, 1602, 1603, 1604, 1605),
+    17: (1701,),
+    1: (101, 102, 103, 104, 105, 106, 107, 108, 112, 113, 114, 111),
+    2: (201, 203, 204, 205, 206, 202, 207),
+    3: (301, 302, 303, 304, 305),
+    4: (401, 402, 403),
+    5: (501, 502, 503, 504, 505, 506),
+    6: (601, 602, 603, 604, 605),
+    7: (701, 702, 703),
+    8: (801, 802, 803, 301, 302, 304, 305, 808, 809, 810, 811, 812, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 829, 830, 831, 832, 833, 834, 835, 836, 837, 838, 839, 840, 841, 842, 843),
+    9: (901, 902, 903, 904, 905, 906),
+    18: (1801, 1802),
+    10: (1001,),
+    11: (1101, 1102, 1103),
+    12: (1201, 1202),
+    14: (1401, 1402),
+    19: (1901, 1902, 1903),
+}

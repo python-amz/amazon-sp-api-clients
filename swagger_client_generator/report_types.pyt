@@ -89,3 +89,5 @@ class ReportType(__ReportTypeDefinition, Enum):
     amazonpay_sandbox_settlement_report = get_flat_file_offamazonpayments_sandbox_settlement_data
     b2b_product_opportunities_recommended_for_you_report = get_b2b_product_opportunities_recommended_for_you
     b2b_product_opportunities_not_yet_on_amazon = get_b2b_product_opportunities_not_yet_on_amazon
+
+_group_report_relation = {{ relation }}

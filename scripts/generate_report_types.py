@@ -22,6 +22,13 @@ class ParsedReport:
     upload_name: str = ''
     description: str = ''
 
+    @cached_property
+    def index(self) -> int:
+        return self.group_index * 100 + self.report_index
+
+    def __str__(self):
+        return f'{self.index}-{self.name}'
+
 
 class Script:
     html_file_path = Path(__file__).parent / 'report_types.html'
@@ -126,11 +133,19 @@ class Script:
         result = dict(sorted(result.items(), key=lambda i: i[1].group_index * 100 + i[1].report_index))
         return result
 
+    @cached_property
+    def relation(self):
+        result: dict[int, list[int]] = {}
+        for group_name, reports in self.parsed_data.items():
+            for report_name, report in reports.items():
+                result.setdefault(self.group_enum[group_name], []).append(self.report_enum[report_name].index)
+        return {k: tuple(v) for k, v in result.items()}
+
     def run(self):
         template_path = base_dir / 'swagger_client_generator' / 'report_types.pyt'
         with open(template_path, 'r', encoding='utf-8') as f:
             template = Template(f.read())
-        content = template.render(groups=self.group_enum, reports=self.report_enum)
+        content = template.render(groups=self.group_enum, reports=self.report_enum, relation=self.relation)
         content = black.format_str(content, mode=black.Mode(line_length=300))
         content = reduce(lambda i, j: str.replace(i, '\n\n', '\n'), range(5), content)
         content = black.format_str(content, mode=black.Mode(line_length=300))

@@ -1,3 +1,5 @@
+from pprint import pprint
+
 from scripts.generate_report_types import Script
 
 script = Script()
@@ -19,3 +21,8 @@ def test_report_enum():
     assert isinstance(script.report_enum, dict)
     for i in script.report_enum.values():
         print(f'{i.group_name:>40} {i.name:>60} {i.group_index:>2} {i.report_index:>2}')
+
+
+def test_relation():
+    print()
+    pprint(script.relation)
