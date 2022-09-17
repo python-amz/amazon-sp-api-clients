@@ -112,16 +112,16 @@ class Script:
                     name=i.upload_name.lower(), group_name=i.group.name, group_index=i.group_index,
                     upload_name=i.upload_name, description='', report_index=i.report_index
                 )
-            # for group_name, reports in self.parsed_data.items():
-            #     for report_name, report in reports.items():
-            #         if report_name in result:
-            #             result[report_name].description = report.description
-            #         else:
-            #             report.group_index = self.group_enum[group_name]
-            #             reports_of_group = tuple(i for i in result.values() if i.group_index == report.group_index)
-            #             report.report_index = max((*(i.report_index for i in reports_of_group), 0)) + 1
-            #             print(f'Found new report: {report.name} = {report.group_index}, {report.report_index}')
-            #             result.setdefault(report_name, report)
+        for group_name, reports in self.parsed_data.items():
+            for report_name, report in reports.items():
+                if report_name in result:
+                    result[report_name].description = report.description
+                else:
+                    report.group_index = self.group_enum[group_name]
+                    reports_of_group = tuple(i for i in result.values() if i.group_index == report.group_index)
+                    report.report_index = max((*(i.report_index for i in reports_of_group), 0)) + 1
+                    print(f'Found new report: {report.name} = {report.group_index}, {report.report_index}')
+                    result.setdefault(report.upload_name, report)
         # noinspection PyTypeChecker
         result = dict(sorted(result.items(), key=lambda i: i[1].group_index * 100 + i[1].report_index))
         return result
