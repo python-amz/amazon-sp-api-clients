@@ -134,8 +134,8 @@ class Script:
         content = black.format_str(content, mode=black.Mode(line_length=300))
         content = reduce(lambda i, j: str.replace(i, '\n\n', '\n'), range(5), content)
         content = black.format_str(content, mode=black.Mode(line_length=300))
-        # with open(base_dir / 'amazon_sp_api_static' / 'report_types.py', 'w', encoding='utf-8') as f:
-        #     f.write(content)
+        with open(base_dir / 'amazon_sp_api_static' / 'report_types.py', 'w', encoding='utf-8') as f:
+            f.write(content)
         with open(base_dir / 'amazon_sp_api_clients' / 'report_types.py', 'w', encoding='utf-8') as f:
             f.write(content)
 
