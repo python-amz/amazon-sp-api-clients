@@ -1,4 +1,5 @@
 import re
+from dataclasses import dataclass
 from functools import reduce, cached_property
 from pathlib import Path
 
@@ -8,8 +9,19 @@ from bs4 import BeautifulSoup, Tag
 from jinja2 import Template
 
 from amazon_sp_api_clients import ReportTypeGroup
+from amazon_sp_api_static.report_types import ReportType
 
 base_dir = Path(__file__).absolute().parent.parent
+
+
+@dataclass
+class ParsedReport:
+    report_index: int = -1
+    group_index: int = -1
+    name: str = ''
+    group_name: str = ''
+    upload_name: str = ''
+    description: str = ''
 
 
 class Script:
@@ -33,7 +45,7 @@ class Script:
         return soup
 
     @cached_property
-    def element_groups(self):
+    def parsed_data(self) -> dict[str, dict[str, ParsedReport]]:
         elements = self.markdown_body.select(
             'h2.heading-2, div.rdmd-table > .rdmd-table-inner > table > tbody > tr > td:first-child')
         groups = []
@@ -46,24 +58,71 @@ class Script:
                 current.append(e)
         groups.append(current)
         groups.pop(0)
-        return groups
+        result = {}
+        for first, *other in groups:
+            group = re.sub(r'[_ ()-]+', '_', first.text.strip().lower())
+            report_of_groups = result.setdefault(group, {})
+            for report in other:
+                lines = report.text.splitlines()
+                lines = [i.strip() for i in lines]
+                lines = [i for i in lines if i]
+                match len(lines):
+                    case 1:
+                        line1 = lines[0]
+                        # if there's only one line, then it's like a subtitle, so just skip is ok
+                        if line1 in ('FBA Sales Reports',):
+                            continue
+                        raise NotImplementedError(f'Unsupported line: {line1}')
+                    case 2 | 3 | 4:
+                        line = ' '.join(lines)
+                        assert (
+                            m := re.match(r'^([A-Za-z 0-9_:\-()&]*?) reportType value: ?([A-Z0-9_]+?)$', line)), line
+                        description, report = m.group(1, 2)
+                    case other:
+                        raise NotImplementedError(f'TD element with {other} lines cannot be parsed')
+                report_of_groups.setdefault(report, ParsedReport(
+                    name=report.lower(),
+                    upload_name=report,
+                    description=description,
+                    group_name=group,
+                ))
+        return result
 
     @cached_property
     def group_enum(self):
         result = {i.name: i.value for i in ReportTypeGroup}
-        group_elements = [i[0] for i in self.element_groups]
-        for element in group_elements:
-            name = element.text.strip().lower()
-            name = re.sub(r'[_ ()-]+', '_', name)
+        for name in self.parsed_data:
             if name not in result:
                 index = max(result.values()) + 1
                 print(f'Found new group: {name} = {index}')
                 result[name] = index
         return result
 
+    @cached_property
+    def report_enum(self) -> dict[str, ParsedReport]:
+        result: dict[str, ParsedReport] = {
+            i.upload_name: ParsedReport(
+                name=i.upload_name.lower(), group_name=i.group.name, group_index=i.group_index,
+                upload_name=i.upload_name, description='', report_index=i.report_index
+            )
+            for i in ReportType}
+        for group_name, reports in self.parsed_data.items():
+            for report_name, report in reports.items():
+                if report_name in result:
+                    result[report_name].description = report.description
+                else:
+                    report.group_index = self.group_enum[group_name]
+                    reports_of_group = tuple(i for i in result.values() if i.group_index == report.group_index)
+                    report.report_index = max((*(i.report_index for i in reports_of_group), 0)) + 1
+                    print(f'Found new report: {report.name} = {report.group_index}, {report.report_index}')
+                    result.setdefault(report_name, report)
+        # noinspection PyTypeChecker
+        result = dict(sorted(result.items(), key=lambda i: i[1].group_index * 100 + i[1].report_index))
+        return result
+
     def run(self):
         groups: dict[str, dict[str, str]] = {}
-        for h2_element, *td_elements in self.element_groups:
+        for h2_element, *td_elements in self.parsed_data:
             group_name = h2_element.text.strip().lower() \
                 .replace(' ', '_').replace('(', '').replace(')', '').replace('-', '_')
             group_name = re.sub(r'_+', '_', group_name)
