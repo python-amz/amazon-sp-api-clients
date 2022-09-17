@@ -8,7 +8,7 @@ class ReportTypeGroup(IntEnum):
 
     @property
     def reports(self):
-        return (report for report in ReportType if report.group == self)
+        return tuple(ReportType.get_by_index(i) for i in _group_report_relation.get(self.value, ()))
 
 
 @dataclass
@@ -89,7 +89,8 @@ class ReportType(__ReportTypeDefinition, Enum):
     amazonpay_sandbox_settlement_report = get_flat_file_offamazonpayments_sandbox_settlement_data
     b2b_product_opportunities_recommended_for_you_report = get_b2b_product_opportunities_recommended_for_you
     b2b_product_opportunities_not_yet_on_amazon = get_b2b_product_opportunities_not_yet_on_amazon
-    def get_by_index(self, index: int) -> 'ReportType':
+    @classmethod
+    def get_by_index(cls, index: int) -> "ReportType":
         return _index_report_map[index]
 
 
