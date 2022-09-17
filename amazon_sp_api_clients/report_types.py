@@ -1,5 +1,5 @@
-from enum import IntEnum, Enum
 from dataclasses import dataclass
+from enum import IntEnum, Enum
 
 
 class ReportTypeGroup(IntEnum):
@@ -25,7 +25,7 @@ class ReportTypeGroup(IntEnum):
 
     @property
     def reports(self):
-        return (report for report in ReportType if report.group == self)
+        return tuple(ReportType.get_by_index(i) for i in _group_report_relation[self.value])
 
 
 @dataclass
@@ -219,7 +219,12 @@ class ReportType(__ReportTypeDefinition, Enum):
     b2b_product_opportunities_recommended_for_you_report = get_b2b_product_opportunities_recommended_for_you
     b2b_product_opportunities_not_yet_on_amazon = get_b2b_product_opportunities_not_yet_on_amazon
 
+    @classmethod
+    def get_by_index(cls, index: int) -> "ReportType":
+        return _index_report_map[index]
 
+
+_index_report_map = {i.index: i for i in ReportType}
 _group_report_relation = {
     15: (1501, 1502, 1503),
     16: (1601, 1602, 1603, 1604, 1605),
@@ -231,7 +236,10 @@ _group_report_relation = {
     5: (501, 502, 503, 504, 505, 506),
     6: (601, 602, 603, 604, 605),
     7: (701, 702, 703),
-    8: (801, 802, 803, 301, 302, 304, 305, 808, 809, 810, 811, 812, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 829, 830, 831, 832, 833, 834, 835, 836, 837, 838, 839, 840, 841, 842, 843),
+    8: (
+        801, 802, 803, 301, 302, 304, 305, 808, 809, 810, 811, 812, 813, 814, 815, 816, 817, 818, 819, 820, 821, 822,
+        823,
+        824, 825, 826, 827, 828, 829, 830, 831, 832, 833, 834, 835, 836, 837, 838, 839, 840, 841, 842, 843),
     9: (901, 902, 903, 904, 905, 906),
     18: (1801, 1802),
     10: (1001,),

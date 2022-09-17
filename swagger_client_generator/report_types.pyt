@@ -89,5 +89,9 @@ class ReportType(__ReportTypeDefinition, Enum):
     amazonpay_sandbox_settlement_report = get_flat_file_offamazonpayments_sandbox_settlement_data
     b2b_product_opportunities_recommended_for_you_report = get_b2b_product_opportunities_recommended_for_you
     b2b_product_opportunities_not_yet_on_amazon = get_b2b_product_opportunities_not_yet_on_amazon
+    def get_by_index(self, index: int) -> 'ReportType':
+        return _index_report_map[index]
 
+
+_index_report_map = {i.index: i for i in ReportType}
 _group_report_relation = {{ relation }}
