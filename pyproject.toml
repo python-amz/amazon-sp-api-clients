@@ -16,29 +16,29 @@ repository = "https://github.com/panhaoyu/sp-api-clients"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-peewee = ""
-cachetools = ""
-requests = ""
-boto3 = ""
-pycryptodome = ""
-chardet = ""
-
-[tool.poetry.dev-dependencies]
-black = ""
-pytest = ""
-jinja2 = ""
-wheel = ""
-twine = ""
-beautifulsoup4 = ""
-markdown = ""
-sphinx = ""
-recommonmark = ""
-sphinx-inplace = { version = "", python = ">=3.8" }
-pydata_sphinx_theme = ""
-cached_property = ""
-openapi-schema-pydantic = ""
+peewee = "^3.16.3"
+boto3 = "^1.28.45"
+requests = "^2.31.0"
+cachetools = "^5.3.1"
+pycryptodome = "^3.18.0"
+chardet = "^5.2.0"
+demjson3 = "^3.0.6"
+[tool.poetry.group.dev.dependencies]
 lxml = "^4.9.1"
 lxml-stubs = "^0.4.0"
+pytest = "^7.4.2"
+jinja2 = "^3.1.2"
+wheel = "^0.41.2"
+twine = "^4.0.2"
+beautifulsoup4 = "^4.12.2"
+markdown = "^3.4.4"
+recommonmark = "^0.7.1"
+pydata-sphinx-theme = "^0.13.3"
+cached-property = "^1.5.2"
+openapi-schema-pydantic = "^1.2.4"
+black = { version = "^23.9.1", python = ">=3.8" }
+sphinx = { version = "^7.2.5", python = ">=3.8" }
+sphinx-inplace = { version = "^0.0.7", python = ">=3.8" }
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

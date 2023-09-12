@@ -1,6 +1,5 @@
 from .aplus_content_2020_11_01 import AplusContent20201101Client
 from .authorization_v1 import AuthorizationV1Client
-from .base import BaseClients
 from .catalog_items_2020_12_01 import CatalogItems20201201Client
 from .catalog_items_v0 import CatalogItemsV0Client
 from .fba_inbound_eligibility_v1 import FbaInboundEligibilityV1Client
@@ -14,7 +13,6 @@ from .fulfillment_outbound_2020_07_01 import FulfillmentOutbound20200701Client
 from .listings_items_2020_09_01 import ListingsItems20200901Client
 from .listings_items_2021_08_01 import ListingsItems20210801Client
 from .listings_restrictions_2021_08_01 import ListingsRestrictions20210801Client
-from .marketplaces import MarketPlaces
 from .merchant_fulfillment_v0 import MerchantFulfillmentV0Client
 from .messaging_v1 import MessagingV1Client
 from .notifications_v1 import NotificationsV1Client
@@ -22,7 +20,6 @@ from .orders_v0 import OrdersV0Client
 from .product_fees_v0 import ProductFeesV0Client
 from .product_pricing_v0 import ProductPricingV0Client
 from .product_type_definitions_2020_09_01 import ProductTypeDefinitions20200901Client
-from .report_types import ReportType, ReportTypeGroup
 from .reports_2020_09_04 import Reports20200904Client
 from .reports_2021_06_30 import Reports20210630Client
 from .sales_v1 import SalesV1Client
@@ -46,6 +43,9 @@ from .vendor_invoices_v1 import VendorInvoicesV1Client
 from .vendor_orders_v1 import VendorOrdersV1Client
 from .vendor_shipments_v1 import VendorShipmentsV1Client
 from .vendor_transaction_status_v1 import VendorTransactionStatusV1Client
+from .marketplaces import MarketPlaces
+from .report_types import ReportType, ReportTypeGroup
+from .base import BaseClients
 
 try:
     from functools import cached_property
