@@ -198,10 +198,6 @@ class HttpResponseHeaders(__BaseDictObject):
             self.Date: str = self._get_value(str, "Date")
         else:
             self.Date: str = None
-        if "x-amzn-RequestId" in data:
-            self.x - amzn - RequestId: str = self._get_value(str, "x-amzn-RequestId")
-        else:
-            self.x - amzn - RequestId: str = None
 
 
 class GetOffersHttpStatusLine(__BaseDictObject):

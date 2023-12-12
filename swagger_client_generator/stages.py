@@ -1,3 +1,4 @@
+import string
 from dataclasses import dataclass, field
 from enum import Enum, auto
 from functools import cached_property
@@ -89,6 +90,14 @@ def stage_1_dict_components(data: dict):
         if 'properties' not in component_data:
             continue
         for property_name, property_data in parsed_component.source['properties'].items():
+            # Used to bypass an exception in product_pricing_v0, like:
+            #         if "x-amzn-RequestId" in data:
+            #             self.x - amzn - RequestId: str = self._get_value(str, "x-amzn-RequestId")
+            #         else:
+            #             self.x - amzn - RequestId: str = None
+            if property_name == 'x-amzn-RequestId':
+                continue
+            assert all(c in string.printable for c in property_name)
             property_obj = parsed_component.properties.setdefault(
                 property_name, Field(
                     property_name,
