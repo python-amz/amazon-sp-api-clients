@@ -1412,7 +1412,10 @@ class TrackingId(str):
 
 class TransparencyCode(str):
     """
-    The Transparency code associated with the item.
+        The Transparency code associated with the item. The Transparency serial number that needs to be submitted can be determined by the following:
+    **1D or 2D Barcode:** This has a **T** logo. Submit either the 29-character alpha-numeric identifier beginning with **AZ** or **ZA**, or the 38-character Serialized Global Trade Item Number (SGTIN).
+    **2D Barcode SN:** Submit the 7- to 20-character serial number barcode, which likely has the prefix **SN**. The serial number will be applied to the same side of the packaging as the GTIN (UPC/EAN/ISBN) barcode.
+    **QR code SN:** Submit the URL that the QR code generates.
     """
 
 
@@ -1455,7 +1458,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 1 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/mfn/v0/eligibleServices"
         params = {}
@@ -1487,7 +1490,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 5 | 10 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/mfn/v0/eligibleShippingServices"
         params = {}
@@ -1519,7 +1522,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 1 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/mfn/v0/shipments/{shipmentId}"
         params = {}
@@ -1550,7 +1553,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 1 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/mfn/v0/shipments/{shipmentId}"
         params = {}
@@ -1581,7 +1584,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 1 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/mfn/v0/shipments/{shipmentId}/cancel"
         params = {}
@@ -1612,7 +1615,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 1 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/mfn/v0/shipments"
         params = {}
@@ -1644,7 +1647,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 1 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/mfn/v0/sellerInputs"
         params = {}
@@ -1676,7 +1679,7 @@ class MerchantFulfillmentV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 1 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/mfn/v0/additionalSellerInputs"
         params = {}

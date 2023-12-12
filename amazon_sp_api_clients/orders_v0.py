@@ -4,7 +4,7 @@ from typing import List as _List
 
 class UpdateShipmentStatusRequest(__BaseDictObject):
     """
-    Request to update the status of shipment of an order.
+    The request body for the updateShipmentStatus operation.
     """
 
     def __init__(self, data):
@@ -25,7 +25,7 @@ class UpdateShipmentStatusRequest(__BaseDictObject):
 
 class UpdateVerificationStatusRequest(__BaseDictObject):
     """
-    Request to update the verification status of an order containing regulated products.
+    The request body for the updateVerificationStatus operation.
     """
 
     def __init__(self, data):
@@ -46,9 +46,9 @@ class UpdateVerificationStatusRequestBody(__BaseDictObject):
     def __init__(self, data):
         super().__init__(data)
         if "status" in data:
-            self.status: str = self._get_value(str, "status")
+            self.status: VerificationStatus = self._get_value(VerificationStatus, "status")
         else:
-            self.status: str = None
+            self.status: VerificationStatus = None
         if "externalReviewerId" in data:
             self.externalReviewerId: str = self._get_value(str, "externalReviewerId")
         else:
@@ -309,9 +309,11 @@ class Order(__BaseDictObject):
         else:
             self.ShipmentServiceLevelCategory: str = None
         if "EasyShipShipmentStatus" in data:
-            self.EasyShipShipmentStatus: str = self._get_value(str, "EasyShipShipmentStatus")
+            self.EasyShipShipmentStatus: EasyShipShipmentStatus = self._get_value(
+                EasyShipShipmentStatus, "EasyShipShipmentStatus"
+            )
         else:
-            self.EasyShipShipmentStatus: str = None
+            self.EasyShipShipmentStatus: EasyShipShipmentStatus = None
         if "CbaDisplayableShippingLabel" in data:
             self.CbaDisplayableShippingLabel: str = self._get_value(str, "CbaDisplayableShippingLabel")
         else:
@@ -398,6 +400,10 @@ class Order(__BaseDictObject):
             self.IsISPU: bool = self._get_value(convert_bool, "IsISPU")
         else:
             self.IsISPU: bool = None
+        if "IsAccessPointOrder" in data:
+            self.IsAccessPointOrder: bool = self._get_value(convert_bool, "IsAccessPointOrder")
+        else:
+            self.IsAccessPointOrder: bool = None
         if "MarketplaceTaxInfo" in data:
             self.MarketplaceTaxInfo: MarketplaceTaxInfo = self._get_value(MarketplaceTaxInfo, "MarketplaceTaxInfo")
         else:
@@ -424,6 +430,12 @@ class Order(__BaseDictObject):
             self.HasRegulatedItems: bool = self._get_value(convert_bool, "HasRegulatedItems")
         else:
             self.HasRegulatedItems: bool = None
+        if "ElectronicInvoiceStatus" in data:
+            self.ElectronicInvoiceStatus: ElectronicInvoiceStatus = self._get_value(
+                ElectronicInvoiceStatus, "ElectronicInvoiceStatus"
+            )
+        else:
+            self.ElectronicInvoiceStatus: ElectronicInvoiceStatus = None
 
 
 class OrderBuyerInfo(__BaseDictObject):
@@ -496,9 +508,9 @@ class RegulatedOrderVerificationStatus(__BaseDictObject):
     def __init__(self, data):
         super().__init__(data)
         if "Status" in data:
-            self.Status: str = self._get_value(str, "Status")
+            self.Status: VerificationStatus = self._get_value(VerificationStatus, "Status")
         else:
-            self.Status: str = None
+            self.Status: VerificationStatus = None
         if "RequiresMerchantAction" in data:
             self.RequiresMerchantAction: bool = self._get_value(convert_bool, "RequiresMerchantAction")
         else:
@@ -591,10 +603,18 @@ class OrderAddress(__BaseDictObject):
             self.AmazonOrderId: str = self._get_value(str, "AmazonOrderId")
         else:
             self.AmazonOrderId: str = None
+        if "BuyerCompanyName" in data:
+            self.BuyerCompanyName: str = self._get_value(str, "BuyerCompanyName")
+        else:
+            self.BuyerCompanyName: str = None
         if "ShippingAddress" in data:
             self.ShippingAddress: Address = self._get_value(Address, "ShippingAddress")
         else:
             self.ShippingAddress: Address = None
+        if "DeliveryPreferences" in data:
+            self.DeliveryPreferences: DeliveryPreferences = self._get_value(DeliveryPreferences, "DeliveryPreferences")
+        else:
+            self.DeliveryPreferences: DeliveryPreferences = None
 
 
 class Address(__BaseDictObject):
@@ -656,6 +676,124 @@ class Address(__BaseDictObject):
             self.AddressType: str = self._get_value(str, "AddressType")
         else:
             self.AddressType: str = None
+
+
+class DeliveryPreferences(__BaseDictObject):
+    """
+    Contains all of the delivery instructions provided by the customer for the shipping address.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "DropOffLocation" in data:
+            self.DropOffLocation: str = self._get_value(str, "DropOffLocation")
+        else:
+            self.DropOffLocation: str = None
+        if "PreferredDeliveryTime" in data:
+            self.PreferredDeliveryTime: PreferredDeliveryTime = self._get_value(
+                PreferredDeliveryTime, "PreferredDeliveryTime"
+            )
+        else:
+            self.PreferredDeliveryTime: PreferredDeliveryTime = None
+        if "OtherAttributes" in data:
+            self.OtherAttributes: _List[OtherDeliveryAttributes] = [
+                OtherDeliveryAttributes(datum) for datum in data["OtherAttributes"]
+            ]
+        else:
+            self.OtherAttributes: _List[OtherDeliveryAttributes] = []
+        if "AddressInstructions" in data:
+            self.AddressInstructions: str = self._get_value(str, "AddressInstructions")
+        else:
+            self.AddressInstructions: str = None
+
+
+class PreferredDeliveryTime(__BaseDictObject):
+    """
+    The time window when the delivery is preferred.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "BusinessHours" in data:
+            self.BusinessHours: _List[BusinessHours] = [BusinessHours(datum) for datum in data["BusinessHours"]]
+        else:
+            self.BusinessHours: _List[BusinessHours] = []
+        if "ExceptionDates" in data:
+            self.ExceptionDates: _List[ExceptionDates] = [ExceptionDates(datum) for datum in data["ExceptionDates"]]
+        else:
+            self.ExceptionDates: _List[ExceptionDates] = []
+
+
+class BusinessHours(__BaseDictObject):
+    """
+    Business days and hours when the destination is open for deliveries.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "DayOfWeek" in data:
+            self.DayOfWeek: str = self._get_value(str, "DayOfWeek")
+        else:
+            self.DayOfWeek: str = None
+        if "OpenIntervals" in data:
+            self.OpenIntervals: _List[OpenInterval] = [OpenInterval(datum) for datum in data["OpenIntervals"]]
+        else:
+            self.OpenIntervals: _List[OpenInterval] = []
+
+
+class ExceptionDates(__BaseDictObject):
+    """
+    Dates when the business is closed or open with a different time window.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "ExceptionDate" in data:
+            self.ExceptionDate: str = self._get_value(str, "ExceptionDate")
+        else:
+            self.ExceptionDate: str = None
+        if "IsOpen" in data:
+            self.IsOpen: bool = self._get_value(convert_bool, "IsOpen")
+        else:
+            self.IsOpen: bool = None
+        if "OpenIntervals" in data:
+            self.OpenIntervals: _List[OpenInterval] = [OpenInterval(datum) for datum in data["OpenIntervals"]]
+        else:
+            self.OpenIntervals: _List[OpenInterval] = []
+
+
+class OpenInterval(__BaseDictObject):
+    """
+    The time interval for which the business is open.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "StartTime" in data:
+            self.StartTime: OpenTimeInterval = self._get_value(OpenTimeInterval, "StartTime")
+        else:
+            self.StartTime: OpenTimeInterval = None
+        if "EndTime" in data:
+            self.EndTime: OpenTimeInterval = self._get_value(OpenTimeInterval, "EndTime")
+        else:
+            self.EndTime: OpenTimeInterval = None
+
+
+class OpenTimeInterval(__BaseDictObject):
+    """
+    The time when the business opens or closes.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "Hour" in data:
+            self.Hour: int = self._get_value(int, "Hour")
+        else:
+            self.Hour: int = None
+        if "Minute" in data:
+            self.Minute: int = self._get_value(int, "Minute")
+        else:
+            self.Minute: int = None
 
 
 class Money(__BaseDictObject):
@@ -787,6 +925,10 @@ class OrderItem(__BaseDictObject):
             self.OrderItemId: str = self._get_value(str, "OrderItemId")
         else:
             self.OrderItemId: str = None
+        if "AssociatedItems" in data:
+            self.AssociatedItems: _List[AssociatedItem] = [AssociatedItem(datum) for datum in data["AssociatedItems"]]
+        else:
+            self.AssociatedItems: _List[AssociatedItem] = []
         if "Title" in data:
             self.Title: str = self._get_value(str, "Title")
         else:
@@ -913,6 +1055,100 @@ class OrderItem(__BaseDictObject):
             )
         else:
             self.BuyerRequestedCancel: BuyerRequestedCancel = None
+        if "SerialNumbers" in data:
+            self.SerialNumbers: _List[str] = [str(datum) for datum in data["SerialNumbers"]]
+        else:
+            self.SerialNumbers: _List[str] = []
+        if "SubstitutionPreferences" in data:
+            self.SubstitutionPreferences: SubstitutionPreferences = self._get_value(
+                SubstitutionPreferences, "SubstitutionPreferences"
+            )
+        else:
+            self.SubstitutionPreferences: SubstitutionPreferences = None
+        if "Measurement" in data:
+            self.Measurement: Measurement = self._get_value(Measurement, "Measurement")
+        else:
+            self.Measurement: Measurement = None
+
+
+class SubstitutionPreferences(__BaseDictObject):
+    """ """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "SubstitutionType" in data:
+            self.SubstitutionType: str = self._get_value(str, "SubstitutionType")
+        else:
+            self.SubstitutionType: str = None
+        if "SubstitutionOptions" in data:
+            self.SubstitutionOptions: SubstitutionOptionList = self._get_value(
+                SubstitutionOptionList, "SubstitutionOptions"
+            )
+        else:
+            self.SubstitutionOptions: SubstitutionOptionList = None
+
+
+class SubstitutionOption(__BaseDictObject):
+    """ """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "ASIN" in data:
+            self.ASIN: str = self._get_value(str, "ASIN")
+        else:
+            self.ASIN: str = None
+        if "QuantityOrdered" in data:
+            self.QuantityOrdered: int = self._get_value(int, "QuantityOrdered")
+        else:
+            self.QuantityOrdered: int = None
+        if "SellerSKU" in data:
+            self.SellerSKU: str = self._get_value(str, "SellerSKU")
+        else:
+            self.SellerSKU: str = None
+        if "Title" in data:
+            self.Title: str = self._get_value(str, "Title")
+        else:
+            self.Title: str = None
+        if "Measurement" in data:
+            self.Measurement: Measurement = self._get_value(Measurement, "Measurement")
+        else:
+            self.Measurement: Measurement = None
+
+
+class Measurement(__BaseDictObject):
+    """ """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "Unit" in data:
+            self.Unit: str = self._get_value(str, "Unit")
+        else:
+            self.Unit: str = None
+        if "Value" in data:
+            self.Value: float = self._get_value(float, "Value")
+        else:
+            self.Value: float = None
+
+
+class AssociatedItem(__BaseDictObject):
+    """
+    An item associated with an order item. For example, a tire installation service purchased with tires.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "OrderId" in data:
+            self.OrderId: str = self._get_value(str, "OrderId")
+        else:
+            self.OrderId: str = None
+        if "OrderItemId" in data:
+            self.OrderItemId: str = self._get_value(str, "OrderItemId")
+        else:
+            self.OrderItemId: str = None
+        if "AssociationType" in data:
+            self.AssociationType: AssociationType = self._get_value(AssociationType, "AssociationType")
+        else:
+            self.AssociationType: AssociationType = None
 
 
 class OrderItemsBuyerInfoList(__BaseDictObject):
@@ -1071,7 +1307,7 @@ class FulfillmentInstruction(__BaseDictObject):
 
 class BuyerInfo(__BaseDictObject):
     """
-    Buyer information
+    Buyer information.
     """
 
     def __init__(self, data):
@@ -1167,6 +1403,104 @@ class BuyerRequestedCancel(__BaseDictObject):
             self.BuyerCancelReason: str = None
 
 
+class ConfirmShipmentRequest(__BaseDictObject):
+    """
+    The request schema for an shipment confirmation.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "packageDetail" in data:
+            self.packageDetail: PackageDetail = self._get_value(PackageDetail, "packageDetail")
+        else:
+            self.packageDetail: PackageDetail = None
+        if "codCollectionMethod" in data:
+            self.codCollectionMethod: str = self._get_value(str, "codCollectionMethod")
+        else:
+            self.codCollectionMethod: str = None
+        if "marketplaceId" in data:
+            self.marketplaceId: MarketplaceId = self._get_value(MarketplaceId, "marketplaceId")
+        else:
+            self.marketplaceId: MarketplaceId = None
+
+
+class ConfirmShipmentErrorResponse(__BaseDictObject):
+    """
+    The error response schema for an shipment confirmation.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "errors" in data:
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
+        else:
+            self.errors: ErrorList = None
+
+
+class PackageDetail(__BaseDictObject):
+    """
+    Properties of packages
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "packageReferenceId" in data:
+            self.packageReferenceId: PackageReferenceId = self._get_value(PackageReferenceId, "packageReferenceId")
+        else:
+            self.packageReferenceId: PackageReferenceId = None
+        if "carrierCode" in data:
+            self.carrierCode: str = self._get_value(str, "carrierCode")
+        else:
+            self.carrierCode: str = None
+        if "carrierName" in data:
+            self.carrierName: str = self._get_value(str, "carrierName")
+        else:
+            self.carrierName: str = None
+        if "shippingMethod" in data:
+            self.shippingMethod: str = self._get_value(str, "shippingMethod")
+        else:
+            self.shippingMethod: str = None
+        if "trackingNumber" in data:
+            self.trackingNumber: str = self._get_value(str, "trackingNumber")
+        else:
+            self.trackingNumber: str = None
+        if "shipDate" in data:
+            self.shipDate: str = self._get_value(str, "shipDate")
+        else:
+            self.shipDate: str = None
+        if "shipFromSupplySourceId" in data:
+            self.shipFromSupplySourceId: str = self._get_value(str, "shipFromSupplySourceId")
+        else:
+            self.shipFromSupplySourceId: str = None
+        if "orderItems" in data:
+            self.orderItems: ConfirmShipmentOrderItemsList = self._get_value(
+                ConfirmShipmentOrderItemsList, "orderItems"
+            )
+        else:
+            self.orderItems: ConfirmShipmentOrderItemsList = None
+
+
+class ConfirmShipmentOrderItem(__BaseDictObject):
+    """
+    A single order item.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "orderItemId" in data:
+            self.orderItemId: str = self._get_value(str, "orderItemId")
+        else:
+            self.orderItemId: str = None
+        if "quantity" in data:
+            self.quantity: int = self._get_value(int, "quantity")
+        else:
+            self.quantity: int = None
+        if "transparencyCodes" in data:
+            self.transparencyCodes: TransparencyCodeList = self._get_value(TransparencyCodeList, "transparencyCodes")
+        else:
+            self.transparencyCodes: TransparencyCodeList = None
+
+
 class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
@@ -1190,7 +1524,7 @@ class Error(__BaseDictObject):
 
 class OrderItems(list, _List["dict"]):
     """
-    the list of order items and quantities when the seller wants to partially update the shipment status of the order
+    For partial shipment status updates, the list of order items and quantities to be updated.
     """
 
     def __init__(self, data):
@@ -1238,6 +1572,16 @@ class OrderItemList(list, _List["OrderItem"]):
         self.data = data
 
 
+class SubstitutionOptionList(list, _List["SubstitutionOption"]):
+    """
+    A collection of substitution options.
+    """
+
+    def __init__(self, data):
+        super().__init__([SubstitutionOption(datum) for datum in data])
+        self.data = data
+
+
 class OrderItemBuyerInfoList(list, _List["OrderItemBuyerInfo"]):
     """
     A single order item's buyer information list.
@@ -1258,6 +1602,26 @@ class PromotionIdList(list, _List["str"]):
         self.data = data
 
 
+class ConfirmShipmentOrderItemsList(list, _List["ConfirmShipmentOrderItem"]):
+    """
+    A list of order items.
+    """
+
+    def __init__(self, data):
+        super().__init__([ConfirmShipmentOrderItem(datum) for datum in data])
+        self.data = data
+
+
+class TransparencyCodeList(list, _List["TransparencyCode"]):
+    """
+    A list of order items.
+    """
+
+    def __init__(self, data):
+        super().__init__([TransparencyCode(datum) for datum in data])
+        self.data = data
+
+
 class ErrorList(list, _List["Error"]):
     """
     A list of error responses returned when a request is unsuccessful.
@@ -1270,13 +1634,55 @@ class ErrorList(list, _List["Error"]):
 
 class MarketplaceId(str):
     """
-    the unobfuscated marketplace ID
+    The unobfuscated marketplace identifier.
     """
 
 
 class ShipmentStatus(str):
     """
-    the status of the shipment of the order to be updated
+    The shipment status to apply.
+    """
+
+
+class VerificationStatus(str):
+    """
+    The verification status of the order.
+    """
+
+
+class OtherDeliveryAttributes(str):
+    """
+    Miscellaneous delivery attributes associated with the shipping address.
+    """
+
+
+class AssociationType(str):
+    """
+    The type of association an item has with an order item.
+    """
+
+
+class EasyShipShipmentStatus(str):
+    """
+    The status of the Amazon Easy Ship order. This property is included only for Amazon Easy Ship orders.
+    """
+
+
+class ElectronicInvoiceStatus(str):
+    """
+    The status of the electronic invoice.
+    """
+
+
+class TransparencyCode(str):
+    """
+    The Transparency code associated with the item.
+    """
+
+
+class PackageReferenceId(str):
+    """
+    A seller-supplied identifier that uniquely identifies a package within the scope of an order. Only positive numeric values are supported.
     """
 
 
@@ -1295,20 +1701,24 @@ class OrdersV0Client(__BaseClient):
         SellerOrderId: str = None,
         MaxResultsPerPage: int = None,
         EasyShipShipmentStatuses: _List[str] = None,
+        ElectronicInvoiceStatuses: _List[str] = None,
         NextToken: str = None,
         AmazonOrderIds: _List[str] = None,
         ActualFulfillmentSupplySourceId: str = None,
         IsISPU: bool = None,
         StoreChainStoreId: str = None,
+        EarliestDeliveryDateBefore: str = None,
+        EarliestDeliveryDateAfter: str = None,
+        LatestDeliveryDateBefore: str = None,
+        LatestDeliveryDateAfter: str = None,
     ):
         """
                 Returns orders created or updated during the time frame indicated by the specified parameters. You can also apply a range of filtering criteria to narrow the list of orders returned. If NextToken is present, that will be used to retrieve the orders instead of other criteria.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 0.0055 | 20 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0167 | 20 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/orders/v0/orders"
         params = {}
@@ -1336,6 +1746,8 @@ class OrdersV0Client(__BaseClient):
             params["MaxResultsPerPage"] = MaxResultsPerPage
         if EasyShipShipmentStatuses is not None:
             params["EasyShipShipmentStatuses"] = ",".join(map(str, EasyShipShipmentStatuses))
+        if ElectronicInvoiceStatuses is not None:
+            params["ElectronicInvoiceStatuses"] = ",".join(map(str, ElectronicInvoiceStatuses))
         if NextToken is not None:
             params["NextToken"] = NextToken
         if AmazonOrderIds is not None:
@@ -1346,6 +1758,14 @@ class OrdersV0Client(__BaseClient):
             params["IsISPU"] = IsISPU
         if StoreChainStoreId is not None:
             params["StoreChainStoreId"] = StoreChainStoreId
+        if EarliestDeliveryDateBefore is not None:
+            params["EarliestDeliveryDateBefore"] = EarliestDeliveryDateBefore
+        if EarliestDeliveryDateAfter is not None:
+            params["EarliestDeliveryDateAfter"] = EarliestDeliveryDateAfter
+        if LatestDeliveryDateBefore is not None:
+            params["LatestDeliveryDateBefore"] = LatestDeliveryDateBefore
+        if LatestDeliveryDateAfter is not None:
+            params["LatestDeliveryDateAfter"] = LatestDeliveryDateAfter
         response = self.request(
             path=url,
             method="GET",
@@ -1367,13 +1787,12 @@ class OrdersV0Client(__BaseClient):
         orderId: str,
     ):
         """
-                Returns the order indicated by the specified order ID.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 0.0055 | 20 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+                Returns the order that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0167 | 20 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/orders/v0/orders/{orderId}"
         params = {}
@@ -1398,13 +1817,12 @@ class OrdersV0Client(__BaseClient):
         orderId: str,
     ):
         """
-                Returns buyer information for the specified order.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 0.0055 | 20 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+                Returns buyer information for the order that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0167 | 20 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/orders/v0/orders/{orderId}/buyerInfo"
         params = {}
@@ -1429,13 +1847,12 @@ class OrdersV0Client(__BaseClient):
         orderId: str,
     ):
         """
-                Returns the shipping address for the specified order.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 0.0055 | 20 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+                Returns the shipping address for the order that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.0167 | 20 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/orders/v0/orders/{orderId}/address"
         params = {}
@@ -1461,14 +1878,13 @@ class OrdersV0Client(__BaseClient):
         NextToken: str = None,
     ):
         """
-                Returns detailed order item information for the order indicated by the specified order ID. If NextToken is provided, it's used to retrieve the next page of order items.
-        Note: When an order is in the Pending state (the order has been placed but payment has not been authorized), the getOrderItems operation does not return information about pricing, taxes, shipping charges, gift status or promotions for the order items in the order. After an order leaves the Pending state (this occurs when payment has been authorized) and enters the Unshipped, Partially Shipped, or Shipped state, the getOrderItems operation returns information about pricing, taxes, shipping charges, gift status and promotions for the order items in the order.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 0.0055 | 20 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+                Returns detailed order item information for the order that you specify. If NextToken is provided, it's used to retrieve the next page of order items.
+        __Note__: When an order is in the Pending state (the order has been placed but payment has not been authorized), the getOrderItems operation does not return information about pricing, taxes, shipping charges, gift status or promotions for the order items in the order. After an order leaves the Pending state (this occurs when payment has been authorized) and enters the Unshipped, Partially Shipped, or Shipped state, the getOrderItems operation returns information about pricing, taxes, shipping charges, gift status and promotions for the order items in the order.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 30 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/orders/v0/orders/{orderId}/orderItems"
         params = {}
@@ -1496,13 +1912,12 @@ class OrdersV0Client(__BaseClient):
         NextToken: str = None,
     ):
         """
-                Returns buyer information for the order items in the specified order.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 0.0055 | 20 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+                Returns buyer information for the order items in the order that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 30 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/orders/v0/orders/{orderId}/orderItems/buyerInfo"
         params = {}
@@ -1530,7 +1945,12 @@ class OrdersV0Client(__BaseClient):
         orderId: str,
     ):
         """
-        Update the shipment status.
+                Update the shipment status for an order that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 5 | 15 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/orders/v0/orders/{orderId}/shipment"
         params = {}
@@ -1558,13 +1978,12 @@ class OrdersV0Client(__BaseClient):
         orderId: str,
     ):
         """
-                Returns regulated information for the order indicated by the specified order ID.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 0.0055 | 20 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+                Returns regulated information for the order that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 30 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/orders/v0/orders/{orderId}/regulatedInfo"
         params = {}
@@ -1591,12 +2010,11 @@ class OrdersV0Client(__BaseClient):
     ):
         """
                 Updates (approves or rejects) the verification status of an order containing regulated products.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 0.0055 | 20 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 30 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/orders/v0/orders/{orderId}/regulatedInfo"
         params = {}
@@ -1616,5 +2034,38 @@ class OrdersV0Client(__BaseClient):
             429: UpdateVerificationStatusErrorResponse,
             500: UpdateVerificationStatusErrorResponse,
             503: UpdateVerificationStatusErrorResponse,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def confirmShipment(
+        self,
+        data: ConfirmShipmentRequest,
+        orderId: str,
+    ):
+        """
+                Updates the shipment confirmation status for a specified order.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 2 | 10 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        """
+        url = f"/orders/v0/orders/{orderId}/shipmentConfirmation"
+        params = {}
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
+        response_type = {
+            204: None,
+            400: ConfirmShipmentErrorResponse,
+            401: ConfirmShipmentErrorResponse,
+            403: ConfirmShipmentErrorResponse,
+            404: ConfirmShipmentErrorResponse,
+            429: ConfirmShipmentErrorResponse,
+            500: ConfirmShipmentErrorResponse,
+            503: ConfirmShipmentErrorResponse,
         }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

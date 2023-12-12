@@ -298,18 +298,21 @@ class FbaInventoryV1Client(__BaseClient):
         details: bool = None,
         startDateTime: str = None,
         sellerSkus: _List[str] = None,
+        sellerSku: str = None,
         nextToken: str = None,
     ):
         """
-                Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the startDateTime and sellerSkus parameters:
-        - All inventory summaries with available details are returned when the startDateTime and sellerSkus parameters are omitted.
-        - When startDateTime is provided, the operation returns inventory summaries that have had changes after the date and time specified. The sellerSkus parameter is ignored.
-        - When the sellerSkus parameter is provided, the operation returns inventory summaries for only the specified sellerSkus.
+                Returns a list of inventory summaries. The summaries returned depend on the presence or absence of the `startDateTime`, `sellerSkus` and `sellerSku` parameters:
+        - All inventory summaries with available details are returned when the `startDateTime`, `sellerSkus` and `sellerSku` parameters are omitted.
+        - When `startDateTime` is provided, the operation returns inventory summaries that have had changes after the date and time specified. The `sellerSkus` and `sellerSku` parameters are ignored. **Important:** To avoid errors, use both `startDateTime` and `nextToken` to get the next page of inventory summaries that have changed after the date and time specified.
+        - When the `sellerSkus` parameter is provided, the operation returns inventory summaries for only the specified `sellerSkus`. The `sellerSku` parameter is ignored.
+        - When the `sellerSku` parameter is provided, the operation returns inventory summaries for only the specified `sellerSku`.
+        **Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 2 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inventory/v1/summaries"
         params = {}
@@ -323,6 +326,8 @@ class FbaInventoryV1Client(__BaseClient):
             params["startDateTime"] = startDateTime
         if sellerSkus is not None:
             params["sellerSkus"] = ",".join(map(str, sellerSkus))
+        if sellerSku is not None:
+            params["sellerSku"] = sellerSku
         if nextToken is not None:
             params["nextToken"] = nextToken
         if marketplaceIds is not None:

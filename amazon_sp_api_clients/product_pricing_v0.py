@@ -2,9 +2,112 @@ from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __
 from typing import List as _List
 
 
+class GetItemOffersBatchRequest(__BaseDictObject):
+    """
+    The request associated with the `getItemOffersBatch` API call.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "requests" in data:
+            self.requests: ItemOffersRequestList = self._get_value(ItemOffersRequestList, "requests")
+        else:
+            self.requests: ItemOffersRequestList = None
+
+
+class GetListingOffersBatchRequest(__BaseDictObject):
+    """
+    The request associated with the `getListingOffersBatch` API call.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "requests" in data:
+            self.requests: ListingOffersRequestList = self._get_value(ListingOffersRequestList, "requests")
+        else:
+            self.requests: ListingOffersRequestList = None
+
+
+class BatchOffersRequestParams(__BaseDictObject):
+    """ """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "MarketplaceId" in data:
+            self.MarketplaceId: MarketplaceId = self._get_value(MarketplaceId, "MarketplaceId")
+        else:
+            self.MarketplaceId: MarketplaceId = None
+        if "ItemCondition" in data:
+            self.ItemCondition: ItemCondition = self._get_value(ItemCondition, "ItemCondition")
+        else:
+            self.ItemCondition: ItemCondition = None
+        if "CustomerType" in data:
+            self.CustomerType: CustomerType = self._get_value(CustomerType, "CustomerType")
+        else:
+            self.CustomerType: CustomerType = None
+
+
+class GetItemOffersBatchResponse(__BaseDictObject):
+    """
+    The response associated with the `getItemOffersBatch` API call.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "responses" in data:
+            self.responses: ItemOffersResponseList = self._get_value(ItemOffersResponseList, "responses")
+        else:
+            self.responses: ItemOffersResponseList = None
+
+
+class GetListingOffersBatchResponse(__BaseDictObject):
+    """
+    The response associated with the `getListingOffersBatch` API call.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "responses" in data:
+            self.responses: ListingOffersResponseList = self._get_value(ListingOffersResponseList, "responses")
+        else:
+            self.responses: ListingOffersResponseList = None
+
+
+class BatchOffersResponse(__BaseDictObject):
+    """ """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "headers" in data:
+            self.headers: HttpResponseHeaders = self._get_value(HttpResponseHeaders, "headers")
+        else:
+            self.headers: HttpResponseHeaders = None
+        if "status" in data:
+            self.status: GetOffersHttpStatusLine = self._get_value(GetOffersHttpStatusLine, "status")
+        else:
+            self.status: GetOffersHttpStatusLine = None
+        if "body" in data:
+            self.body: GetOffersResponse = self._get_value(GetOffersResponse, "body")
+        else:
+            self.body: GetOffersResponse = None
+
+
+class Errors(__BaseDictObject):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "errors" in data:
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
+        else:
+            self.errors: ErrorList = None
+
+
 class GetPricingResponse(__BaseDictObject):
     """
-    The response schema for the getPricing and getCompetitivePricing operations.
+    The response schema for the `getPricing` and `getCompetitivePricing` operations.
     """
 
     def __init__(self, data):
@@ -21,7 +124,7 @@ class GetPricingResponse(__BaseDictObject):
 
 class GetOffersResponse(__BaseDictObject):
     """
-    The response schema for the getListingOffers and getItemOffers operations.
+    The response schema for the `getListingOffers` and `getItemOffers` operations.
     """
 
     def __init__(self, data):
@@ -73,6 +176,70 @@ class GetOffersResult(__BaseDictObject):
             self.Offers: OfferDetailList = self._get_value(OfferDetailList, "Offers")
         else:
             self.Offers: OfferDetailList = None
+
+
+class HttpRequestHeaders(__BaseDictObject):
+    """
+    A mapping of additional HTTP headers to send/receive for the individual batch request.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+
+
+class HttpResponseHeaders(__BaseDictObject):
+    """
+    A mapping of additional HTTP headers to send/receive for the individual batch request.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "Date" in data:
+            self.Date: str = self._get_value(str, "Date")
+        else:
+            self.Date: str = None
+        if "x-amzn-RequestId" in data:
+            self.x - amzn - RequestId: str = self._get_value(str, "x-amzn-RequestId")
+        else:
+            self.x - amzn - RequestId: str = None
+
+
+class GetOffersHttpStatusLine(__BaseDictObject):
+    """
+    The HTTP status line associated with the response.  For more information, consult [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec6.html).
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "statusCode" in data:
+            self.statusCode: int = self._get_value(int, "statusCode")
+        else:
+            self.statusCode: int = None
+        if "reasonPhrase" in data:
+            self.reasonPhrase: str = self._get_value(str, "reasonPhrase")
+        else:
+            self.reasonPhrase: str = None
+
+
+class BatchRequest(__BaseDictObject):
+    """
+    Common properties of batch requests against individual APIs.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "uri" in data:
+            self.uri: str = self._get_value(str, "uri")
+        else:
+            self.uri: str = None
+        if "method" in data:
+            self.method: HttpMethod = self._get_value(HttpMethod, "method")
+        else:
+            self.method: HttpMethod = None
+        if "headers" in data:
+            self.headers: HttpRequestHeaders = self._get_value(HttpRequestHeaders, "headers")
+        else:
+            self.headers: HttpRequestHeaders = None
 
 
 class Price(__BaseDictObject):
@@ -766,6 +933,46 @@ class Error(__BaseDictObject):
             self.details: str = None
 
 
+class ListingOffersRequestList(list, _List["ListingOffersRequest"]):
+    """
+    A list of `getListingOffers` batched requests to run.
+    """
+
+    def __init__(self, data):
+        super().__init__([ListingOffersRequest(datum) for datum in data])
+        self.data = data
+
+
+class ItemOffersRequestList(list, _List["ItemOffersRequest"]):
+    """
+    A list of `getListingOffers` batched requests to run.
+    """
+
+    def __init__(self, data):
+        super().__init__([ItemOffersRequest(datum) for datum in data])
+        self.data = data
+
+
+class ItemOffersResponseList(list, _List["ItemOffersResponse"]):
+    """
+    A list of `getItemOffers` batched responses.
+    """
+
+    def __init__(self, data):
+        super().__init__([ItemOffersResponse(datum) for datum in data])
+        self.data = data
+
+
+class ListingOffersResponseList(list, _List["ListingOffersResponse"]):
+    """
+    A list of `getListingOffers` batched responses.
+    """
+
+    def __init__(self, data):
+        super().__init__([ListingOffersResponse(datum) for datum in data])
+        self.data = data
+
+
 class PriceList(list, _List["Price"]):
     """ """
 
@@ -884,6 +1091,18 @@ class ErrorList(list, _List["Error"]):
         self.data = data
 
 
+class HttpUri(str):
+    """
+    The URI associated with the individual APIs being called as part of the batch request.
+    """
+
+
+class HttpMethod(str):
+    """
+    The HTTP method associated with the individual APIs being called as part of the batch request.
+    """
+
+
 class OfferCustomerType(str):
     """ """
 
@@ -904,6 +1123,108 @@ class FulfillmentChannelType(str):
     """
 
 
+class MarketplaceId(str):
+    """
+    A marketplace identifier. Specifies the marketplace for which prices are returned.
+    """
+
+
+class ItemCondition(str):
+    """
+    Filters the offer listings to be considered based on item condition. Possible values: New, Used, Collectible, Refurbished, Club.
+    """
+
+
+class Asin(str):
+    """
+    The Amazon Standard Identification Number (ASIN) of the item.
+    """
+
+
+class CustomerType(str):
+    """
+    Indicates whether to request Consumer or Business offers. Default is Consumer.
+    """
+
+
+class ItemOffersRequest(
+    BatchRequest,
+    BatchOffersRequestParams,
+):
+    """ """
+
+    def __init__(self, data):
+        self.data = data
+        super().__init__(data)
+
+
+class ListingOffersRequest(
+    BatchRequest,
+    BatchOffersRequestParams,
+):
+    """ """
+
+    def __init__(self, data):
+        self.data = data
+        super().__init__(data)
+
+
+class ItemOffersRequestParams(
+    BatchOffersRequestParams,
+):
+    """ """
+
+    def __init__(self, data):
+        if "Asin" in data:
+            self.Asin = data.pop("Asin")
+        else:
+            self.Asin = None
+        self.data = data
+        super().__init__(data)
+
+
+class ItemOffersResponse(
+    BatchOffersResponse,
+):
+    """ """
+
+    def __init__(self, data):
+        if "request" in data:
+            self.request: ItemOffersRequestParams = ItemOffersRequestParams(data.pop("request"))
+        else:
+            self.request: ItemOffersRequestParams = None
+        self.data = data
+        super().__init__(data)
+
+
+class ListingOffersRequestParams(
+    BatchOffersRequestParams,
+):
+    """ """
+
+    def __init__(self, data):
+        if "SellerSKU" in data:
+            self.SellerSKU = data.pop("SellerSKU")
+        else:
+            self.SellerSKU = None
+        self.data = data
+        super().__init__(data)
+
+
+class ListingOffersResponse(
+    BatchOffersResponse,
+):
+    """ """
+
+    def __init__(self, data):
+        if "request" in data:
+            self.request: ListingOffersRequestParams = ListingOffersRequestParams(data.pop("request"))
+        else:
+            self.request: ListingOffersRequestParams = None
+        self.data = data
+        super().__init__(data)
+
+
 class ProductPricingV0Client(__BaseClient):
     def getPricing(
         self,
@@ -916,12 +1237,12 @@ class ProductPricingV0Client(__BaseClient):
     ):
         """
                 Returns pricing information for a seller's offer listings based on seller SKU or ASIN.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 10 | 20 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        **Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 1 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/products/pricing/v0/price"
         params = {}
@@ -964,12 +1285,12 @@ class ProductPricingV0Client(__BaseClient):
     ):
         """
                 Returns competitive pricing information for a seller's offer listings based on seller SKU or ASIN.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 10 | 20 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        **Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 1 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/products/pricing/v0/competitivePrice"
         params = {}
@@ -1009,12 +1330,12 @@ class ProductPricingV0Client(__BaseClient):
     ):
         """
                 Returns the lowest priced offers for a single SKU listing.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 5 | 10 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        **Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 2 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/products/pricing/v0/listings/{SellerSKU}/offers"
         params = {}
@@ -1050,12 +1371,11 @@ class ProductPricingV0Client(__BaseClient):
     ):
         """
                 Returns the lowest priced offers for a single item based on ASIN.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 5 | 10 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 1 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/products/pricing/v0/items/{Asin}/offers"
         params = {}
@@ -1079,5 +1399,69 @@ class ProductPricingV0Client(__BaseClient):
             429: GetOffersResponse,
             500: GetOffersResponse,
             503: GetOffersResponse,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def getItemOffersBatch(
+        self,
+        data: GetItemOffersBatchRequest,
+    ):
+        """
+                Returns the lowest priced offers for a batch of items based on ASIN.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.1 | 1 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
+        """
+        url = f"/batches/products/pricing/v0/itemOffers"
+        params = {}
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
+        response_type = {
+            200: GetItemOffersBatchResponse,
+            400: Errors,
+            401: Errors,
+            403: Errors,
+            404: Errors,
+            429: Errors,
+            500: Errors,
+            503: Errors,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def getListingOffersBatch(
+        self,
+        data: GetListingOffersBatchRequest,
+    ):
+        """
+                Returns the lowest priced offers for a batch of listings by SKU.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 1 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        """
+        url = f"/batches/products/pricing/v0/listingOffers"
+        params = {}
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
+        response_type = {
+            200: GetListingOffersBatchResponse,
+            400: Errors,
+            401: Errors,
+            403: Errors,
+            404: Errors,
+            429: Errors,
+            500: Errors,
+            503: Errors,
         }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

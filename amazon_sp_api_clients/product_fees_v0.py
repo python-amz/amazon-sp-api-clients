@@ -15,8 +15,31 @@ class GetMyFeesEstimateRequest(__BaseDictObject):
             self.FeesEstimateRequest: FeesEstimateRequest = None
 
 
+class FeesEstimateByIdRequest(__BaseDictObject):
+    """
+    A product, marketplace, and proposed price used to request estimated fees.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "FeesEstimateRequest" in data:
+            self.FeesEstimateRequest: FeesEstimateRequest = self._get_value(FeesEstimateRequest, "FeesEstimateRequest")
+        else:
+            self.FeesEstimateRequest: FeesEstimateRequest = None
+        if "IdType" in data:
+            self.IdType: IdType = self._get_value(IdType, "IdType")
+        else:
+            self.IdType: IdType = None
+        if "IdValue" in data:
+            self.IdValue: str = self._get_value(str, "IdValue")
+        else:
+            self.IdValue: str = None
+
+
 class FeesEstimateRequest(__BaseDictObject):
-    """ """
+    """
+    A product, marketplace, and proposed price used to request estimated fees.
+    """
 
     def __init__(self, data):
         super().__init__(data)
@@ -87,6 +110,19 @@ class Points(__BaseDictObject):
             self.PointsMonetaryValue: MoneyType = None
 
 
+class GetMyFeesEstimatesErrorList(__BaseDictObject):
+    """
+    A list of error responses returned when a request is unsuccessful.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "errors" in data:
+            self.errors: _List[Error] = [Error(datum) for datum in data["errors"]]
+        else:
+            self.errors: _List[Error] = []
+
+
 class Error(__BaseDictObject):
     """ """
 
@@ -149,9 +185,9 @@ class FeesEstimateIdentifier(__BaseDictObject):
         else:
             self.SellerId: str = None
         if "IdType" in data:
-            self.IdType: str = self._get_value(str, "IdType")
+            self.IdType: IdType = self._get_value(IdType, "IdType")
         else:
-            self.IdType: str = None
+            self.IdType: IdType = None
         if "IdValue" in data:
             self.IdValue: str = self._get_value(str, "IdValue")
         else:
@@ -322,6 +358,26 @@ class MoneyType(__BaseDictObject):
             self.Amount: float = None
 
 
+class GetMyFeesEstimatesRequest(list, _List["FeesEstimateByIdRequest"]):
+    """
+    Request for estimated fees for a list of products.
+    """
+
+    def __init__(self, data):
+        super().__init__([FeesEstimateByIdRequest(datum) for datum in data])
+        self.data = data
+
+
+class GetMyFeesEstimatesResponse(list, _List["FeesEstimateResult"]):
+    """
+    Estimated fees for a list of products.
+    """
+
+    def __init__(self, data):
+        super().__init__([FeesEstimateResult(datum) for datum in data])
+        self.data = data
+
+
 class ErrorList(list, _List["Error"]):
     """
     A list of error responses returned when a request is unsuccessful.
@@ -368,6 +424,12 @@ class OptionalFulfillmentProgram(str):
     """
 
 
+class IdType(str):
+    """
+    The type of product identifier used in a `FeesEstimateByIdRequest`.
+    """
+
+
 class ProductFeesV0Client(__BaseClient):
     def getMyFeesEstimateForSKU(
         self,
@@ -376,14 +438,14 @@ class ProductFeesV0Client(__BaseClient):
     ):
         """
                 Returns the estimated fees for the item indicated by the specified seller SKU in the marketplace specified in the request body.
-        You can call getMyFeesEstimateForSKU for an item on behalf of a selling partner before the selling partner sets the item's price. They can then take estimated fees into account. With each fees estimate request, you must include an original identifier. This identifier is included in the fees estimate so you can correlate a fees estimate with the original request.
-        **Note:** This value is only an estimate, actual costs may vary. Search "fees" in [Seller Central](https://sellercentral.amazon.com/) and consult the store-specific fee schedule for the most up-to-date information.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 10 | 20 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        **Note:** The parameters associated with this operation may contain special characters that require URL encoding to call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
+        You can call `getMyFeesEstimateForSKU` for an item on behalf of a selling partner before the selling partner sets the item's price. The selling partner can then take any estimated fees into account. Each fees estimate request must include an original identifier. This identifier is included in the fees estimate so that you can correlate a fees estimate with the original request.
+        **Note:** This identifier value is used to identify an estimate. Actual costs may vary. Search "fees" in [Seller Central](https://sellercentral.amazon.com/) and consult the store-specific fee schedule for the most up-to-date information.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 2 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/products/fees/v0/listings/{SellerSKU}/feesEstimate"
         params = {}
@@ -411,15 +473,14 @@ class ProductFeesV0Client(__BaseClient):
         Asin: str,
     ):
         """
-                Returns the estimated fees for the item indicated by the specified Asin in the marketplace specified in the request body.
-        You can call getMyFeesEstimateForASIN for an item on behalf of a selling partner before the selling partner sets the item's price. They can then take estimated fees into account. With each product fees request, you must include an original identifier. This identifier is included in the fees estimate so you can correlate a fees estimate with the original request.
-        **Note:** This value is only an estimate, actual costs may vary. Search "fees" in [Seller Central](https://sellercentral.amazon.com/) and consult the store-specific fee schedule for the most up-to-date information.
-        **Usage Plans:**
-        | Plan type | Rate (requests per second) | Burst |
-        | ---- | ---- | ---- |
-        |Default| 10 | 20 |
-        |Selling partner specific| Variable | Variable |
-        The x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+                Returns the estimated fees for the item indicated by the specified ASIN in the marketplace specified in the request body.
+        You can call `getMyFeesEstimateForASIN` for an item on behalf of a selling partner before the selling partner sets the item's price. The selling partner can then take estimated fees into account. Each fees request must include an original identifier. This identifier is included in the fees estimate so you can correlate a fees estimate with the original request.
+        **Note:** This identifier value is used to identify an estimate. Actual costs may vary. Search "fees" in [Seller Central](https://sellercentral.amazon.com/) and consult the store-specific fee schedule for the most up-to-date information.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 1 | 2 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/products/fees/v0/items/{Asin}/feesEstimate"
         params = {}
@@ -438,5 +499,37 @@ class ProductFeesV0Client(__BaseClient):
             429: GetMyFeesEstimateResponse,
             500: GetMyFeesEstimateResponse,
             503: GetMyFeesEstimateResponse,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def getMyFeesEstimates(
+        self,
+        data: GetMyFeesEstimatesRequest,
+    ):
+        """
+                Returns the estimated fees for a list of products.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 0.5 | 1 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        """
+        url = f"/products/fees/v0/feesEstimate"
+        params = {}
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
+        response_type = {
+            200: GetMyFeesEstimatesResponse,
+            400: GetMyFeesEstimatesErrorList,
+            401: GetMyFeesEstimatesErrorList,
+            403: GetMyFeesEstimatesErrorList,
+            404: GetMyFeesEstimatesErrorList,
+            429: GetMyFeesEstimatesErrorList,
+            500: GetMyFeesEstimatesErrorList,
+            503: GetMyFeesEstimatesErrorList,
         }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

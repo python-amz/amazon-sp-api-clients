@@ -240,6 +240,12 @@ class OrderItem(__BaseDictObject):
             self.totalPrice: Money = self._get_value(Money, "totalPrice")
         else:
             self.totalPrice: Money = None
+        if "buyerCustomizedInfo" in data:
+            self.buyerCustomizedInfo: buyerCustomizedInfoDetail = self._get_value(
+                buyerCustomizedInfoDetail, "buyerCustomizedInfo"
+            )
+        else:
+            self.buyerCustomizedInfo: buyerCustomizedInfoDetail = None
 
 
 class Money(__BaseDictObject):
@@ -257,6 +263,17 @@ class Money(__BaseDictObject):
             self.amount: Decimal = self._get_value(Decimal, "amount")
         else:
             self.amount: Decimal = None
+
+
+class buyerCustomizedInfoDetail(__BaseDictObject):
+    """ """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "customizedUrl" in data:
+            self.customizedUrl: str = self._get_value(str, "customizedUrl")
+        else:
+            self.customizedUrl: str = None
 
 
 class SubmitAcknowledgementResponse(__BaseDictObject):

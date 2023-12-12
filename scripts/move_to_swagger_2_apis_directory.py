@@ -3,7 +3,7 @@ import shutil
 from glob import glob
 from pathlib import Path
 
-base_dir = Path(__file__).absolute().parent
+base_dir = Path(__file__).absolute().parent.parent
 
 
 def main():
@@ -16,6 +16,7 @@ def main():
         for src in map(Path, glob(str(directory / '*.json'))):
             version = src.name.replace('-', '_')
             dst = base_dir / 'swagger2_apis' / f'{module}_{version}.json'
+            print(f'Moving: {src.stem}')
             shutil.copy(src, dst)
 
 

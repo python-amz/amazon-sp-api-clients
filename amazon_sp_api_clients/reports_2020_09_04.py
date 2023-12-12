@@ -425,12 +425,7 @@ class Reports20200904Client(__BaseClient):
         nextToken: str = None,
     ):
         """
-                Returns report details for the reports that match the filters that you specify.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective **June 27, 2023**, the `getReports` operation will no longer be available in the Selling Partner API for Reports v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Reports v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/reports/2020-09-04/reports"
         params = {}
@@ -471,12 +466,7 @@ class Reports20200904Client(__BaseClient):
         data: CreateReportSpecification,
     ):
         """
-                Creates a report.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0167 | 15 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective **June 27, 2023**, the `createReport` operation will no longer be available in the Selling Partner API for Reports v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Reports v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/reports/2020-09-04/reports"
         params = {}
@@ -504,12 +494,7 @@ class Reports20200904Client(__BaseClient):
         reportId: str,
     ):
         """
-                Returns report details (including the reportDocumentId, if available) for the report that you specify.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2.0 | 15 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective **June 27, 2023**, the `getReport` operation will no longer be available in the Selling Partner API for Reports v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Reports v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/reports/2020-09-04/reports/{reportId}"
         params = {}
@@ -536,12 +521,7 @@ class Reports20200904Client(__BaseClient):
         reportId: str,
     ):
         """
-                Cancels the report that you specify. Only reports with processingStatus=IN_QUEUE can be cancelled. Cancelled reports are returned in subsequent calls to the getReport and getReports operations.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective **June 27, 2023**, the `cancelReport` operation will no longer be available in the Selling Partner API for Reports v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Reports v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/reports/2020-09-04/reports/{reportId}"
         params = {}
@@ -568,12 +548,7 @@ class Reports20200904Client(__BaseClient):
         reportTypes: _List[str],
     ):
         """
-                Returns report schedule details that match the filters that you specify.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective **June 27, 2023**, the `getReportSchedules` operation will no longer be available in the Selling Partner API for Reports v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Reports v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/reports/2020-09-04/schedules"
         params = {}
@@ -602,12 +577,7 @@ class Reports20200904Client(__BaseClient):
         data: CreateReportScheduleSpecification,
     ):
         """
-                Creates a report schedule. If a report schedule with the same report type and marketplace IDs already exists, it will be cancelled and replaced with this one.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective **June 27, 2023**, the `createReportSchedule` operation will no longer be available in the Selling Partner API for Reports v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Reports v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/reports/2020-09-04/schedules"
         params = {}
@@ -635,12 +605,7 @@ class Reports20200904Client(__BaseClient):
         reportScheduleId: str,
     ):
         """
-                Returns report schedule details for the report schedule that you specify.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective **June 27, 2023**, the `getReportSchedule` operation will no longer be available in the Selling Partner API for Reports v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Reports v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/reports/2020-09-04/schedules/{reportScheduleId}"
         params = {}
@@ -667,12 +632,7 @@ class Reports20200904Client(__BaseClient):
         reportScheduleId: str,
     ):
         """
-                Cancels the report schedule that you specify.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective **June 27, 2023**, the `cancelReportSchedule` operation will no longer be available in the Selling Partner API for Reports v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Reports v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/reports/2020-09-04/schedules/{reportScheduleId}"
         params = {}
@@ -699,12 +659,7 @@ class Reports20200904Client(__BaseClient):
         reportDocumentId: str,
     ):
         """
-                Returns the information required for retrieving a report document's contents. This includes a presigned URL for the report document as well as the information required to decrypt the document's contents.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0167 | 15 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective **June 27, 2023**, the `getReportDocument` operation will no longer be available in the Selling Partner API for Reports v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Reports v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/reports-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/reports/2020-09-04/documents/{reportDocumentId}"
         params = {}

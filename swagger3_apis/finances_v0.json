@@ -21,13 +21,13 @@
     "paths": {
         "/finances/v0/financialEventGroups": {
             "get": {
-                "description": "Returns financial event groups for a given date range.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Returns financial event groups for a given date range. It may take up to 48 hours for orders to appear in your financial events.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "listFinancialEventGroups",
                 "parameters": [
                     {
                         "name": "MaxResultsPerPage",
                         "in": "query",
-                        "description": "The maximum number of results to return per page.",
+                        "description": "The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.",
                         "schema": {
                             "maximum": 100,
                             "minimum": 1,
@@ -272,19 +272,37 @@
         },
         "/finances/v0/financialEventGroups/{eventGroupId}/financialEvents": {
             "get": {
-                "description": "Returns all financial events for the specified financial event group.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Returns all financial events for the specified financial event group. It may take up to 48 hours for orders to appear in your financial events.\n\n**Note:** This operation will only retrieve group's data for the past two years. If a request is submitted for data spanning more than two years, an empty response is returned.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "listFinancialEventsByGroupId",
                 "parameters": [
                     {
                         "name": "MaxResultsPerPage",
                         "in": "query",
-                        "description": "The maximum number of results to return per page.",
+                        "description": "The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.",
                         "schema": {
                             "maximum": 100,
                             "minimum": 1,
                             "type": "integer",
                             "format": "int32",
                             "default": 100
+                        }
+                    },
+                    {
+                        "name": "PostedAfter",
+                        "in": "query",
+                        "description": "A date used for selecting financial events posted after (or at) a specified time. The date-time **must** be more than two minutes before the time of the request, in ISO 8601 date time format.",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    },
+                    {
+                        "name": "PostedBefore",
+                        "in": "query",
+                        "description": "A date used for selecting financial events posted before (but not at) a specified time. The date-time must be later than `PostedAfter` and no later than two minutes before the request was submitted, in ISO 8601 date time format. If `PostedAfter` and `PostedBefore` are more than 180 days apart, no financial events are returned. You must specify the `PostedAfter` parameter if you specify the `PostedBefore` parameter. Default: Now minus two minutes.",
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time"
                         }
                     },
                     {
@@ -828,7 +846,7 @@
         },
         "/finances/v0/orders/{orderId}/financialEvents": {
             "get": {
-                "description": "Returns all financial events for the specified order.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Returns all financial events for the specified order. It may take up to 48 hours for orders to appear in your financial events.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "listFinancialEventsByOrderId",
                 "parameters": [
                     {
@@ -843,7 +861,7 @@
                     {
                         "name": "MaxResultsPerPage",
                         "in": "query",
-                        "description": "The maximum number of results to return per page.",
+                        "description": "The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.",
                         "schema": {
                             "maximum": 100,
                             "minimum": 1,
@@ -1162,13 +1180,13 @@
         },
         "/finances/v0/financialEvents": {
             "get": {
-                "description": "Returns financial events for the specified data range.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nFor more information, see \"Usage Plans and Rate Limits\" in the Selling Partner API documentation.",
+                "description": "Returns financial events for the specified data range. It may take up to 48 hours for orders to appear in your financial events. **Note:** in `ListFinancialEvents`, deferred events don't show up in responses until in they are released.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 0.5 | 30 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "listFinancialEvents",
                 "parameters": [
                     {
                         "name": "MaxResultsPerPage",
                         "in": "query",
-                        "description": "The maximum number of results to return per page.",
+                        "description": "The maximum number of results to return per page. If the response exceeds the maximum number of transactions or 10 MB, the API responds with 'InvalidInput'.",
                         "schema": {
                             "maximum": 100,
                             "minimum": 1,
@@ -1502,6 +1520,33 @@
     },
     "components": {
         "schemas": {
+            "AdhocDisbursementEvent": {
+                "type": "object",
+                "properties": {
+                    "TransactionType": {
+                        "type": "string",
+                        "description": "Indicates the type of transaction.\n\nExample: \"Disbursed to Amazon Gift Card balance\""
+                    },
+                    "PostedDate": {
+                        "$ref": "#/components/schemas/Date"
+                    },
+                    "TransactionId": {
+                        "type": "string",
+                        "description": "The identifier for the transaction."
+                    },
+                    "TransactionAmount": {
+                        "$ref": "#/components/schemas/Currency"
+                    }
+                },
+                "description": "An event related to an Adhoc Disbursement."
+            },
+            "AdhocDisbursementEventList": {
+                "type": "array",
+                "description": "A list of `AdhocDisbursement` events.",
+                "items": {
+                    "$ref": "#/components/schemas/AdhocDisbursementEvent"
+                }
+            },
             "AdjustmentEvent": {
                 "type": "object",
                 "properties": {
@@ -1662,6 +1707,53 @@
                     "$ref": "#/components/schemas/ChargeInstrument"
                 }
             },
+            "ChargeRefundEvent": {
+                "type": "object",
+                "properties": {
+                    "PostedDate": {
+                        "$ref": "#/components/schemas/Date"
+                    },
+                    "ReasonCode": {
+                        "type": "string",
+                        "description": "The reason given for a charge refund.\n\nExample: `SubscriptionFeeCorrection`"
+                    },
+                    "ReasonCodeDescription": {
+                        "type": "string",
+                        "description": "A description of the Reason Code. \n\nExample: `SubscriptionFeeCorrection`"
+                    },
+                    "ChargeRefundTransactions": {
+                        "$ref": "#/components/schemas/ChargeRefundTransactions"
+                    }
+                },
+                "description": "An event related to charge refund."
+            },
+            "ChargeRefundEventList": {
+                "type": "array",
+                "description": "A list of charge refund events.",
+                "items": {
+                    "$ref": "#/components/schemas/ChargeRefundEvent"
+                }
+            },
+            "ChargeRefundTransaction": {
+                "type": "object",
+                "properties": {
+                    "ChargeAmount": {
+                        "$ref": "#/components/schemas/Currency"
+                    },
+                    "ChargeType": {
+                        "type": "string",
+                        "description": "The type of charge."
+                    }
+                },
+                "description": "The charge refund transaction."
+            },
+            "ChargeRefundTransactions": {
+                "type": "array",
+                "description": "A list of `ChargeRefund` transactions.",
+                "items": {
+                    "$ref": "#/components/schemas/ChargeRefundTransaction"
+                }
+            },
             "CouponPaymentEvent": {
                 "type": "object",
                 "properties": {
@@ -1795,6 +1887,45 @@
                     "$ref": "#/components/schemas/DirectPayment"
                 }
             },
+            "FailedAdhocDisbursementEventList": {
+                "type": "array",
+                "description": "A list of `FailedAdhocDisbursementEvent`s.",
+                "items": {
+                    "$ref": "#/components/schemas/FailedAdhocDisbursementEvent"
+                }
+            },
+            "FailedAdhocDisbursementEvent": {
+                "type": "object",
+                "properties": {
+                    "FundsTransfersType": {
+                        "type": "string",
+                        "description": "The type of fund transfer. \n\nExample \"Refund\""
+                    },
+                    "TransferId": {
+                        "type": "string",
+                        "description": "The transfer identifier."
+                    },
+                    "DisbursementId": {
+                        "type": "string",
+                        "description": "The disbursement identifier."
+                    },
+                    "PaymentDisbursementType": {
+                        "type": "string",
+                        "description": "The type of payment for disbursement. \n\nExample `CREDIT_CARD`"
+                    },
+                    "Status": {
+                        "type": "string",
+                        "description": "The status of the failed `AdhocDisbursement`. \n\nExample `HARD_DECLINED`"
+                    },
+                    "TransferAmount": {
+                        "$ref": "#/components/schemas/Currency"
+                    },
+                    "PostedDate": {
+                        "$ref": "#/components/schemas/Date"
+                    }
+                },
+                "description": "Failed ad hoc disbursement event list."
+            },
             "FBALiquidationEvent": {
                 "type": "object",
                 "properties": {
@@ -1898,6 +2029,9 @@
                     "ShipmentEventList": {
                         "$ref": "#/components/schemas/ShipmentEventList"
                     },
+                    "ShipmentSettleEventList": {
+                        "$ref": "#/components/schemas/ShipmentSettleEventList"
+                    },
                     "RefundEventList": {
                         "$ref": "#/components/schemas/ShipmentEventList"
                     },
@@ -1961,20 +2095,35 @@
                     "AffordabilityExpenseReversalEventList": {
                         "$ref": "#/components/schemas/AffordabilityExpenseEventList"
                     },
-                    "TrialShipmentEventList": {
-                        "$ref": "#/components/schemas/TrialShipmentEventList"
-                    },
-                    "ShipmentSettleEventList": {
-                        "$ref": "#/components/schemas/ShipmentSettleEventList"
-                    },
-                    "TaxWithholdingEventList": {
-                        "$ref": "#/components/schemas/TaxWithholdingEventList"
-                    },
                     "RemovalShipmentEventList": {
                         "$ref": "#/components/schemas/RemovalShipmentEventList"
                     },
                     "RemovalShipmentAdjustmentEventList": {
                         "$ref": "#/components/schemas/RemovalShipmentAdjustmentEventList"
+                    },
+                    "TrialShipmentEventList": {
+                        "$ref": "#/components/schemas/TrialShipmentEventList"
+                    },
+                    "TDSReimbursementEventList": {
+                        "$ref": "#/components/schemas/TDSReimbursementEventList"
+                    },
+                    "AdhocDisbursementEventList": {
+                        "$ref": "#/components/schemas/AdhocDisbursementEventList"
+                    },
+                    "TaxWithholdingEventList": {
+                        "$ref": "#/components/schemas/TaxWithholdingEventList"
+                    },
+                    "ChargeRefundEventList": {
+                        "$ref": "#/components/schemas/ChargeRefundEventList"
+                    },
+                    "FailedAdhocDisbursementEventList": {
+                        "$ref": "#/components/schemas/FailedAdhocDisbursementEventList"
+                    },
+                    "ValueAddedServiceChargeEventList": {
+                        "$ref": "#/components/schemas/ValueAddedServiceChargeEventList"
+                    },
+                    "CapacityReservationBillingEventList": {
+                        "$ref": "#/components/schemas/CapacityReservationBillingEventList"
                     }
                 },
                 "description": "Contains all information related to a financial event."
@@ -2677,6 +2826,13 @@
                     "$ref": "#/components/schemas/ShipmentEvent"
                 }
             },
+            "ShipmentSettleEventList": {
+                "type": "array",
+                "description": "A list of `ShipmentEvent` items.",
+                "items": {
+                    "$ref": "#/components/schemas/ShipmentEvent"
+                }
+            },
             "ShipmentItem": {
                 "type": "object",
                 "properties": {
@@ -2817,7 +2973,7 @@
             },
             "TaxWithholdingEventList": {
                 "type": "array",
-                "description": "List of TaxWithholding events.",
+                "description": "A list of `TaxWithholding` events.",
                 "items": {
                     "$ref": "#/components/schemas/TaxWithholdingEvent"
                 }
@@ -2840,6 +2996,29 @@
                 "description": "A list of information about taxes withheld.",
                 "items": {
                     "$ref": "#/components/schemas/TaxWithheldComponent"
+                }
+            },
+            "TDSReimbursementEvent": {
+                "type": "object",
+                "properties": {
+                    "PostedDate": {
+                        "$ref": "#/components/schemas/Date"
+                    },
+                    "TDSOrderId": {
+                        "type": "string",
+                        "description": "The Tax-Deducted-at-Source (TDS) identifier."
+                    },
+                    "ReimbursedAmount": {
+                        "$ref": "#/components/schemas/Currency"
+                    }
+                },
+                "description": "An event related to a Tax-Deducted-at-Source (TDS) reimbursement."
+            },
+            "TDSReimbursementEventList": {
+                "type": "array",
+                "description": "A list of `TDSReimbursementEvent` items.",
+                "items": {
+                    "$ref": "#/components/schemas/TDSReimbursementEvent"
                 }
             },
             "TrialShipmentEvent": {
@@ -2873,11 +3052,58 @@
                     "$ref": "#/components/schemas/TrialShipmentEvent"
                 }
             },
-            "ShipmentSettleEventList": {
+            "ValueAddedServiceChargeEventList": {
                 "type": "array",
-                "description": "A list of information about shipment settle financial events.",
+                "description": "A list of `ValueAddedServiceCharge` events.",
                 "items": {
-                    "$ref": "#/components/schemas/ShipmentEvent"
+                    "$ref": "#/components/schemas/ValueAddedServiceChargeEvent"
+                }
+            },
+            "ValueAddedServiceChargeEvent": {
+                "type": "object",
+                "properties": {
+                    "TransactionType": {
+                        "type": "string",
+                        "description": "Indicates the type of transaction.\n\nExample: 'Other Support Service fees'"
+                    },
+                    "PostedDate": {
+                        "$ref": "#/components/schemas/Date"
+                    },
+                    "Description": {
+                        "type": "string",
+                        "description": "A short description of the service charge event."
+                    },
+                    "TransactionAmount": {
+                        "$ref": "#/components/schemas/Currency"
+                    }
+                },
+                "description": "An event related to a value added service charge."
+            },
+            "CapacityReservationBillingEvent": {
+                "type": "object",
+                "properties": {
+                    "TransactionType": {
+                        "type": "string",
+                        "description": "Indicates the type of transaction. For example, FBA Inventory Fee"
+                    },
+                    "PostedDate": {
+                        "$ref": "#/components/schemas/Date"
+                    },
+                    "Description": {
+                        "type": "string",
+                        "description": "A short description of the capacity reservation billing event."
+                    },
+                    "TransactionAmount": {
+                        "$ref": "#/components/schemas/Currency"
+                    }
+                },
+                "description": "An event related to a capacity reservation billing charge."
+            },
+            "CapacityReservationBillingEventList": {
+                "type": "array",
+                "description": "A list of `CapacityReservationBillingEvent` events.",
+                "items": {
+                    "$ref": "#/components/schemas/CapacityReservationBillingEvent"
                 }
             },
             "ErrorList": {
@@ -2910,5 +3136,6 @@
                 "description": "Error response returned when the request is unsuccessful."
             }
         }
-    }
+    },
+    "x-original-swagger-version": "2.0"
 }

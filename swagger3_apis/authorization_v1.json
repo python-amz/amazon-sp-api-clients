@@ -376,5 +376,6 @@
                 "description": "Error response returned when the request is unsuccessful."
             }
         }
-    }
+    },
+    "x-original-swagger-version": "2.0"
 }

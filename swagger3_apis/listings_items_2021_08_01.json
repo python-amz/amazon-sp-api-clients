@@ -24,7 +24,7 @@
                 "tags": [
                     "listings"
                 ],
-                "description": "Returns details about a listings item for a selling partner.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Returns details about a listings item for a selling partner.\n\n**Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "getListingsItem",
                 "parameters": [
                     {
@@ -416,7 +416,7 @@
                 "tags": [
                     "listings"
                 ],
-                "description": "Creates a new or fully-updates an existing listings item for a selling partner.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Creates a new or fully-updates an existing listings item for a selling partner.\n\n**Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "putListingsItem",
                 "parameters": [
                     {
@@ -682,7 +682,7 @@
                 "tags": [
                     "listings"
                 ],
-                "description": "Delete a listings item for a selling partner.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Delete a listings item for a selling partner.\n\n**Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "deleteListingsItem",
                 "parameters": [
                     {
@@ -934,7 +934,7 @@
                 "tags": [
                     "listings"
                 ],
-                "description": "Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.\n\n**Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 5 | 10 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "patchListingsItem",
                 "parameters": [
                     {
@@ -1267,7 +1267,11 @@
                         }
                     },
                     "procurement": {
-                        "$ref": "#/components/schemas/ItemProcurement"
+                        "type": "array",
+                        "description": "Vendor procurement information for the listings item.",
+                        "items": {
+                            "$ref": "#/components/schemas/ItemProcurement"
+                        }
                     }
                 },
                 "description": "A listings item."
@@ -1446,6 +1450,7 @@
             },
             "ItemAttributes": {
                 "type": "object",
+                "additionalProperties": true,
                 "description": "JSON object containing structured listings item attribute data keyed by attribute name."
             },
             "ItemIssues": {
@@ -1639,7 +1644,7 @@
                             },
                             {
                                 "value": "delete",
-                                "description": "The \"delete\" operation removes the target property."
+                                "description": "The \"delete\" operation removes the target property. Not supported for vendors (vendors will receive an HTTP status code 400 response)."
                             }
                         ]
                     },
@@ -1652,7 +1657,7 @@
                         "description": "JSON value to add, replace, or delete.",
                         "items": {
                             "type": "object",
-                            "properties": {}
+                            "additionalProperties": true
                         }
                     }
                 },
@@ -1710,13 +1715,13 @@
                             },
                             {
                                 "value": "LISTING_OFFER_ONLY",
-                                "description": "Indicates the submitted data contains sales terms only."
+                                "description": "Indicates the submitted data contains sales terms only. Not supported for vendors (vendors will receive an HTTP status code 400 response)."
                             }
                         ]
                     },
                     "attributes": {
                         "type": "object",
-                        "properties": {},
+                        "additionalProperties": true,
                         "description": "JSON object containing structured listings item attribute data keyed by attribute name."
                     }
                 },
@@ -1767,5 +1772,6 @@
                 "description": "Response containing the results of a submission to the Selling Partner API for Listings Items."
             }
         }
-    }
+    },
+    "x-original-swagger-version": "2.0"
 }

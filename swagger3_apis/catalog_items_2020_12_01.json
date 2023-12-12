@@ -24,7 +24,7 @@
                 "tags": [
                     "catalog"
                 ],
-                "description": "Search for and return a list of Amazon catalog items and associated information.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 5 | 5 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Search for and return a list of Amazon catalog items and associated information.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "searchCatalogItems",
                 "parameters": [
                     {
@@ -327,7 +327,25 @@
                             "static": [
                                 {
                                     "request": {
-                                        "parameters": {}
+                                        "parameters": {
+                                            "keywords": {
+                                                "value": [
+                                                    "red",
+                                                    "polo",
+                                                    "shirt"
+                                                ]
+                                            },
+                                            "marketplaceIds": {
+                                                "value": [
+                                                    "ATVPDKIKX0DER"
+                                                ]
+                                            },
+                                            "includedData": {
+                                                "value": [
+                                                    "summaries"
+                                                ]
+                                            }
+                                        }
                                     },
                                     "response": {
                                         "numberOfResults": 12247,
@@ -641,7 +659,7 @@
                 "tags": [
                     "catalog"
                 ],
-                "description": "Retrieves details for an item in the Amazon catalog.\n\n**Usage Plans:**\n\n| Plan type | Rate (requests per second) | Burst |\n| ---- | ---- | ---- |\n|Default| 5 | 5 |\n|Selling partner specific| Variable | Variable |\n\nThe x-amzn-RateLimit-Limit response header returns the usage plan rate limits that were applied to the requested operation. Rate limits for some selling partners will vary from the default rate and burst shown in the table above. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
+                "description": "Retrieves details for an item in the Amazon catalog.\n\n**Usage Plan:**\n\n| Rate (requests per second) | Burst |\n| ---- | ---- |\n| 2 | 2 |\n\nThe `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).",
                 "operationId": "getCatalogItem",
                 "parameters": [
                     {
@@ -852,7 +870,27 @@
                             "static": [
                                 {
                                     "request": {
-                                        "parameters": {}
+                                        "parameters": {
+                                            "asin": {
+                                                "value": "B07N4M94X4"
+                                            },
+                                            "marketplaceIds": {
+                                                "value": [
+                                                    "ATVPDKIKX0DER"
+                                                ]
+                                            },
+                                            "includedData": {
+                                                "value": [
+                                                    "identifiers",
+                                                    "images",
+                                                    "productTypes",
+                                                    "salesRanks",
+                                                    "summaries",
+                                                    "variations",
+                                                    "vendorDetails"
+                                                ]
+                                            }
+                                        }
                                     },
                                     "response": {
                                         "asin": "B07N4M94X4",
@@ -1217,6 +1255,7 @@
             },
             "ItemAttributes": {
                 "type": "object",
+                "additionalProperties": true,
                 "description": "A JSON object that contains structured item attribute data keyed by attribute name. Catalog item attributes are available only to brand owners and conform to the related product type definitions available in the Selling Partner API for Product Type Definitions."
             },
             "ItemIdentifiers": {
@@ -1759,5 +1798,6 @@
                 "description": "Description of a classification that can be used to get more fine-grained search results."
             }
         }
-    }
+    },
+    "x-original-swagger-version": "2.0"
 }

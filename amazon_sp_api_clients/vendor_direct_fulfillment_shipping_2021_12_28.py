@@ -2,6 +2,65 @@ from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __
 from typing import List as _List
 
 
+class PackingSlip(__BaseDictObject):
+    """
+    Packing slip information.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "purchaseOrderNumber" in data:
+            self.purchaseOrderNumber: str = self._get_value(str, "purchaseOrderNumber")
+        else:
+            self.purchaseOrderNumber: str = None
+        if "content" in data:
+            self.content: str = self._get_value(str, "content")
+        else:
+            self.content: str = None
+        if "contentType" in data:
+            self.contentType: str = self._get_value(str, "contentType")
+        else:
+            self.contentType: str = None
+
+
+class PackingSlipList(__BaseDictObject):
+    """
+    A list of packing slips.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "pagination" in data:
+            self.pagination: Pagination = self._get_value(Pagination, "pagination")
+        else:
+            self.pagination: Pagination = None
+        if "packingSlips" in data:
+            self.packingSlips: _List[PackingSlip] = [PackingSlip(datum) for datum in data["packingSlips"]]
+        else:
+            self.packingSlips: _List[PackingSlip] = []
+
+
+class CreateShippingLabelsRequest(__BaseDictObject):
+    """
+    The request body for the createShippingLabels operation.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "sellingParty" in data:
+            self.sellingParty: PartyIdentification = self._get_value(PartyIdentification, "sellingParty")
+        else:
+            self.sellingParty: PartyIdentification = None
+        if "shipFromParty" in data:
+            self.shipFromParty: PartyIdentification = self._get_value(PartyIdentification, "shipFromParty")
+        else:
+            self.shipFromParty: PartyIdentification = None
+        if "containers" in data:
+            self.containers: _List[Container] = [Container(datum) for datum in data["containers"]]
+        else:
+            self.containers: _List[Container] = []
+
+
 class SubmitShippingLabelsRequest(__BaseDictObject):
     """ """
 
@@ -76,6 +135,10 @@ class PackedItem(__BaseDictObject):
             self.buyerProductIdentifier: str = self._get_value(str, "buyerProductIdentifier")
         else:
             self.buyerProductIdentifier: str = None
+        if "pieceNumber" in data:
+            self.pieceNumber: int = self._get_value(int, "pieceNumber")
+        else:
+            self.pieceNumber: int = None
         if "vendorProductIdentifier" in data:
             self.vendorProductIdentifier: str = self._get_value(str, "vendorProductIdentifier")
         else:
@@ -105,6 +168,68 @@ class PartyIdentification(__BaseDictObject):
             ]
         else:
             self.taxRegistrationDetails: _List[TaxRegistrationDetails] = []
+
+
+class ShipmentDetails(__BaseDictObject):
+    """
+    Details about a shipment.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "shippedDate" in data:
+            self.shippedDate: str = self._get_value(str, "shippedDate")
+        else:
+            self.shippedDate: str = None
+        if "shipmentStatus" in data:
+            self.shipmentStatus: str = self._get_value(str, "shipmentStatus")
+        else:
+            self.shipmentStatus: str = None
+        if "isPriorityShipment" in data:
+            self.isPriorityShipment: bool = self._get_value(convert_bool, "isPriorityShipment")
+        else:
+            self.isPriorityShipment: bool = None
+        if "vendorOrderNumber" in data:
+            self.vendorOrderNumber: str = self._get_value(str, "vendorOrderNumber")
+        else:
+            self.vendorOrderNumber: str = None
+        if "estimatedDeliveryDate" in data:
+            self.estimatedDeliveryDate: str = self._get_value(str, "estimatedDeliveryDate")
+        else:
+            self.estimatedDeliveryDate: str = None
+
+
+class StatusUpdateDetails(__BaseDictObject):
+    """
+    Details for the shipment status update given by the vendor for the specific package.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "trackingNumber" in data:
+            self.trackingNumber: str = self._get_value(str, "trackingNumber")
+        else:
+            self.trackingNumber: str = None
+        if "statusCode" in data:
+            self.statusCode: str = self._get_value(str, "statusCode")
+        else:
+            self.statusCode: str = None
+        if "reasonCode" in data:
+            self.reasonCode: str = self._get_value(str, "reasonCode")
+        else:
+            self.reasonCode: str = None
+        if "statusDateTime" in data:
+            self.statusDateTime: str = self._get_value(str, "statusDateTime")
+        else:
+            self.statusDateTime: str = None
+        if "statusLocationAddress" in data:
+            self.statusLocationAddress: Address = self._get_value(Address, "statusLocationAddress")
+        else:
+            self.statusLocationAddress: Address = None
+        if "shipmentSchedule" in data:
+            self.shipmentSchedule: ShipmentSchedule = self._get_value(ShipmentSchedule, "shipmentSchedule")
+        else:
+            self.shipmentSchedule: ShipmentSchedule = None
 
 
 class TaxRegistrationDetails(__BaseDictObject):
@@ -185,6 +310,27 @@ class Address(__BaseDictObject):
             self.phone: str = None
 
 
+class ShipmentSchedule(__BaseDictObject):
+    """
+    Details about the estimated delivery window.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "estimatedDeliveryDateTime" in data:
+            self.estimatedDeliveryDateTime: str = self._get_value(str, "estimatedDeliveryDateTime")
+        else:
+            self.estimatedDeliveryDateTime: str = None
+        if "apptWindowStartDateTime" in data:
+            self.apptWindowStartDateTime: str = self._get_value(str, "apptWindowStartDateTime")
+        else:
+            self.apptWindowStartDateTime: str = None
+        if "apptWindowEndDateTime" in data:
+            self.apptWindowEndDateTime: str = self._get_value(str, "apptWindowEndDateTime")
+        else:
+            self.apptWindowEndDateTime: str = None
+
+
 class Dimensions(__BaseDictObject):
     """
     Physical dimensional measurements of a container.
@@ -242,40 +388,6 @@ class ItemQuantity(__BaseDictObject):
             self.unitOfMeasure: str = self._get_value(str, "unitOfMeasure")
         else:
             self.unitOfMeasure: str = None
-
-
-class GetShippingLabelListResponse(__BaseDictObject):
-    """
-    The response schema for the getShippingLabels operation.
-    """
-
-    def __init__(self, data):
-        super().__init__(data)
-        if "payload" in data:
-            self.payload: ShippingLabelList = self._get_value(ShippingLabelList, "payload")
-        else:
-            self.payload: ShippingLabelList = None
-        if "errors" in data:
-            self.errors: ErrorList = self._get_value(ErrorList, "errors")
-        else:
-            self.errors: ErrorList = None
-
-
-class GetShippingLabelResponse(__BaseDictObject):
-    """
-    The response schema for the getShippingLabel operation.
-    """
-
-    def __init__(self, data):
-        super().__init__(data)
-        if "payload" in data:
-            self.payload: ShippingLabel = self._get_value(ShippingLabel, "payload")
-        else:
-            self.payload: ShippingLabel = None
-        if "errors" in data:
-            self.errors: ErrorList = self._get_value(ErrorList, "errors")
-        else:
-            self.errors: ErrorList = None
 
 
 class ShippingLabelList(__BaseDictObject):
@@ -349,55 +461,84 @@ class ShippingLabel(__BaseDictObject):
             self.labelData: _List[LabelData] = []
 
 
-class SubmitShippingLabelsResponse(__BaseDictObject):
-    """
-    The response schema for the submitShippingLabelRequest operation.
-    """
+class SubmitShipmentConfirmationsRequest(__BaseDictObject):
+    """ """
 
     def __init__(self, data):
         super().__init__(data)
-        if "payload" in data:
-            self.payload: TransactionReference = self._get_value(TransactionReference, "payload")
+        if "shipmentConfirmations" in data:
+            self.shipmentConfirmations: _List[ShipmentConfirmation] = [
+                ShipmentConfirmation(datum) for datum in data["shipmentConfirmations"]
+            ]
         else:
-            self.payload: TransactionReference = None
-        if "errors" in data:
-            self.errors: ErrorList = self._get_value(ErrorList, "errors")
-        else:
-            self.errors: ErrorList = None
+            self.shipmentConfirmations: _List[ShipmentConfirmation] = []
 
 
-class GetCustomerInvoicesResponse(__BaseDictObject):
-    """
-    The response schema for the getCustomerInvoices operation.
-    """
+class ShipmentConfirmation(__BaseDictObject):
+    """ """
 
     def __init__(self, data):
         super().__init__(data)
-        if "payload" in data:
-            self.payload: CustomerInvoiceList = self._get_value(CustomerInvoiceList, "payload")
+        if "purchaseOrderNumber" in data:
+            self.purchaseOrderNumber: str = self._get_value(str, "purchaseOrderNumber")
         else:
-            self.payload: CustomerInvoiceList = None
-        if "errors" in data:
-            self.errors: ErrorList = self._get_value(ErrorList, "errors")
+            self.purchaseOrderNumber: str = None
+        if "shipmentDetails" in data:
+            self.shipmentDetails: ShipmentDetails = self._get_value(ShipmentDetails, "shipmentDetails")
         else:
-            self.errors: ErrorList = None
+            self.shipmentDetails: ShipmentDetails = None
+        if "sellingParty" in data:
+            self.sellingParty: PartyIdentification = self._get_value(PartyIdentification, "sellingParty")
+        else:
+            self.sellingParty: PartyIdentification = None
+        if "shipFromParty" in data:
+            self.shipFromParty: PartyIdentification = self._get_value(PartyIdentification, "shipFromParty")
+        else:
+            self.shipFromParty: PartyIdentification = None
+        if "items" in data:
+            self.items: _List[Item] = [Item(datum) for datum in data["items"]]
+        else:
+            self.items: _List[Item] = []
+        if "containers" in data:
+            self.containers: _List[Container] = [Container(datum) for datum in data["containers"]]
+        else:
+            self.containers: _List[Container] = []
 
 
-class GetCustomerInvoiceResponse(__BaseDictObject):
-    """
-    The response schema for the getCustomerInvoice operation.
-    """
+class SubmitShipmentStatusUpdatesRequest(__BaseDictObject):
+    """ """
 
     def __init__(self, data):
         super().__init__(data)
-        if "payload" in data:
-            self.payload: CustomerInvoice = self._get_value(CustomerInvoice, "payload")
+        if "shipmentStatusUpdates" in data:
+            self.shipmentStatusUpdates: _List[ShipmentStatusUpdate] = [
+                ShipmentStatusUpdate(datum) for datum in data["shipmentStatusUpdates"]
+            ]
         else:
-            self.payload: CustomerInvoice = None
-        if "errors" in data:
-            self.errors: ErrorList = self._get_value(ErrorList, "errors")
+            self.shipmentStatusUpdates: _List[ShipmentStatusUpdate] = []
+
+
+class ShipmentStatusUpdate(__BaseDictObject):
+    """ """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "purchaseOrderNumber" in data:
+            self.purchaseOrderNumber: str = self._get_value(str, "purchaseOrderNumber")
         else:
-            self.errors: ErrorList = None
+            self.purchaseOrderNumber: str = None
+        if "sellingParty" in data:
+            self.sellingParty: PartyIdentification = self._get_value(PartyIdentification, "sellingParty")
+        else:
+            self.sellingParty: PartyIdentification = None
+        if "shipFromParty" in data:
+            self.shipFromParty: PartyIdentification = self._get_value(PartyIdentification, "shipFromParty")
+        else:
+            self.shipFromParty: PartyIdentification = None
+        if "statusUpdateDetails" in data:
+            self.statusUpdateDetails: StatusUpdateDetails = self._get_value(StatusUpdateDetails, "statusUpdateDetails")
+        else:
+            self.statusUpdateDetails: StatusUpdateDetails = None
 
 
 class CustomerInvoiceList(__BaseDictObject):
@@ -652,6 +793,268 @@ class VendorDirectFulfillmentShipping20211228Client(__BaseClient):
         )
         response_type = {
             200: ShippingLabel,
+            400: ErrorList,
+            401: ErrorList,
+            403: ErrorList,
+            404: ErrorList,
+            415: ErrorList,
+            429: ErrorList,
+            500: ErrorList,
+            503: ErrorList,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def createShippingLabels(
+        self,
+        data: CreateShippingLabelsRequest,
+        purchaseOrderNumber: str,
+    ):
+        """
+                Creates shipping labels for a purchase order and returns the labels.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 10 | 10 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        """
+        url = f"/vendor/directFulfillment/shipping/2021-12-28/shippingLabels/{purchaseOrderNumber}"
+        params = {}
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
+        response_type = {
+            200: ShippingLabel,
+            400: ErrorList,
+            403: ErrorList,
+            404: ErrorList,
+            409: ErrorList,
+            413: ErrorList,
+            415: ErrorList,
+            429: ErrorList,
+            500: ErrorList,
+            503: ErrorList,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def submitShipmentConfirmations(
+        self,
+        data: SubmitShipmentConfirmationsRequest,
+    ):
+        """
+                Submits one or more shipment confirmations for vendor orders.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 10 | 10 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        """
+        url = f"/vendor/directFulfillment/shipping/2021-12-28/shipmentConfirmations"
+        params = {}
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
+        response_type = {
+            202: TransactionReference,
+            400: ErrorList,
+            403: ErrorList,
+            404: ErrorList,
+            413: ErrorList,
+            415: ErrorList,
+            429: ErrorList,
+            500: ErrorList,
+            503: ErrorList,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def submitShipmentStatusUpdates(
+        self,
+        data: SubmitShipmentStatusUpdatesRequest,
+    ):
+        """
+                This operation is only to be used by Vendor-Own-Carrier (VOC) vendors. Calling this API submits a shipment status update for the package that a vendor has shipped. It will provide the Amazon customer visibility on their order, when the package is outside of Amazon Network visibility.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 10 | 10 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        """
+        url = f"/vendor/directFulfillment/shipping/2021-12-28/shipmentStatusUpdates"
+        params = {}
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
+        response_type = {
+            202: TransactionReference,
+            400: ErrorList,
+            403: ErrorList,
+            404: ErrorList,
+            413: ErrorList,
+            415: ErrorList,
+            429: ErrorList,
+            500: ErrorList,
+            503: ErrorList,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def getCustomerInvoices(
+        self,
+        createdAfter: str,
+        createdBefore: str,
+        shipFromPartyId: str = None,
+        limit: int = None,
+        sortOrder: str = None,
+        nextToken: str = None,
+    ):
+        """
+                Returns a list of customer invoices created during a time frame that you specify. You define the time frame using the createdAfter and createdBefore parameters. You must use both of these parameters. The date range to search must be no more than 7 days.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 10 | 10 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        """
+        url = f"/vendor/directFulfillment/shipping/2021-12-28/customerInvoices"
+        params = {}
+        if shipFromPartyId is not None:
+            params["shipFromPartyId"] = shipFromPartyId
+        if limit is not None:
+            params["limit"] = limit
+        if createdAfter is not None:
+            params["createdAfter"] = createdAfter
+        if createdBefore is not None:
+            params["createdBefore"] = createdBefore
+        if sortOrder is not None:
+            params["sortOrder"] = sortOrder
+        if nextToken is not None:
+            params["nextToken"] = nextToken
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
+        response_type = {
+            200: CustomerInvoiceList,
+            400: ErrorList,
+            403: ErrorList,
+            404: ErrorList,
+            415: ErrorList,
+            429: ErrorList,
+            500: ErrorList,
+            503: ErrorList,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def getCustomerInvoice(
+        self,
+        purchaseOrderNumber: str,
+    ):
+        """
+                Returns a customer invoice based on the purchaseOrderNumber that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 10 | 10 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        """
+        url = f"/vendor/directFulfillment/shipping/2021-12-28/customerInvoices/{purchaseOrderNumber}"
+        params = {}
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
+        response_type = {
+            200: CustomerInvoice,
+            400: ErrorList,
+            401: ErrorList,
+            403: ErrorList,
+            404: ErrorList,
+            415: ErrorList,
+            429: ErrorList,
+            500: ErrorList,
+            503: ErrorList,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def getPackingSlips(
+        self,
+        createdAfter: str,
+        createdBefore: str,
+        shipFromPartyId: str = None,
+        limit: int = None,
+        sortOrder: str = None,
+        nextToken: str = None,
+    ):
+        """
+                Returns a list of packing slips for the purchase orders that match the criteria specified. Date range to search must not be more than 7 days.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 10 | 10 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        """
+        url = f"/vendor/directFulfillment/shipping/2021-12-28/packingSlips"
+        params = {}
+        if shipFromPartyId is not None:
+            params["shipFromPartyId"] = shipFromPartyId
+        if limit is not None:
+            params["limit"] = limit
+        if createdAfter is not None:
+            params["createdAfter"] = createdAfter
+        if createdBefore is not None:
+            params["createdBefore"] = createdBefore
+        if sortOrder is not None:
+            params["sortOrder"] = sortOrder
+        if nextToken is not None:
+            params["nextToken"] = nextToken
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
+        response_type = {
+            200: PackingSlipList,
+            400: ErrorList,
+            401: ErrorList,
+            403: ErrorList,
+            404: ErrorList,
+            415: ErrorList,
+            429: ErrorList,
+            500: ErrorList,
+            503: ErrorList,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def getPackingSlip(
+        self,
+        purchaseOrderNumber: str,
+    ):
+        """
+                Returns a packing slip based on the purchaseOrderNumber that you specify.
+        **Usage Plan:**
+        | Rate (requests per second) | Burst |
+        | ---- | ---- |
+        | 10 | 10 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        """
+        url = f"/vendor/directFulfillment/shipping/2021-12-28/packingSlips/{purchaseOrderNumber}"
+        params = {}
+        response = self.request(
+            path=url,
+            method="GET",
+            params=params,
+        )
+        response_type = {
+            200: PackingSlip,
             400: ErrorList,
             401: ErrorList,
             403: ErrorList,

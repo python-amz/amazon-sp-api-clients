@@ -1808,7 +1808,7 @@ class InboundGuidance(str):
 
 class IntendedBoxContentsSource(str):
     """
-    How the seller intends to provide box contents information for a shipment.
+    How the seller intends to provide box contents information for a shipment. Leaving this field blank is equivalent to selecting `NONE`, which will incur a fee if the seller does not provide box contents information.
     """
 
 
@@ -1923,7 +1923,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/itemsGuidance"
         params = {}
@@ -1960,7 +1960,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/plans"
         params = {}
@@ -1993,7 +1993,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipments/{shipmentId}"
         params = {}
@@ -2026,7 +2026,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipments/{shipmentId}"
         params = {}
@@ -2059,7 +2059,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipments/{shipmentId}/preorder"
         params = {}
@@ -2094,7 +2094,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipments/{shipmentId}/preorder/confirm"
         params = {}
@@ -2131,7 +2131,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/prepInstructions"
         params = {}
@@ -2168,7 +2168,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipments/{shipmentId}/transport"
         params = {}
@@ -2200,7 +2200,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipments/{shipmentId}/transport"
         params = {}
@@ -2234,7 +2234,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipments/{shipmentId}/transport/void"
         params = {}
@@ -2266,7 +2266,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipments/{shipmentId}/transport/estimate"
         params = {}
@@ -2299,7 +2299,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipments/{shipmentId}/transport/confirm"
         params = {}
@@ -2337,7 +2337,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipments/{shipmentId}/labels"
         params = {}
@@ -2382,7 +2382,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipments/{shipmentId}/billOfLading"
         params = {}
@@ -2419,7 +2419,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipments"
         params = {}
@@ -2465,7 +2465,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipments/{shipmentId}/items"
         params = {}
@@ -2502,7 +2502,7 @@ class FulfillmentInboundV0Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/inbound/v0/shipmentItems"
         params = {}

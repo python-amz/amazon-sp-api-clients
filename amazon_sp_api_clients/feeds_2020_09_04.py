@@ -206,7 +206,7 @@ class CreateFeedResponse(__BaseDictObject):
 
 class FeedOptions(__BaseDictObject):
     """
-    Additional options to control the feed. For feeds that use the feedOptions parameter, you can find the parameter values in the feed description in [feedType values](doc:feed-type-values).
+    Additional options to control the feed. For feeds that use the feedOptions parameter, you can find the parameter values in the feed description in [feedType values](https://github.com/amzn/selling-partner-api-docs/blob/main/references/feeds-api/feedtype-values.md).
     """
 
     def __init__(self, data):
@@ -317,12 +317,7 @@ class Feeds20200904Client(__BaseClient):
         nextToken: str = None,
     ):
         """
-                Returns feed details for the feeds that match the filters that you specify.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective June 27, 2023, the `getFeeds` operation will no longer be available in the Selling Partner API for Feeds v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Feeds v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/feeds/2020-09-04/feeds"
         params = {}
@@ -363,12 +358,7 @@ class Feeds20200904Client(__BaseClient):
         data: CreateFeedSpecification,
     ):
         """
-                Creates a feed. Encrypt and upload the contents of the feed document before calling this operation.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0083 | 15 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective June 27, 2023, the `createFeed` operation will no longer be available in the Selling Partner API for Feeds v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Feeds v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/feeds/2020-09-04/feeds"
         params = {}
@@ -396,12 +386,7 @@ class Feeds20200904Client(__BaseClient):
         feedId: str,
     ):
         """
-                Returns feed details (including the resultDocumentId, if available) for the feed that you specify.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 2.0 | 15 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective June 27, 2023, the `getFeed` operation will no longer be available in the Selling Partner API for Feeds v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Feeds v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/feeds/2020-09-04/feeds/{feedId}"
         params = {}
@@ -428,12 +413,7 @@ class Feeds20200904Client(__BaseClient):
         feedId: str,
     ):
         """
-                Cancels the feed that you specify. Only feeds with processingStatus=IN_QUEUE can be cancelled. Cancelled feeds are returned in subsequent calls to the getFeed and getFeeds operations.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective June 27, 2023, the `cancelFeed` operation will no longer be available in the Selling Partner API for Feeds v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Feeds v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/feeds/2020-09-04/feeds/{feedId}"
         params = {}
@@ -460,12 +440,7 @@ class Feeds20200904Client(__BaseClient):
         data: CreateFeedDocumentSpecification,
     ):
         """
-                Creates a feed document for the feed type that you specify. This operation returns encryption details for encrypting the contents of the document, as well as a presigned URL for uploading the encrypted feed document contents. It also returns a feedDocumentId value that you can pass in with a subsequent call to the createFeed operation.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0083 | 15 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective June 27, 2023, the `createFeedDocument` operation will no longer be available in the Selling Partner API for Feeds v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Feeds v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/feeds/2020-09-04/documents"
         params = {}
@@ -493,12 +468,7 @@ class Feeds20200904Client(__BaseClient):
         feedDocumentId: str,
     ):
         """
-                Returns the information required for retrieving a feed document's contents. This includes a presigned URL for the feed document as well as the information required to decrypt the document's contents.
-        **Usage Plan:**
-        | Rate (requests per second) | Burst |
-        | ---- | ---- |
-        | 0.0222 | 10 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        Effective June 27, 2023, the `getFeedDocument` operation will no longer be available in the Selling Partner API for Feeds v2020-09-04 and all calls to it will fail. Integrations that rely on this operation should migrate to [Feeds v2021-06-30](https://developer-docs.amazon.com/sp-api/docs/feeds-api-v2021-06-30-reference) to avoid service disruption.
         """
         url = f"/feeds/2020-09-04/documents/{feedDocumentId}"
         params = {}

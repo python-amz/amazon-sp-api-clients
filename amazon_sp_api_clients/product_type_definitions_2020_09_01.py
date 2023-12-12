@@ -90,6 +90,10 @@ class ProductTypeDefinition(__BaseDictObject):
             self.productType: str = self._get_value(str, "productType")
         else:
             self.productType: str = None
+        if "displayName" in data:
+            self.displayName: str = self._get_value(str, "displayName")
+        else:
+            self.displayName: str = None
         if "productTypeVersion" in data:
             self.productTypeVersion: ProductTypeVersion = self._get_value(ProductTypeVersion, "productTypeVersion")
         else:
@@ -149,6 +153,10 @@ class ProductType(__BaseDictObject):
             self.name: str = self._get_value(str, "name")
         else:
             self.name: str = None
+        if "displayName" in data:
+            self.displayName: str = self._get_value(str, "displayName")
+        else:
+            self.displayName: str = None
         if "marketplaceIds" in data:
             self.marketplaceIds: _List[str] = [str(datum) for datum in data["marketplaceIds"]]
         else:
@@ -166,6 +174,10 @@ class ProductTypeList(__BaseDictObject):
             self.productTypes: _List[ProductType] = [ProductType(datum) for datum in data["productTypes"]]
         else:
             self.productTypes: _List[ProductType] = []
+        if "productTypeVersion" in data:
+            self.productTypeVersion: str = self._get_value(str, "productTypeVersion")
+        else:
+            self.productTypeVersion: str = None
 
 
 class ProductTypeDefinitions20200901Client(__BaseClient):
@@ -173,6 +185,9 @@ class ProductTypeDefinitions20200901Client(__BaseClient):
         self,
         marketplaceIds: _List[str],
         keywords: _List[str] = None,
+        itemName: str = None,
+        locale: str = None,
+        searchLocale: str = None,
     ):
         """
                 Search for and return a list of Amazon product types that have definitions available.
@@ -189,6 +204,12 @@ class ProductTypeDefinitions20200901Client(__BaseClient):
             params["keywords"] = ",".join(map(str, keywords))
         if marketplaceIds is not None:
             params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
+        if itemName is not None:
+            params["itemName"] = itemName
+        if locale is not None:
+            params["locale"] = locale
+        if searchLocale is not None:
+            params["searchLocale"] = searchLocale
         response = self.request(
             path=url,
             method="GET",

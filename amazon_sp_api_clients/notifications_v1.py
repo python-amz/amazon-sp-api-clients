@@ -2,6 +2,74 @@ from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __
 from typing import List as _List
 
 
+class ProcessingDirective(__BaseDictObject):
+    """
+        Additional information passed to the subscription to control the processing of notifications. For example, you can use an `eventFilter` to customize your subscription to send notifications for only the specified marketplaceId's, or select the aggregation time period at which to send notifications (e.g. limit to one notification every five minutes for high frequency notifications). The specific features available vary depending on the notificationType.
+    This feature is currently only supported by the `ANY_OFFER_CHANGED` and `ORDER_CHANGE` notificationTypes.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "eventFilter" in data:
+            self.eventFilter: EventFilter = self._get_value(EventFilter, "eventFilter")
+        else:
+            self.eventFilter: EventFilter = None
+
+
+class MarketplaceFilter(__BaseDictObject):
+    """
+    Use this event filter to customize your subscription to send notifications for only the specified marketplaceId's.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "marketplaceIds" in data:
+            self.marketplaceIds: MarketplaceIds = self._get_value(MarketplaceIds, "marketplaceIds")
+        else:
+            self.marketplaceIds: MarketplaceIds = None
+
+
+class AggregationFilter(__BaseDictObject):
+    """
+    Use this filter to select the aggregation time period at which to send notifications (e.g. limit to one notification every five minutes for high frequency notifications).
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "aggregationSettings" in data:
+            self.aggregationSettings: AggregationSettings = self._get_value(AggregationSettings, "aggregationSettings")
+        else:
+            self.aggregationSettings: AggregationSettings = None
+
+
+class AggregationSettings(__BaseDictObject):
+    """
+    A container that holds all of the necessary properties to configure the aggregation of notifications.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "aggregationTimePeriod" in data:
+            self.aggregationTimePeriod: AggregationTimePeriod = self._get_value(
+                AggregationTimePeriod, "aggregationTimePeriod"
+            )
+        else:
+            self.aggregationTimePeriod: AggregationTimePeriod = None
+
+
+class OrderChangeTypeFilter(__BaseDictObject):
+    """
+    Use this event filter to customize your subscription to send notifications for only the specified orderChangeType.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "orderChangeTypes" in data:
+            self.orderChangeTypes: OrderChangeTypes = self._get_value(OrderChangeTypes, "orderChangeTypes")
+        else:
+            self.orderChangeTypes: OrderChangeTypes = None
+
+
 class Subscription(__BaseDictObject):
     """
     Represents a subscription to receive notifications.
@@ -21,6 +89,10 @@ class Subscription(__BaseDictObject):
             self.destinationId: str = self._get_value(str, "destinationId")
         else:
             self.destinationId: str = None
+        if "processingDirective" in data:
+            self.processingDirective: ProcessingDirective = self._get_value(ProcessingDirective, "processingDirective")
+        else:
+            self.processingDirective: ProcessingDirective = None
 
 
 class CreateSubscriptionResponse(__BaseDictObject):
@@ -55,6 +127,10 @@ class CreateSubscriptionRequest(__BaseDictObject):
             self.destinationId: str = self._get_value(str, "destinationId")
         else:
             self.destinationId: str = None
+        if "processingDirective" in data:
+            self.processingDirective: ProcessingDirective = self._get_value(ProcessingDirective, "processingDirective")
+        else:
+            self.processingDirective: ProcessingDirective = None
 
 
 class GetSubscriptionByIdResponse(__BaseDictObject):
@@ -316,6 +392,26 @@ class Error(__BaseDictObject):
             self.details: str = None
 
 
+class MarketplaceIds(list, _List["str"]):
+    """
+    A list of marketplace identifiers to subscribe to (e.g. ATVPDKIKX0DER). To receive notifications in every marketplace, do not provide this list.
+    """
+
+    def __init__(self, data):
+        super().__init__([str(datum) for datum in data])
+        self.data = data
+
+
+class OrderChangeTypes(list, _List["OrderChangeTypeEnum"]):
+    """
+    A list of order change types to subscribe to (e.g. BuyerRequestedChange). To receive notifications of all change types, do not provide this list.
+    """
+
+    def __init__(self, data):
+        super().__init__([OrderChangeTypeEnum(datum) for datum in data])
+        self.data = data
+
+
 class DestinationList(list, _List["Destination"]):
     """
     A list of destinations.
@@ -336,11 +432,41 @@ class ErrorList(list, _List["Error"]):
         self.data = data
 
 
+class AggregationTimePeriod(str):
+    """
+    The supported aggregation time periods. For example, if FiveMinutes is the value chosen, and 50 price updates occur for an ASIN within 5 minutes, Amazon will send only two notifications; one for the first event, and then a subsequent notification 5 minutes later with the final end state of the data. The 48 interim events will be dropped.
+    """
+
+
+class OrderChangeTypeEnum(str):
+    """
+    The supported order change type of ORDER_CHANGE notification.
+    """
+
+
 class NotificationType(str):
     """
        The type of notification.
     For more information about notification types, see [the Notifications API Use Case Guide](doc:notifications-api-v1-use-case-guide).
     """
+
+
+class EventFilter(
+    AggregationFilter,
+    MarketplaceFilter,
+    OrderChangeTypeFilter,
+):
+    """
+    A notificationType specific filter. This object contains all of the currently available filters and properties that you can use to define a notificationType specific filter.
+    """
+
+    def __init__(self, data):
+        if "eventFilterType" in data:
+            self.eventFilterType = data.pop("eventFilterType")
+        else:
+            self.eventFilterType = None
+        self.data = data
+        super().__init__(data)
 
 
 class NotificationsV1Client(__BaseClient):
@@ -354,7 +480,7 @@ class NotificationsV1Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/notifications/v1/subscriptions/{notificationType}"
         params = {}
@@ -387,7 +513,7 @@ class NotificationsV1Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/notifications/v1/subscriptions/{notificationType}"
         params = {}
@@ -417,12 +543,12 @@ class NotificationsV1Client(__BaseClient):
         notificationType: str,
     ):
         """
-                Returns information about a subscription for the specified notification type. The getSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+                Returns information about a subscription for the specified notification type. The getSubscriptionById API is grantless. For more information, see [Grantless operations](doc:grantless-operations) in the Selling Partner API Developer Guide.
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/notifications/v1/subscriptions/{notificationType}/{subscriptionId}"
         params = {}
@@ -451,12 +577,12 @@ class NotificationsV1Client(__BaseClient):
         notificationType: str,
     ):
         """
-                Deletes the subscription indicated by the subscription identifier and notification type that you specify. The subscription identifier can be for any subscription associated with your application. After you successfully call this operation, notifications will stop being sent for the associated subscription. The deleteSubscriptionById API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+                Deletes the subscription indicated by the subscription identifier and notification type that you specify. The subscription identifier can be for any subscription associated with your application. After you successfully call this operation, notifications will stop being sent for the associated subscription. The deleteSubscriptionById API is grantless. For more information, see [Grantless operations](doc:grantless-operations) in the Selling Partner API Developer Guide.
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/notifications/v1/subscriptions/{notificationType}/{subscriptionId}"
         params = {}
@@ -483,12 +609,12 @@ class NotificationsV1Client(__BaseClient):
         self,
     ):
         """
-                Returns information about all destinations. The getDestinations API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+                Returns information about all destinations. The getDestinations API is grantless. For more information, see [Grantless operations](doc:grantless-operations) in the Selling Partner API Developer Guide.
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/notifications/v1/destinations"
         params = {}
@@ -516,12 +642,12 @@ class NotificationsV1Client(__BaseClient):
         data: CreateDestinationRequest,
     ):
         """
-                Creates a destination resource to receive notifications. The createDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+                Creates a destination resource to receive notifications. The createDestination API is grantless. For more information, see [Grantless operations](doc:grantless-operations) in the Selling Partner API Developer Guide.
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/notifications/v1/destinations"
         params = {}
@@ -550,12 +676,12 @@ class NotificationsV1Client(__BaseClient):
         destinationId: str,
     ):
         """
-                Returns information about the destination that you specify. The getDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+                Returns information about the destination that you specify. The getDestination API is grantless. For more information, see [Grantless operations](doc:grantless-operations) in the Selling Partner API Developer Guide.
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/notifications/v1/destinations/{destinationId}"
         params = {}
@@ -583,12 +709,12 @@ class NotificationsV1Client(__BaseClient):
         destinationId: str,
     ):
         """
-                Deletes the destination that you specify. The deleteDestination API is grantless. For more information, see "Grantless operations" in the Selling Partner API Developer Guide.
+                Deletes the destination that you specify. The deleteDestination API is grantless. For more information, see [Grantless operations](doc:grantless-operations) in the Selling Partner API Developer Guide.
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/notifications/v1/destinations/{destinationId}"
         params = {}

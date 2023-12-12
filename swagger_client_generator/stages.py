@@ -168,7 +168,8 @@ def stage_5_ref_components(data: dict):
                 elif datum['type'] == 'object':
                     for k, v in datum['properties'].items():
                         property_obj = extra_properties.setdefault(k, {})
-                        property_obj['type'] = parse_type(v['$ref'])
+                        if '$ref' in v:
+                            property_obj['type'] = parse_type(v['$ref'])
                 else:
                     raise NotImplementedError
         else:
@@ -287,7 +288,23 @@ class Operation:
         for status_code, response_data in self.source['responses'].items():
             if 'application/json' in response_data['content']:
                 parsed_response_data = result.setdefault(status_code, {})
-                response_type = parse_type(response_data['content']['application/json']['schema']['$ref'])
+                assert 'content' in response_data, f'Missing "content" in response_data: {response_data.keys()}'
+                content = response_data['content']
+                assert isinstance(content, dict), f'Expected content to be a dictionary, got {type(content)}'
+                assert 'application/json' in content, f'Missing "application/json" in content: {content.keys()}'
+                application_json = content['application/json']
+                assert isinstance(application_json, dict), \
+                    f'Expected application/json to be a dictionary, got {type(application_json)}'
+                assert 'schema' in application_json, f'Missing "schema" in application_json: {application_json.keys()}'
+                schema = application_json['schema']
+                assert isinstance(schema, dict), f'Expected schema to be a dictionary, got {type(schema)}'
+                if '$ref' in schema:
+                    ref = schema['$ref']
+                    assert isinstance(ref, str), f'Expected $ref to be a string, got {type(ref)}'
+                    response_type = parse_type(ref)
+                else:
+                    assert 'type' in schema
+                    response_type = parse_type(schema['type'])
                 parsed_response_data['type'] = response_type
             elif 'application/hal+json' in response_data['content']:
                 parsed_response_data = result.setdefault(status_code, {})
@@ -311,7 +328,7 @@ def stage_6_operations(data: dict) -> dict[str, Operation]:
             source=method_data,
         )
         for url, url_data in paths.items()
-        for method, method_data in url_data.items() if method not in ['x-amzn-api-sandbox']
+        for method, method_data in url_data.items() if method not in ['x-amzn-api-sandbox', 'x-amzn-api-sandbox-only']
     }
     return parsed_operations
 

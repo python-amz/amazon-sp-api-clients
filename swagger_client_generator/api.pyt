@@ -75,14 +75,22 @@ class {{ component_name }}({% for type in component.base_types %}{{ type }}, {% 
             {% set item_type = property.item_type %}
             self.{{ name }}: _List[{{ item_type }}] = [{{ item_type }}(datum) for datum in data.pop('{{ name }}')]
         {% else %}
-            self.{{ name }}: {{ type }} = {{ type }}(data.pop('{{ name }}'))
+            {% if type %}
+                self.{{ name }}: {{ type }} = {{ type }}(data.pop('{{ name }}'))
+            {% else %}
+                self.{{ name }} = data.pop('{{ name }}')
+            {% endif %}
         {% endif %}
         else:
         {% if type == 'list' %}
             {% set item_type = property.item_type %}
             self.{{ name }}: _List[{{ item_type }}] = []
         {% else %}
-            self.{{ name }}: {{ type }} = None
+            {% if type %}
+                self.{{ name }}: {{ type }} = None
+            {% else %}
+                self.{{ name }} = None
+            {% endif %}
         {% endif %}
     {% endfor %}
 

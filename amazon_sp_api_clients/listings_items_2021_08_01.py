@@ -70,9 +70,9 @@ class Item(__BaseDictObject):
         else:
             self.fulfillmentAvailability: _List[FulfillmentAvailability] = []
         if "procurement" in data:
-            self.procurement: ItemProcurement = self._get_value(ItemProcurement, "procurement")
+            self.procurement: _List[ItemProcurement] = [ItemProcurement(datum) for datum in data["procurement"]]
         else:
-            self.procurement: ItemProcurement = None
+            self.procurement: _List[ItemProcurement] = []
 
 
 class ItemSummaryByMarketplace(__BaseDictObject):
@@ -395,11 +395,12 @@ class ListingsItems20210801Client(__BaseClient):
     ):
         """
                 Returns details about a listings item for a selling partner.
+        **Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 5 | 10 |
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/listings/2021-08-01/items/{sellerId}/{sku}"
         params = {}
@@ -437,11 +438,12 @@ class ListingsItems20210801Client(__BaseClient):
     ):
         """
                 Creates a new or fully-updates an existing listings item for a selling partner.
+        **Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 5 | 10 |
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/listings/2021-08-01/items/{sellerId}/{sku}"
         params = {}
@@ -476,11 +478,12 @@ class ListingsItems20210801Client(__BaseClient):
     ):
         """
                 Delete a listings item for a selling partner.
+        **Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 5 | 10 |
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/listings/2021-08-01/items/{sellerId}/{sku}"
         params = {}
@@ -515,11 +518,12 @@ class ListingsItems20210801Client(__BaseClient):
     ):
         """
                 Partially update (patch) a listings item for a selling partner. Only top-level listings item attributes can be patched. Patching nested attributes is not supported.
+        **Note:** The parameters associated with this operation may contain special characters that must be encoded to successfully call the API. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 5 | 10 |
-        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values then those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](doc:usage-plans-and-rate-limits-in-the-sp-api).
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/listings/2021-08-01/items/{sellerId}/{sku}"
         params = {}

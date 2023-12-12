@@ -219,7 +219,7 @@ class Feeds20210630Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 0.0222 | 10 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/feeds/2021-06-30/feeds"
         params = {}
@@ -265,7 +265,7 @@ class Feeds20210630Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 0.0083 | 15 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/feeds/2021-06-30/feeds"
         params = {}
@@ -297,8 +297,8 @@ class Feeds20210630Client(__BaseClient):
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
-        | 2.0 | 15 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        | 2 | 15 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/feeds/2021-06-30/feeds/{feedId}"
         params = {}
@@ -329,8 +329,8 @@ class Feeds20210630Client(__BaseClient):
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
-        | 0.0222 | 10 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        | 2 | 15 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/feeds/2021-06-30/feeds/{feedId}"
         params = {}
@@ -361,8 +361,8 @@ class Feeds20210630Client(__BaseClient):
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
-        | 0.0083 | 15 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        | 0.5 | 15 |
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/feeds/2021-06-30/documents"
         params = {}
@@ -395,7 +395,7 @@ class Feeds20210630Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 0.0222 | 10 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/feeds/2021-06-30/documents/{feedDocumentId}"
         params = {}

@@ -30,7 +30,7 @@
                     {
                         "name": "keywords",
                         "in": "query",
-                        "description": "A comma-delimited list of keywords to search product types by.",
+                        "description": "A comma-delimited list of keywords to search product types. **Note:** Cannot be used with `itemName`.",
                         "style": "form",
                         "explode": false,
                         "schema": {
@@ -55,6 +55,33 @@
                             }
                         },
                         "example": "ATVPDKIKX0DER"
+                    },
+                    {
+                        "name": "itemName",
+                        "in": "query",
+                        "description": "The title of the ASIN to get the product type recommendation. **Note:** Cannot be used with `keywords`.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Running shoes"
+                    },
+                    {
+                        "name": "locale",
+                        "in": "query",
+                        "description": "The locale for the display names in the response. Defaults to the primary locale of the marketplace.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "en_US"
+                    },
+                    {
+                        "name": "searchLocale",
+                        "in": "query",
+                        "description": "The locale used for the `keywords` and `itemName` parameters. Defaults to the primary locale of the marketplace.",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "en_US"
                     }
                 ],
                 "responses": {
@@ -83,11 +110,13 @@
                                     "productTypes": [
                                         {
                                             "name": "LUGGAGE",
+                                            "displayName": "Luggage",
                                             "marketplaceIds": [
                                                 "ATVPDKIKX0DER"
                                             ]
                                         }
-                                    ]
+                                    ],
+                                    "productTypeVersion": "UHqSqmb4FNUk="
                                 }
                             }
                         },
@@ -101,11 +130,13 @@
                                         "productTypes": [
                                             {
                                                 "name": "LUGGAGE",
+                                                "displayName": "Luggage",
                                                 "marketplaceIds": [
                                                     "ATVPDKIKX0DER"
                                                 ]
                                             }
-                                        ]
+                                        ],
+                                        "productTypeVersion": "UHqSqmb4FNUk="
                                     }
                                 }
                             ]
@@ -866,6 +897,7 @@
                                         "ATVPDKIKX0DER"
                                     ],
                                     "productType": "LUGGAGE",
+                                    "displayName": "Luggage",
                                     "productTypeVersion": {
                                         "version": "UHqSqmb4FNUk=",
                                         "latest": true,
@@ -919,6 +951,7 @@
                                             "ATVPDKIKX0DER"
                                         ],
                                         "productType": "LUGGAGE",
+                                        "displayName": "Luggage",
                                         "productTypeVersion": {
                                             "version": "UHqSqmb4FNUk=",
                                             "latest": true,
@@ -1222,6 +1255,7 @@
             },
             "ProductTypeDefinition": {
                 "required": [
+                    "displayName",
                     "locale",
                     "marketplaceIds",
                     "productType",
@@ -1302,6 +1336,10 @@
                         "type": "string",
                         "description": "The name of the Amazon product type that this product type definition applies to."
                     },
+                    "displayName": {
+                        "type": "string",
+                        "description": "Human-readable and localized description of the Amazon product type."
+                    },
                     "productTypeVersion": {
                         "$ref": "#/components/schemas/ProductTypeVersion"
                     }
@@ -1353,6 +1391,7 @@
             },
             "ProductType": {
                 "required": [
+                    "displayName",
                     "marketplaceIds",
                     "name"
                 ],
@@ -1361,6 +1400,10 @@
                     "name": {
                         "type": "string",
                         "description": "The name of the Amazon product type."
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "description": "The human-readable and localized description of the Amazon product type."
                     },
                     "marketplaceIds": {
                         "type": "array",
@@ -1374,6 +1417,7 @@
             },
             "ProductTypeList": {
                 "required": [
+                    "productTypeVersion",
                     "productTypes"
                 ],
                 "type": "object",
@@ -1383,10 +1427,15 @@
                         "items": {
                             "$ref": "#/components/schemas/ProductType"
                         }
+                    },
+                    "productTypeVersion": {
+                        "type": "string",
+                        "description": "Amazon product type version identifier."
                     }
                 },
                 "description": "A list of Amazon product types with definitions available."
             }
         }
-    }
+    },
+    "x-original-swagger-version": "2.0"
 }

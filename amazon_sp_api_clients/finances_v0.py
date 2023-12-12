@@ -2,6 +2,31 @@ from .base import BaseClient as __BaseClient, convert_bool, BaseDictObject as __
 from typing import List as _List
 
 
+class AdhocDisbursementEvent(__BaseDictObject):
+    """
+    An event related to an Adhoc Disbursement.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "TransactionType" in data:
+            self.TransactionType: str = self._get_value(str, "TransactionType")
+        else:
+            self.TransactionType: str = None
+        if "PostedDate" in data:
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
+        else:
+            self.PostedDate: Date = None
+        if "TransactionId" in data:
+            self.TransactionId: str = self._get_value(str, "TransactionId")
+        else:
+            self.TransactionId: str = None
+        if "TransactionAmount" in data:
+            self.TransactionAmount: Currency = self._get_value(Currency, "TransactionAmount")
+        else:
+            self.TransactionAmount: Currency = None
+
+
 class AdjustmentEvent(__BaseDictObject):
     """
     An adjustment to the seller's account.
@@ -179,6 +204,50 @@ class ChargeInstrument(__BaseDictObject):
             self.Amount: Currency = None
 
 
+class ChargeRefundEvent(__BaseDictObject):
+    """
+    An event related to charge refund.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "PostedDate" in data:
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
+        else:
+            self.PostedDate: Date = None
+        if "ReasonCode" in data:
+            self.ReasonCode: str = self._get_value(str, "ReasonCode")
+        else:
+            self.ReasonCode: str = None
+        if "ReasonCodeDescription" in data:
+            self.ReasonCodeDescription: str = self._get_value(str, "ReasonCodeDescription")
+        else:
+            self.ReasonCodeDescription: str = None
+        if "ChargeRefundTransactions" in data:
+            self.ChargeRefundTransactions: ChargeRefundTransactions = self._get_value(
+                ChargeRefundTransactions, "ChargeRefundTransactions"
+            )
+        else:
+            self.ChargeRefundTransactions: ChargeRefundTransactions = None
+
+
+class ChargeRefundTransaction(__BaseDictObject):
+    """
+    The charge refund transaction.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "ChargeAmount" in data:
+            self.ChargeAmount: Currency = self._get_value(Currency, "ChargeAmount")
+        else:
+            self.ChargeAmount: Currency = None
+        if "ChargeType" in data:
+            self.ChargeType: str = self._get_value(str, "ChargeType")
+        else:
+            self.ChargeType: str = None
+
+
 class CouponPaymentEvent(__BaseDictObject):
     """
     An event related to coupon payments.
@@ -312,6 +381,43 @@ class DirectPayment(__BaseDictObject):
             self.DirectPaymentAmount: Currency = None
 
 
+class FailedAdhocDisbursementEvent(__BaseDictObject):
+    """
+    Failed ad hoc disbursement event list.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "FundsTransfersType" in data:
+            self.FundsTransfersType: str = self._get_value(str, "FundsTransfersType")
+        else:
+            self.FundsTransfersType: str = None
+        if "TransferId" in data:
+            self.TransferId: str = self._get_value(str, "TransferId")
+        else:
+            self.TransferId: str = None
+        if "DisbursementId" in data:
+            self.DisbursementId: str = self._get_value(str, "DisbursementId")
+        else:
+            self.DisbursementId: str = None
+        if "PaymentDisbursementType" in data:
+            self.PaymentDisbursementType: str = self._get_value(str, "PaymentDisbursementType")
+        else:
+            self.PaymentDisbursementType: str = None
+        if "Status" in data:
+            self.Status: str = self._get_value(str, "Status")
+        else:
+            self.Status: str = None
+        if "TransferAmount" in data:
+            self.TransferAmount: Currency = self._get_value(Currency, "TransferAmount")
+        else:
+            self.TransferAmount: Currency = None
+        if "PostedDate" in data:
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
+        else:
+            self.PostedDate: Date = None
+
+
 class FBALiquidationEvent(__BaseDictObject):
     """
     A payment event for Fulfillment by Amazon (FBA) inventory liquidation. This event is used only in the US marketplace.
@@ -418,6 +524,12 @@ class FinancialEvents(__BaseDictObject):
             self.ShipmentEventList: ShipmentEventList = self._get_value(ShipmentEventList, "ShipmentEventList")
         else:
             self.ShipmentEventList: ShipmentEventList = None
+        if "ShipmentSettleEventList" in data:
+            self.ShipmentSettleEventList: ShipmentSettleEventList = self._get_value(
+                ShipmentSettleEventList, "ShipmentSettleEventList"
+            )
+        else:
+            self.ShipmentSettleEventList: ShipmentSettleEventList = None
         if "RefundEventList" in data:
             self.RefundEventList: ShipmentEventList = self._get_value(ShipmentEventList, "RefundEventList")
         else:
@@ -536,24 +648,6 @@ class FinancialEvents(__BaseDictObject):
             )
         else:
             self.AffordabilityExpenseReversalEventList: AffordabilityExpenseEventList = None
-        if "TrialShipmentEventList" in data:
-            self.TrialShipmentEventList: TrialShipmentEventList = self._get_value(
-                TrialShipmentEventList, "TrialShipmentEventList"
-            )
-        else:
-            self.TrialShipmentEventList: TrialShipmentEventList = None
-        if "ShipmentSettleEventList" in data:
-            self.ShipmentSettleEventList: ShipmentSettleEventList = self._get_value(
-                ShipmentSettleEventList, "ShipmentSettleEventList"
-            )
-        else:
-            self.ShipmentSettleEventList: ShipmentSettleEventList = None
-        if "TaxWithholdingEventList" in data:
-            self.TaxWithholdingEventList: TaxWithholdingEventList = self._get_value(
-                TaxWithholdingEventList, "TaxWithholdingEventList"
-            )
-        else:
-            self.TaxWithholdingEventList: TaxWithholdingEventList = None
         if "RemovalShipmentEventList" in data:
             self.RemovalShipmentEventList: RemovalShipmentEventList = self._get_value(
                 RemovalShipmentEventList, "RemovalShipmentEventList"
@@ -566,6 +660,54 @@ class FinancialEvents(__BaseDictObject):
             )
         else:
             self.RemovalShipmentAdjustmentEventList: RemovalShipmentAdjustmentEventList = None
+        if "TrialShipmentEventList" in data:
+            self.TrialShipmentEventList: TrialShipmentEventList = self._get_value(
+                TrialShipmentEventList, "TrialShipmentEventList"
+            )
+        else:
+            self.TrialShipmentEventList: TrialShipmentEventList = None
+        if "TDSReimbursementEventList" in data:
+            self.TDSReimbursementEventList: TDSReimbursementEventList = self._get_value(
+                TDSReimbursementEventList, "TDSReimbursementEventList"
+            )
+        else:
+            self.TDSReimbursementEventList: TDSReimbursementEventList = None
+        if "AdhocDisbursementEventList" in data:
+            self.AdhocDisbursementEventList: AdhocDisbursementEventList = self._get_value(
+                AdhocDisbursementEventList, "AdhocDisbursementEventList"
+            )
+        else:
+            self.AdhocDisbursementEventList: AdhocDisbursementEventList = None
+        if "TaxWithholdingEventList" in data:
+            self.TaxWithholdingEventList: TaxWithholdingEventList = self._get_value(
+                TaxWithholdingEventList, "TaxWithholdingEventList"
+            )
+        else:
+            self.TaxWithholdingEventList: TaxWithholdingEventList = None
+        if "ChargeRefundEventList" in data:
+            self.ChargeRefundEventList: ChargeRefundEventList = self._get_value(
+                ChargeRefundEventList, "ChargeRefundEventList"
+            )
+        else:
+            self.ChargeRefundEventList: ChargeRefundEventList = None
+        if "FailedAdhocDisbursementEventList" in data:
+            self.FailedAdhocDisbursementEventList: FailedAdhocDisbursementEventList = self._get_value(
+                FailedAdhocDisbursementEventList, "FailedAdhocDisbursementEventList"
+            )
+        else:
+            self.FailedAdhocDisbursementEventList: FailedAdhocDisbursementEventList = None
+        if "ValueAddedServiceChargeEventList" in data:
+            self.ValueAddedServiceChargeEventList: ValueAddedServiceChargeEventList = self._get_value(
+                ValueAddedServiceChargeEventList, "ValueAddedServiceChargeEventList"
+            )
+        else:
+            self.ValueAddedServiceChargeEventList: ValueAddedServiceChargeEventList = None
+        if "CapacityReservationBillingEventList" in data:
+            self.CapacityReservationBillingEventList: CapacityReservationBillingEventList = self._get_value(
+                CapacityReservationBillingEventList, "CapacityReservationBillingEventList"
+            )
+        else:
+            self.CapacityReservationBillingEventList: CapacityReservationBillingEventList = None
 
 
 class ImagingServicesFeeEvent(__BaseDictObject):
@@ -1463,6 +1605,27 @@ class TaxWithheldComponent(__BaseDictObject):
             self.TaxesWithheld: ChargeComponentList = None
 
 
+class TDSReimbursementEvent(__BaseDictObject):
+    """
+    An event related to a Tax-Deducted-at-Source (TDS) reimbursement.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "PostedDate" in data:
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
+        else:
+            self.PostedDate: Date = None
+        if "TDSOrderId" in data:
+            self.TDSOrderId: str = self._get_value(str, "TDSOrderId")
+        else:
+            self.TDSOrderId: str = None
+        if "ReimbursedAmount" in data:
+            self.ReimbursedAmount: Currency = self._get_value(Currency, "ReimbursedAmount")
+        else:
+            self.ReimbursedAmount: Currency = None
+
+
 class TrialShipmentEvent(__BaseDictObject):
     """
     An event related to a trial shipment.
@@ -1492,6 +1655,56 @@ class TrialShipmentEvent(__BaseDictObject):
             self.FeeList: FeeComponentList = None
 
 
+class ValueAddedServiceChargeEvent(__BaseDictObject):
+    """
+    An event related to a value added service charge.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "TransactionType" in data:
+            self.TransactionType: str = self._get_value(str, "TransactionType")
+        else:
+            self.TransactionType: str = None
+        if "PostedDate" in data:
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
+        else:
+            self.PostedDate: Date = None
+        if "Description" in data:
+            self.Description: str = self._get_value(str, "Description")
+        else:
+            self.Description: str = None
+        if "TransactionAmount" in data:
+            self.TransactionAmount: Currency = self._get_value(Currency, "TransactionAmount")
+        else:
+            self.TransactionAmount: Currency = None
+
+
+class CapacityReservationBillingEvent(__BaseDictObject):
+    """
+    An event related to a capacity reservation billing charge.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "TransactionType" in data:
+            self.TransactionType: str = self._get_value(str, "TransactionType")
+        else:
+            self.TransactionType: str = None
+        if "PostedDate" in data:
+            self.PostedDate: Date = self._get_value(Date, "PostedDate")
+        else:
+            self.PostedDate: Date = None
+        if "Description" in data:
+            self.Description: str = self._get_value(str, "Description")
+        else:
+            self.Description: str = None
+        if "TransactionAmount" in data:
+            self.TransactionAmount: Currency = self._get_value(Currency, "TransactionAmount")
+        else:
+            self.TransactionAmount: Currency = None
+
+
 class Error(__BaseDictObject):
     """
     Error response returned when the request is unsuccessful.
@@ -1511,6 +1724,16 @@ class Error(__BaseDictObject):
             self.details: str = self._get_value(str, "details")
         else:
             self.details: str = None
+
+
+class AdhocDisbursementEventList(list, _List["AdhocDisbursementEvent"]):
+    """
+    A list of `AdhocDisbursement` events.
+    """
+
+    def __init__(self, data):
+        super().__init__([AdhocDisbursementEvent(datum) for datum in data])
+        self.data = data
 
 
 class AdjustmentEventList(list, _List["AdjustmentEvent"]):
@@ -1563,6 +1786,26 @@ class ChargeInstrumentList(list, _List["ChargeInstrument"]):
         self.data = data
 
 
+class ChargeRefundEventList(list, _List["ChargeRefundEvent"]):
+    """
+    A list of charge refund events.
+    """
+
+    def __init__(self, data):
+        super().__init__([ChargeRefundEvent(datum) for datum in data])
+        self.data = data
+
+
+class ChargeRefundTransactions(list, _List["ChargeRefundTransaction"]):
+    """
+    A list of `ChargeRefund` transactions.
+    """
+
+    def __init__(self, data):
+        super().__init__([ChargeRefundTransaction(datum) for datum in data])
+        self.data = data
+
+
 class CouponPaymentEventList(list, _List["CouponPaymentEvent"]):
     """
     A list of coupon payment event information.
@@ -1600,6 +1843,16 @@ class DirectPaymentList(list, _List["DirectPayment"]):
 
     def __init__(self, data):
         super().__init__([DirectPayment(datum) for datum in data])
+        self.data = data
+
+
+class FailedAdhocDisbursementEventList(list, _List["FailedAdhocDisbursementEvent"]):
+    """
+    A list of `FailedAdhocDisbursementEvent`s.
+    """
+
+    def __init__(self, data):
+        super().__init__([FailedAdhocDisbursementEvent(datum) for datum in data])
         self.data = data
 
 
@@ -1803,6 +2056,16 @@ class ShipmentEventList(list, _List["ShipmentEvent"]):
         self.data = data
 
 
+class ShipmentSettleEventList(list, _List["ShipmentEvent"]):
+    """
+    A list of `ShipmentEvent` items.
+    """
+
+    def __init__(self, data):
+        super().__init__([ShipmentEvent(datum) for datum in data])
+        self.data = data
+
+
 class ShipmentItemList(list, _List["ShipmentItem"]):
     """
     A list of shipment items.
@@ -1825,7 +2088,7 @@ class SolutionProviderCreditEventList(list, _List["SolutionProviderCreditEvent"]
 
 class TaxWithholdingEventList(list, _List["TaxWithholdingEvent"]):
     """
-    List of TaxWithholding events.
+    A list of `TaxWithholding` events.
     """
 
     def __init__(self, data):
@@ -1843,6 +2106,16 @@ class TaxWithheldComponentList(list, _List["TaxWithheldComponent"]):
         self.data = data
 
 
+class TDSReimbursementEventList(list, _List["TDSReimbursementEvent"]):
+    """
+    A list of `TDSReimbursementEvent` items.
+    """
+
+    def __init__(self, data):
+        super().__init__([TDSReimbursementEvent(datum) for datum in data])
+        self.data = data
+
+
 class TrialShipmentEventList(list, _List["TrialShipmentEvent"]):
     """
     A list of information about trial shipment financial events.
@@ -1853,13 +2126,23 @@ class TrialShipmentEventList(list, _List["TrialShipmentEvent"]):
         self.data = data
 
 
-class ShipmentSettleEventList(list, _List["ShipmentEvent"]):
+class ValueAddedServiceChargeEventList(list, _List["ValueAddedServiceChargeEvent"]):
     """
-    A list of information about shipment settle financial events.
+    A list of `ValueAddedServiceCharge` events.
     """
 
     def __init__(self, data):
-        super().__init__([ShipmentEvent(datum) for datum in data])
+        super().__init__([ValueAddedServiceChargeEvent(datum) for datum in data])
+        self.data = data
+
+
+class CapacityReservationBillingEventList(list, _List["CapacityReservationBillingEvent"]):
+    """
+    A list of `CapacityReservationBillingEvent` events.
+    """
+
+    def __init__(self, data):
+        super().__init__([CapacityReservationBillingEvent(datum) for datum in data])
         self.data = data
 
 
@@ -1890,12 +2173,12 @@ class FinancesV0Client(__BaseClient):
         NextToken: str = None,
     ):
         """
-                Returns financial event groups for a given date range.
+                Returns financial event groups for a given date range. It may take up to 48 hours for orders to appear in your financial events.
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 0.5 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/finances/v0/financialEventGroups"
         params = {}
@@ -1927,20 +2210,27 @@ class FinancesV0Client(__BaseClient):
         self,
         eventGroupId: str,
         MaxResultsPerPage: int = None,
+        PostedAfter: str = None,
+        PostedBefore: str = None,
         NextToken: str = None,
     ):
         """
-                Returns all financial events for the specified financial event group.
+                Returns all financial events for the specified financial event group. It may take up to 48 hours for orders to appear in your financial events.
+        **Note:** This operation will only retrieve group's data for the past two years. If a request is submitted for data spanning more than two years, an empty response is returned.
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 0.5 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/finances/v0/financialEventGroups/{eventGroupId}/financialEvents"
         params = {}
         if MaxResultsPerPage is not None:
             params["MaxResultsPerPage"] = MaxResultsPerPage
+        if PostedAfter is not None:
+            params["PostedAfter"] = PostedAfter
+        if PostedBefore is not None:
+            params["PostedBefore"] = PostedBefore
         if NextToken is not None:
             params["NextToken"] = NextToken
         response = self.request(
@@ -1966,12 +2256,12 @@ class FinancesV0Client(__BaseClient):
         NextToken: str = None,
     ):
         """
-                Returns all financial events for the specified order.
+                Returns all financial events for the specified order. It may take up to 48 hours for orders to appear in your financial events.
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 0.5 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/finances/v0/orders/{orderId}/financialEvents"
         params = {}
@@ -2003,12 +2293,12 @@ class FinancesV0Client(__BaseClient):
         NextToken: str = None,
     ):
         """
-                Returns financial events for the specified data range.
+                Returns financial events for the specified data range. It may take up to 48 hours for orders to appear in your financial events. **Note:** in `ListFinancialEvents`, deferred events don't show up in responses until in they are released.
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 0.5 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/finances/v0/financialEvents"
         params = {}

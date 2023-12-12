@@ -322,7 +322,7 @@ class Money(__BaseDictObject):
 
 class DeliveryWindow(__BaseDictObject):
     """
-    The time range within which a Scheduled Delivery fulfillment order should be delivered.
+    The time range within which a Scheduled Delivery fulfillment order should be delivered. This is only available in the JP marketplace.
     """
 
     def __init__(self, data):
@@ -1165,7 +1165,7 @@ class ReturnItem(__BaseDictObject):
 
 class ScheduledDeliveryInfo(__BaseDictObject):
     """
-    Delivery information for a scheduled delivery.
+    Delivery information for a scheduled delivery. This is only available in the JP marketplace.
     """
 
     def __init__(self, data):
@@ -1301,7 +1301,9 @@ class UpdateFulfillmentOrderItem(__BaseDictObject):
 
 
 class UpdateFulfillmentOrderRequest(__BaseDictObject):
-    """ """
+    """
+    The request body schema for the updateFulfillmentOrder operation.
+    """
 
     def __init__(self, data):
         super().__init__(data)
@@ -1587,7 +1589,7 @@ class GetFeatureSkuResult(__BaseDictObject):
 
 class FeatureSettings(__BaseDictObject):
     """
-    FeatureSettings allows users to apply fulfillment features to an order. To block an order from being shipped using Amazon Logistics (AMZL) and an AMZL tracking number, use featureName as BLOCK_AMZL and featureFulfillmentPolicy as Required. Blocking AMZL will incur an additional fee surcharge on your MCF orders and increase the risk of some of your orders being unfulfilled or delivered late if there are no alternative carriers available. Using BLOCK_AMZL in an order request will take precedence over your Seller Central account setting.
+    FeatureSettings allows users to apply fulfillment features to an order. To block an order from being shipped using Amazon Logistics (AMZL) and an AMZL tracking number, use featureName as BLOCK_AMZL and featureFulfillmentPolicy as Required. Blocking AMZL will incur an additional fee surcharge on your MCF orders and increase the risk of some of your orders being unfulfilled or delivered late if there are no alternative carriers available. Using BLOCK_AMZL in an order request will take precedence over your Seller Central account setting. To ship in non-Amazon branded packaging (blank boxes), use featureName BLANK_BOX.
     """
 
     def __init__(self, data):
@@ -1600,6 +1602,34 @@ class FeatureSettings(__BaseDictObject):
             self.featureFulfillmentPolicy: str = self._get_value(str, "featureFulfillmentPolicy")
         else:
             self.featureFulfillmentPolicy: str = None
+
+
+class SubmitFulfillmentOrderStatusUpdateRequest(__BaseDictObject):
+    """
+    The request body schema for the submitFulfillmentOrderStatusUpdate operation.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "fulfillmentOrderStatus" in data:
+            self.fulfillmentOrderStatus: FulfillmentOrderStatus = self._get_value(
+                FulfillmentOrderStatus, "fulfillmentOrderStatus"
+            )
+        else:
+            self.fulfillmentOrderStatus: FulfillmentOrderStatus = None
+
+
+class SubmitFulfillmentOrderStatusUpdateResponse(__BaseDictObject):
+    """
+    The response schema for the SubmitFulfillmentOrderStatusUpdate operation.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "errors" in data:
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
+        else:
+            self.errors: ErrorList = None
 
 
 class ErrorList(list, _List["Error"]):
@@ -1910,7 +1940,7 @@ class Quantity(int):
 
 class ShippingSpeedCategory(str):
     """
-    The shipping method used for the fulfillment order.
+    The shipping method used for the fulfillment order. When this value is ScheduledDelivery, choose Ship for the fulfillmentAction. Hold is not a valid fulfillmentAction value when the shippingSpeedCategory value is ScheduledDelivery.
     """
 
 
@@ -1925,7 +1955,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/outbound/2020-07-01/fulfillmentOrders/preview"
         params = {}
@@ -1958,7 +1988,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api)
         """
         url = f"/fba/outbound/2020-07-01/fulfillmentOrders"
         params = {}
@@ -1993,7 +2023,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api)
         """
         url = f"/fba/outbound/2020-07-01/fulfillmentOrders"
         params = {}
@@ -2025,7 +2055,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/outbound/2020-07-01/tracking"
         params = {}
@@ -2056,12 +2086,12 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         sellerFulfillmentOrderId: str = None,
     ):
         """
-                Returns a list of return reason codes for a seller SKU in a given marketplace.
+                Returns a list of return reason codes for a seller SKU in a given marketplace. The parameters for this operation may contain special characters that require URL encoding. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/outbound/2020-07-01/returnReasonCodes"
         params = {}
@@ -2101,7 +2131,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/return"
         params = {}
@@ -2133,7 +2163,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
         params = {}
@@ -2165,7 +2195,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}"
         params = {}
@@ -2197,7 +2227,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/cancel"
         params = {}
@@ -2218,6 +2248,34 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))
 
+    def submitFulfillmentOrderStatusUpdate(
+        self,
+        data: SubmitFulfillmentOrderStatusUpdateRequest,
+        sellerFulfillmentOrderId: str,
+    ):
+        """
+        Requests that Amazon update the status of an order in the sandbox testing environment. This is a sandbox-only operation and must be directed to a sandbox endpoint. Refer to [Fulfillment Outbound Dynamic Sandbox Guide](https://developer-docs.amazon.com/sp-api/docs/fulfillment-outbound-dynamic-sandbox-guide) and [Selling Partner API sandbox](https://developer-docs.amazon.com/sp-api/docs/the-selling-partner-api-sandbox) for more information.
+        """
+        url = f"/fba/outbound/2020-07-01/fulfillmentOrders/{sellerFulfillmentOrderId}/status"
+        params = {}
+        response = self.request(
+            path=url,
+            method="PUT",
+            params=params,
+            data=data.data,
+        )
+        response_type = {
+            200: SubmitFulfillmentOrderStatusUpdateResponse,
+            400: SubmitFulfillmentOrderStatusUpdateResponse,
+            401: SubmitFulfillmentOrderStatusUpdateResponse,
+            403: SubmitFulfillmentOrderStatusUpdateResponse,
+            404: SubmitFulfillmentOrderStatusUpdateResponse,
+            429: SubmitFulfillmentOrderStatusUpdateResponse,
+            500: SubmitFulfillmentOrderStatusUpdateResponse,
+            503: SubmitFulfillmentOrderStatusUpdateResponse,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
     def getFeatures(
         self,
         marketplaceId: str,
@@ -2228,7 +2286,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/outbound/2020-07-01/features"
         params = {}
@@ -2263,7 +2321,7 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api)..
         """
         url = f"/fba/outbound/2020-07-01/features/inventory/{featureName}"
         params = {}
@@ -2295,12 +2353,12 @@ class FulfillmentOutbound20200701Client(__BaseClient):
         marketplaceId: str,
     ):
         """
-                Returns the number of items with the sellerSKU you specify that can have orders fulfilled using the specified feature. Note that if the sellerSKU isn't eligible, the response will contain an empty skuInfo object.
+                Returns the number of items with the sellerSKU you specify that can have orders fulfilled using the specified feature. Note that if the sellerSKU isn't eligible, the response will contain an empty skuInfo object. The parameters for this operation may contain special characters that require URL encoding. To avoid errors with SKUs when encoding URLs, refer to [URL Encoding](https://developer-docs.amazon.com/sp-api/docs/url-encoding).
         **Usage Plan:**
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 2 | 30 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/fba/outbound/2020-07-01/features/inventory/{featureName}/{sellerSku}"
         params = {}

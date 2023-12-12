@@ -4,7 +4,7 @@ from typing import List as _List
 
 class Attachment(__BaseDictObject):
     """
-    Represents a file uploaded to a destination that was created by the createUploadDestination operation of the Uploads API.
+    Represents a file uploaded to a destination that was created by the [createUploadDestinationForResource](doc:uploads-api-reference#post-uploads2020-11-01uploaddestinationsresource) operation of the Selling Partner API for Uploads.
     """
 
     def __init__(self, data):
@@ -117,6 +117,32 @@ class GetSchemaResponse(__BaseDictObject):
             self.payload: Schema = self._get_value(Schema, "payload")
         else:
             self.payload: Schema = None
+        if "errors" in data:
+            self.errors: ErrorList = self._get_value(ErrorList, "errors")
+        else:
+            self.errors: ErrorList = None
+
+
+class InvoiceRequest(__BaseDictObject):
+    """
+    The request schema for the sendInvoice operation.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
+        if "attachments" in data:
+            self.attachments: _List[Attachment] = [Attachment(datum) for datum in data["attachments"]]
+        else:
+            self.attachments: _List[Attachment] = []
+
+
+class InvoiceResponse(__BaseDictObject):
+    """
+    The response schema for the sendInvoice operation.
+    """
+
+    def __init__(self, data):
+        super().__init__(data)
         if "errors" in data:
             self.errors: ErrorList = self._get_value(ErrorList, "errors")
         else:
@@ -446,7 +472,7 @@ class MessagingV1Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/messaging/v1/orders/{amazonOrderId}"
         params = {}
@@ -482,7 +508,7 @@ class MessagingV1Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/messaging/v1/orders/{amazonOrderId}/messages/confirmCustomizationDetails"
         params = {}
@@ -519,7 +545,7 @@ class MessagingV1Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/messaging/v1/orders/{amazonOrderId}/messages/confirmDeliveryDetails"
         params = {}
@@ -556,7 +582,7 @@ class MessagingV1Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure"
         params = {}
@@ -592,7 +618,7 @@ class MessagingV1Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/messaging/v1/orders/{amazonOrderId}/messages/negativeFeedbackRemoval"
         params = {}
@@ -628,7 +654,7 @@ class MessagingV1Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/messaging/v1/orders/{amazonOrderId}/messages/confirmOrderDetails"
         params = {}
@@ -665,7 +691,7 @@ class MessagingV1Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/messaging/v1/orders/{amazonOrderId}/messages/confirmServiceDetails"
         params = {}
@@ -702,7 +728,7 @@ class MessagingV1Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/messaging/v1/orders/{amazonOrderId}/messages/amazonMotors"
         params = {}
@@ -739,7 +765,7 @@ class MessagingV1Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/messaging/v1/orders/{amazonOrderId}/messages/warranty"
         params = {}
@@ -810,7 +836,7 @@ class MessagingV1Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/messaging/v1/orders/{amazonOrderId}/messages/digitalAccessKey"
         params = {}
@@ -847,7 +873,7 @@ class MessagingV1Client(__BaseClient):
         | Rate (requests per second) | Burst |
         | ---- | ---- |
         | 1 | 5 |
-        For more information, see "Usage Plans and Rate Limits" in the Selling Partner API documentation.
+        The `x-amzn-RateLimit-Limit` response header returns the usage plan rate limits that were applied to the requested operation, when available. The table above indicates the default rate and burst values for this operation. Selling partners whose business demands require higher throughput may see higher rate and burst values than those shown here. For more information, see [Usage Plans and Rate Limits in the Selling Partner API](https://developer-docs.amazon.com/sp-api/docs/usage-plans-and-rate-limits-in-the-sp-api).
         """
         url = f"/messaging/v1/orders/{amazonOrderId}/messages/unexpectedProblem"
         params = {}
@@ -869,5 +895,37 @@ class MessagingV1Client(__BaseClient):
             429: CreateUnexpectedProblemResponse,
             500: CreateUnexpectedProblemResponse,
             503: CreateUnexpectedProblemResponse,
+        }.get(response.status_code, None)
+        return None if response_type is None else response_type(self._get_response_json(response))
+
+    def sendInvoice(
+        self,
+        data: InvoiceRequest,
+        amazonOrderId: str,
+        marketplaceIds: _List[str],
+    ):
+        """
+        Sends a message providing the buyer an invoice
+        """
+        url = f"/messaging/v1/orders/{amazonOrderId}/messages/invoice"
+        params = {}
+        if marketplaceIds is not None:
+            params["marketplaceIds"] = ",".join(map(str, marketplaceIds))
+        response = self.request(
+            path=url,
+            method="POST",
+            params=params,
+            data=data.data,
+        )
+        response_type = {
+            201: InvoiceResponse,
+            400: InvoiceResponse,
+            403: InvoiceResponse,
+            404: InvoiceResponse,
+            413: InvoiceResponse,
+            415: InvoiceResponse,
+            429: InvoiceResponse,
+            500: InvoiceResponse,
+            503: InvoiceResponse,
         }.get(response.status_code, None)
         return None if response_type is None else response_type(self._get_response_json(response))

@@ -7,7 +7,7 @@ from pathlib import Path
 
 import requests
 
-base_dir = Path(__file__).absolute().parent
+base_dir = Path(__file__).absolute().parent.parent
 
 
 def main():
@@ -18,6 +18,7 @@ def main():
     for directory in map(Path, glob(str(base_dir / 'selling-partner-api-models/models/*-api-model'))):
         module = directory.name.rsplit('-', maxsplit=2)[0].replace('-', '_')
         for src in map(Path, glob(str(directory / '*.json'))):
+            print(f'Converting: {src.stem}')
             dir_name = path.split(directory)[1]
             file_name = path.split(src)[1]
             github_url = f'https://raw.githubusercontent.com/amzn/selling-partner-api-models' \
